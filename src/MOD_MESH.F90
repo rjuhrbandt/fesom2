@@ -52,6 +52,12 @@ real(kind=WP), allocatable, dimension(:,:)  :: gradient_sca ! Coefficients to co
                                                            ! on elements
 INTEGER,       ALLOCATABLE, DIMENSION(:)    :: bc_index_nod2D(:)
                                                            ! vertical structure
+! ================================================================
+! ADJACENCY ARRAYS FOR NODES
+! ================================================================
+INTEGER, ALLOCATABLE, DIMENSION(:)          :: nod_neighbors_num ! Number of neighboring nodes of each node
+INTEGER, ALLOCATABLE, DIMENSION(:,:)        :: nod_neighbors     ! Indices of neighboring nodes
+! ================================================================
 !
 !
 !___vertical mesh info__________________________________________________________
@@ -212,6 +218,9 @@ subroutine write_t_mesh(mesh, unit, iostat, iomsg)
     call write_bin_array(mesh%gradient_sca,        unit, iostat, iomsg)
     call write_bin_array(mesh%bc_index_nod2D,      unit, iostat, iomsg)
 
+    CALL write_bin_array(mesh%nod_neighbors_num,   unit, iostat, iomsg)
+    CALL write_bin_array(mesh%nod_neighbors,       unit, iostat, iomsg)
+
     write(unit, iostat=iostat, iomsg=iomsg) mesh%nl
 
     call write_bin_array(mesh%zbar,              unit, iostat, iomsg)
@@ -308,6 +317,9 @@ subroutine read_t_mesh(mesh, unit, iostat, iomsg)
     call read_bin_array(mesh%gradient_vec,        unit, iostat, iomsg)
     call read_bin_array(mesh%gradient_sca,        unit, iostat, iomsg)
     call read_bin_array(mesh%bc_index_nod2D,      unit, iostat, iomsg)
+
+    CALL read_bin_array(mesh%nod_neighbors_num,   unit, iostat, iomsg)
+    CALL read_bin_array(mesh%nod_neighbors,       unit, iostat, iomsg)
 
     read(unit, iostat=iostat, iomsg=iomsg) mesh%nl
 

@@ -105,6 +105,9 @@ logical                       :: N2smth_v       = .false.  ! do vertical N2 smoo
 logical                       :: N2smth_h       = .true.   ! do horizontal N2 smoothing 
 integer                       :: N2smth_hidx    = 1        ! how many horizontal smoothing cycles should be applied
 
+! Neural network parameters
+LOGICAL                       :: use_GM_NN = .TRUE. ! whether to use a neural network to compute subgrid fluxes
+                                                     ! (hopefully approx. GM fluxes)
 
 integer                       :: acc_vl = 64
 

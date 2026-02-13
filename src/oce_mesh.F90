@@ -2112,6 +2112,166 @@ endif
 
 END SUBROUTINE find_neighbors
 !==========================================================================
+! NODE NEIGHBORS (node-to-node connectivity)
+! =========================================================================
+
+SUBROUTINE find_node_neighbors(partit, mesh)
+    USE o_PARAM
+    USE o_ARRAYS
+    USE MOD_MESH
+    USE MOD_PARTIT
+    USE MOD_PARSUP
+    USE g_ROTATE_grid
+    USE g_comm_auto
+    USE g_comm
+    USE edge_center_interface
+    USE elem_center_interface
+    IMPLICIT NONE
+    TYPE(t_mesh),   INTENT(INOUT), TARGET :: mesh
+    TYPE(t_partit), INTENT(INOUT), TARGET :: partit
+    INTEGER                     :: j, n, nn, node
+    INTEGER, ALLOCATABLE        :: temp_i(:)
+    INTEGER                     :: mymax(partit%npes), rmax(partit%npes)
+
+#include "associate_part_def.h"
+#include "associate_part_ass.h"
+
+    ! Find all nodes that share an edge with each node.
+
+    ! We don't have direct node-to-edge connectivity, so we need to iterate through the edges
+    ! and get the nodes from there.
+
+    ! -----------------------------------------------------------------------------
+    ! Step 1: Count how many neighbors each node has
+    ! -----------------------------------------------------------------------------
+    ! We allocate for owned nodes (myDim_nod2D) plus halo nodes (eDim_nod2D)
+    ALLOCATE(mesh%nod_neighbors_num(myDim_nod2D+eDim_nod2D))
+    mesh%nod_neighbors_num = 0
+
+    ! Loop through edges
+    ! Each edge connects exactly 2 nodes, so each edge contributes 1 neighbor
+    DO n=1, myDim_edge2D
+        ! Get the two nodes that form this edge
+        node = mesh%edges(1,n)
+        nn = mesh%edges(2,n)
+
+        ! Increment neighbor count for both nodes of the edge (if they're owned nodes)
+        IF (node <= myDim_nod2D) THEN
+            mesh%nod_neighbors_num(node) = mesh%nod_neighbors_num(node)+1
+        END IF
+        IF (nn <= myDim_nod2D) THEN
+            mesh%nod_neighbors_num(nn) = mesh%nod_neighbors_num(nn)+1
+        END IF
+    END DO
+
+    ! -----------------------------------------------------------------------------
+    ! Step 2: Find the maximum number of neighbors across all MPI processes
+    ! -----------------------------------------------------------------------------
+    ! Ensure all processes are finished before continuing
+    CALL MPI_BARRIER(MPI_COMM_FESOM, MPIerr) 
+
+    mymax = 0
+    rmax = 0
+
+    ! Each process reports its local maximum
+    mymax(mype+1) = maxval(mesh%nod_neighbors_num(1:myDim_nod2D))
+    ! Gather all process maxima
+    CALL MPI_AllREDUCE(mymax, rmax, npes, MPI_INTEGER, MPI_SUM, &
+                    MPI_COMM_FESOM, MPIerr)
+
+    ! -----------------------------------------------------------------------------
+    ! Step 3: Allocate storage for the actual neighbor lists
+    ! -----------------------------------------------------------------------------
+    ALLOCATE(mesh%nod_neighbors(maxval(rmax), myDim_nod2D+eDim_nod2D))
+    mesh%nod_neighbors = 0
+
+    ! -----------------------------------------------------------------------------
+    ! Step 4: Build the actual neighbor lists
+    ! -----------------------------------------------------------------------------
+    ! Use a temporary counter to track position as we fill the array
+    ALLOCATE(temp_i(myDim_nod2D+eDim_nod2D))
+    temp_i = 0 ! This will track how many neighbors we've added so far for each node
+
+    ! Loop through all edges again
+    DO n=1, myDim_edge2D
+        ! Get the nodes from this edge
+        node = mesh%edges(1,n)
+        nn = mesh%edges(2,n)
+
+        ! For the first node: add the second node as a neighbor
+        IF (node <= myDim_nod2D) THEN
+            temp_i(node) = temp_i(node) + 1
+            mesh%nod_neighbors(temp_i(node), node) = nn
+        END IF
+
+        ! For the second node: add the first node as a neighbor
+        IF (nn <= myDim_nod2D) THEN
+            temp_i(nn) = temp_i(nn) + 1
+            mesh%nod_neighbors(temp_i(nn), nn) = node
+        END IF
+    END DO
+
+    DEALLOCATE(temp_i)
+
+    ! -----------------------------------------------------------------------------
+    ! Step 5: Exchange neighbor information across MPI partitions
+    ! -----------------------------------------------------------------------------
+    ! First exchange the counts
+    CALL exchange_nod(mesh%nod_neighbors_num, partit)
+
+    ! Now exchange the actual neighbor node indices
+    ! Convert to global numbering, exchange, then convert back to local
+    ALLOCATE(temp_i(myDim_nod2D+eDim_nod2D))
+
+    DO n=1, maxval(rmax)
+        temp_i = 0
+        ! Convert local node indices to global node indices
+        DO j=1, myDim_nod2D
+            ! If the current node index is valid (i.e., >= 1)
+            IF (mesh%nod_neighbors(n,j) > 0) THEN
+                temp_i(j) = myList_nod2D(mesh%nod_neighbors(n,j))
+            END IF
+        END DO
+
+        ! Exchange global node indices across processes
+        CALL exchange_nod(temp_i, partit)
+
+        ! Store the global node indices temporarily
+        mesh%nod_neighbors(n,:) = temp_i
+    END DO
+
+    DEALLOCATE(temp_i)
+
+    ! -----------------------------------------------------------------------------
+    ! Step 6: Convert global node numbers back to local node numbers
+    ! -----------------------------------------------------------------------------
+    ! Create a mapping from global to local node numbering
+    ALLOCATE(temp_i(mesh%nod2D))
+    temp_i = 0
+
+    ! Build the global-to-local map
+    ! myList_nod2D: contains global node index of every meshpoit that belongs to a CPU
+    DO n=1, myDim_nod2D+eDim_nod2D
+        temp_i(myList_nod2D(n)) = n
+    ENDDO
+
+    ! Convert mesh%nod_neighbors values from global to local indexing
+    ! Each CPU does this, so iterate only over local + halo nodes
+    DO n=1, myDim_nod2D+eDim_nod2D
+        ! Iterate over the neighbors of this node
+        DO j=1, mesh%nod_neighbors_num(n)
+            mesh%nod_neighbors(j,n) = temp_i(mesh%nod_neighbors(j,n))
+        ENDDO
+    ENDDO
+
+    IF (flag_debug) THEN
+        DO n=1, myDim_nod2D
+            WRITE(*,*) 'Local node', n, 'has global index', myList_nod2D(n), 'and local neighbors', mesh%nod_neighbors(:,n), 'with global indices', myList_nod2D(mesh%nod_neighbors(:,n))
+        ENDDO
+    ENDIF
+
+END SUBROUTINE find_node_neighbors
+! =========================================================================
 subroutine edge_center(n1, n2, x, y, mesh)
 
 USE MOD_MESH

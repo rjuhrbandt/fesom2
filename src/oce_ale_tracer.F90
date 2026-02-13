@@ -141,6 +141,7 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     USE MOD_DYN
     USE MOD_ICE
     use mod_tracer
+    USE MOD_NEURALNET
     use g_comm_auto
     use o_tracers
     use Toy_Channel_Soufflet
@@ -165,6 +166,8 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     type(t_mesh)  , intent(in)   , target    :: mesh
     !___________________________________________________________________________
     integer                                  :: i, tr_num, node, elem, nzmax, nzmin
+    INTEGER                                  :: nn_nlayers 
+    INTEGER, DIMENSION(:), ALLOCATABLE       :: nn_layer_sizes
     !___________________________________________________________________________
     ! pointer on necessary derived types
     real(kind=WP), dimension(:,:,:), pointer :: UV, fer_UV
@@ -240,7 +243,23 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
            tracers%work%del_ttf(:, node)=tracers%work%del_ttf(:, node)+tracers%work%del_ttf_advhoriz(:, node)+tracers%work%del_ttf_advvert(:, node)
         end do
 !$OMP END PARALLEL DO
- 
+
+        ! Apply neural network corrections to add unresolved (sub-grid) flux contributions
+        ! The NN predicts temperature flux divergences that augment advection+diffusion
+        ! TODO: Extract optional fields (curl_u, ld_baroc, N2, slopes) from FESOM memory:
+        !   - curl_u: From diag_curl_vel3() in gen_modules_diag (shape: nlev × nod2D)
+        !   - ld_baroc: From oce_fer_gm() as rosb (shape: nod2D)
+        !   - N2_neural: From oce_ale_pressure_bv() as bvfreq, BEFORE smoothing (shape: nlev × nod2D)
+        !   - slope_x_3d, slope_y_3d: From oce_ale_pressure_bv() as neutral_slope (shape: nlev × nod2D each)
+        ! For now, calling without optional arguments (uses defaults/zeros in NN feature extraction)
+        IF (use_GM_NN) THEN
+            ! call apply_nn_corrections_tracer(dynamics, tracers, partit, mesh, tr_num)
+            ! TODO: Pass optional pre-computed fields once available:
+            ! call apply_nn_corrections_tracer(dynamics, tracers, partit, mesh, tr_num, &
+            !                                   curl_u=..., ld_baroc=..., N2_neural=..., &
+            !                                   slope_x_3d=..., slope_y_3d=...)
+        ENDIF
+
         !___________________________________________________________________________
         ! diffuse tracers
         if (flag_debug .and. mype==0)  print *, achar(27)//'[37m'//'         --> call diff_tracers_ale'//achar(27)//'[0m'

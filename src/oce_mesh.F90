@@ -2129,7 +2129,7 @@ SUBROUTINE find_node_neighbors(partit, mesh)
     IMPLICIT NONE
     TYPE(t_mesh),   INTENT(INOUT), TARGET :: mesh
     TYPE(t_partit), INTENT(INOUT), TARGET :: partit
-    INTEGER                     :: j, n, nn, node
+    INTEGER                     :: i, j, n, nn, node
     INTEGER, ALLOCATABLE        :: temp_i(:)
     INTEGER                     :: mymax(partit%npes), rmax(partit%npes)
 
@@ -2262,6 +2262,35 @@ SUBROUTINE find_node_neighbors(partit, mesh)
         DO j=1, mesh%nod_neighbors_num(n)
             mesh%nod_neighbors(j,n) = temp_i(mesh%nod_neighbors(j,n))
         ENDDO
+    ENDDO
+
+    ! -----------------------------------------------------------------------------
+    ! Step 7: Sort neighbors by global node index (needed for GM-neuralnet)
+    ! Insertion sort: 
+    ! -----------------------------------------------------------------------------
+    ! As usual: iterate over all nodes in the partition
+    DO node = 1, myDim_nod2D + eDim_nod2D
+        ! Only need to do this if there is more than 1 neighbor
+        IF (mesh%nod_neighbors_num(node) > 1) THEN
+            DO i=2, mesh%nod_neighbors_num(node)
+                ! Store current node (local index)
+                nn = mesh%nod_neighbors(i, node)
+                j = i-1
+                ! Shift elements with larger global indices to the right
+                DO WHILE (j >= 1)
+                    ! Compare by global indices, not local!
+                    IF (myList_nod2D(mesh%nod_neighbors(j,node)) <= myList_nod2D(nn)) EXIT
+                    mesh%nod_neighbors(j+1,node) = mesh%nod_neighbors(j,node)
+                    j = j-1
+                ENDDO
+                ! Insert the element
+                mesh%nod_neighbors(j+1,node) = nn
+            ENDDO
+        ENDIF
+    ENDDO
+
+    DO n=1, myDim_nod2D
+        WRITE(*,*) 'Local node', n, 'has global index', myList_nod2D(n), 'and local neighbors', mesh%nod_neighbors(:,n), 'with global indices', myList_nod2D(mesh%nod_neighbors(:,n))
     ENDDO
 
 END SUBROUTINE find_node_neighbors

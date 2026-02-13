@@ -118,7 +118,7 @@ contains
  
   subroutine fesom_init(fesom_total_nsteps)
       use fesom_main_storage_module
-      use MOD_NEURALNET
+      USE MOD_NEURALNET
       type(t_neural_net), POINTER :: NN_GM
 #if defined(__MULTIO)
       use iom
@@ -302,13 +302,8 @@ contains
           ENDIF
         ENDIF
 
-        IF (flag_debug and f%mype==0) PRINT *, achar(27)//'[34m'//' --> call find_node_neighbors'//achar(27)//'[0m'
+        IF (flag_debug .AND. f%mype==0) PRINT *, achar(27)//'[34m'//' --> call find_node_neighbors'//achar(27)//'[0m'
         CALL find_node_neighbors(f%partit, f%mesh)
-        IF (flag_debug) THEN
-            DO n=1, myDim_nod2D
-                WRITE(*,*) 'Local node', n, 'has global index', myList_nod2D(n), 'and local neighbors', mesh%nod_neighbors(:,n), 'with global indices', myList_nod2D(mesh%nod_neighbors(:,n))
-            ENDDO
-        ENDIF
 
 #if defined (FESOM_PROFILING)
         call fesom_profiler_end("dynamics_init")

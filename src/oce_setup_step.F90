@@ -80,6 +80,7 @@ subroutine ocean_setup(dynamics, tracers, partit, mesh)
     USE MOD_PARSUP
     USE MOD_TRACER
     USE MOD_DYN
+    USE MOD_NEURALNET
     USE o_PARAM
     USE o_ARRAYS
     USE g_config
@@ -788,6 +789,7 @@ SUBROUTINE arrays_init(num_tracers, partit, mesh)
     USE MOD_MESH
     USE MOD_PARTIT
     USE MOD_PARSUP
+    USE MOD_NEURALNET
     USE o_ARRAYS
     USE o_PARAM
     use g_comm_auto

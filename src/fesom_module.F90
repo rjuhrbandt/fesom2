@@ -5,6 +5,7 @@ module fesom_main_storage_module
   USE MOD_MESH
   USE MOD_ICE
   USE MOD_TRACER
+  USE MOD_NEURALNET
   USE MOD_PARTIT
   USE MOD_PARSUP
   USE MOD_DYN
@@ -81,7 +82,6 @@ use mod_transit, only: year_ce, r14c_nh, r14c_tz, r14c_sh, r14c_ti, xCO2_ti, xf1
     type(t_partit) partit
     type(t_ice)    ice
 
-
     character(LEN=256)               :: dump_dir, dump_filename
     logical                          :: L_EXISTS
     type(t_mesh)   mesh_copy
@@ -118,6 +118,8 @@ contains
  
   subroutine fesom_init(fesom_total_nsteps)
       use fesom_main_storage_module
+      use MOD_NEURALNET
+      type(t_neural_net), POINTER :: NN_GM
 #if defined(__MULTIO)
       use iom
 #endif
@@ -283,6 +285,23 @@ contains
         call fesom_profiler_start("dynamics_init")
 #endif
         call ocean_setup(f%dynamics, f%tracers, f%partit, f%mesh)
+        ! do neural network initilization here?
+        IF (use_GM_NN) THEN
+          IF (f%mype==0) THEN
+            WRITE(*,*) "Initializing neural network for GM parameterization"
+          ENDIF
+          CALL neuralnet_init(f%mype, f%partit%MPI_COMM_FESOM)
+          NN_GM => get_neural_net()
+          IF (f%mype==0) THEN
+            WRITE(*,*) "Neural network for GM parameterization initialized successfully"
+            WRITE(*,*) 'Number of layers:', NN_GM%nlayers
+            WRITE(*,*) 'Layer sizes:', NN_GM%layer_sizes
+            WRITE(*,*) 'Weights shape:', shape(NN_GM%weights)
+            WRITE(*,*) 'Biases shape:', shape(NN_GM%biases)
+            WRITE(*,*) 'Activations:', NN_GM%activations
+          ENDIF
+        ENDIF
+
 #if defined (FESOM_PROFILING)
         call fesom_profiler_end("dynamics_init")
         call fesom_profiler_end("ocean_setup")

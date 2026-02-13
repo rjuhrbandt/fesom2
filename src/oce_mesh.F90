@@ -2264,12 +2264,6 @@ SUBROUTINE find_node_neighbors(partit, mesh)
         ENDDO
     ENDDO
 
-    IF (flag_debug) THEN
-        DO n=1, myDim_nod2D
-            WRITE(*,*) 'Local node', n, 'has global index', myList_nod2D(n), 'and local neighbors', mesh%nod_neighbors(:,n), 'with global indices', myList_nod2D(mesh%nod_neighbors(:,n))
-        ENDDO
-    ENDIF
-
 END SUBROUTINE find_node_neighbors
 ! =========================================================================
 subroutine edge_center(n1, n2, x, y, mesh)

@@ -147,7 +147,8 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     use Toy_Channel_Soufflet
     use Toy_Channel_Dbgyre
     use Toy_Neverworld2
-    use o_ARRAYS, only: heat_flux
+    use o_ARRAYS, only: heat_flux, GM_temperature_flux, bvfreq_unsmoothed, bvfreq_nn, rosb_nn, curl_vel_nn, means, stds, neutral_slope
+    USE MOD_NEURALNET
     use g_forcing_arrays, only: sw_3d
     use diff_tracers_ale_interface
     use oce_adv_tra_driver_interfaces
@@ -155,7 +156,7 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     use recom_glovar
     use recom_config
 #endif
-    use diagnostics, only: ldiag_DVD
+    use diagnostics, only: ldiag_DVD, diag_curl_vel3, curl_vel3, ldiag_GM_NN
     use g_forcing_param, only: use_age_tracer !---age-code
     use mod_transit, only: decay14, decay39
     implicit none
@@ -168,6 +169,11 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     integer                                  :: i, tr_num, node, elem, nzmax, nzmin
     INTEGER                                  :: nn_nlayers 
     INTEGER, DIMENSION(:), ALLOCATABLE       :: nn_layer_sizes
+    ! For curl computation. 
+    ! 0 means only allocation of arrays, other means full computation 
+    INTEGER                                  :: mode = 1
+    TYPE(T_NEURAL_NET), POINTER                      :: NN_GM
+    INTEGER                                  :: zz
     !___________________________________________________________________________
     ! pointer on necessary derived types
     real(kind=WP), dimension(:,:,:), pointer :: UV, fer_UV
@@ -245,19 +251,43 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
 !$OMP END PARALLEL DO
 
         ! Apply neural network corrections to add unresolved (sub-grid) flux contributions
-        ! The NN predicts temperature flux divergences that augment advection+diffusion
-        ! TODO: Extract optional fields (curl_u, ld_baroc, N2, slopes) from FESOM memory:
-        !   - curl_u: From diag_curl_vel3() in gen_modules_diag (shape: nlev × nod2D)
-        !   - ld_baroc: From oce_fer_gm() as rosb (shape: nod2D)
-        !   - N2_neural: From oce_ale_pressure_bv() as bvfreq, BEFORE smoothing (shape: nlev × nod2D)
-        !   - slope_x_3d, slope_y_3d: From oce_ale_pressure_bv() as neutral_slope (shape: nlev × nod2D each)
-        ! For now, calling without optional arguments (uses defaults/zeros in NN feature extraction)
+        IF (ldiag_GM_NN .OR. use_GM_NN) THEN
+            ! Compute curl
+            ! Compute baroclinic rossby radius as in oce_fer_gm
+            IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call diag_curl_vel3'//achar(27)//'[0m'
+            CALL diag_curl_vel3(mode, dynamics, partit, mesh)
+            ! IF (partit%mype ==0) THEN
+            !     DO node=1, myDim_nod2d
+            !         DO zz=1, 10
+            !             WRITE(*,*) 'Value of curl_u_nn at nz1=', zz,' node=', partit%myList_nod2d(node), ':', curl_vel_nn(zz,node)
+            !         ENDDO
+            !     ENDDO
+            ! ENDIF 
+            ! IF (flag_debug .AND. mype==0) WRITE(*,*) 'Near-surface U:', dynamics%UV(1,1,:)
+            ! IF (flag_debug .AND. mype==0) WRITE(*,*) 'Near-surface V:', dynamics%UV(2,1,:)
+            IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call compute_rossbyr'//achar(27)//'[0m'
+            DO node=1, myDim_nod2D
+                CALL compute_rossbyr(node, rosb_nn(node), dynamics, partit, mesh)
+            ENDDO
+        ENDIF
         IF (use_GM_NN) THEN
-            ! call apply_nn_corrections_tracer(dynamics, tracers, partit, mesh, tr_num)
-            ! TODO: Pass optional pre-computed fields once available:
-            ! call apply_nn_corrections_tracer(dynamics, tracers, partit, mesh, tr_num, &
-            !                                   curl_u=..., ld_baroc=..., N2_neural=..., &
-            !                                   slope_x_3d=..., slope_y_3d=...)
+            ! Use neuralnet to infer eddy temperature fluxes from existing quantities. Net is initialized
+            ! in fesom_init
+            ! Input: curl, rossby radius, bvfreq, isoneutral slopes, temperature, unod, vnod
+            ! Output: tflux_unod, tflux_vnod, tflux_w
+                ! Ensure all input quantities are available
+            ! Get unsmoothed bvfreq and interpolate to layer centers
+            IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call interpolate_bvfreq_to_layers'//achar(27)//'[0m'
+            CALL interpolate_bvfreq_to_layers(dynamics, partit, mesh, bvfreq_unsmoothed, bvfreq_nn)
+            ! Iterate through nodes and layer centers (layer centers loop is in full_inference subroutine):
+            NN_GM => get_neural_net()
+            IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call full_inference'//achar(27)//'[0m'
+            DO node=1, myDim_nod2D
+                    ! Call neural network and assign outputs to tflux_unod, tflux_vnod, tflux_w 
+                    CALL full_inference(node, dynamics, tracers, partit, mesh, NN_GM, GM_temperature_flux(:,:,node))
+            ENDDO
+            ! Add divergences of these fluxes using Dima's routine (only temperature for double gyre)
+                ! call apply_gm_fluxes(GM_temperature_flux(1), GM_temperature_flux(2), GM_temperature_flux(3), tracers%data(1)%values(:,:), partit, mesh)
         ENDIF
 
         !___________________________________________________________________________

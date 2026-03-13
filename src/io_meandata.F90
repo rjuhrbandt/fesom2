@@ -193,6 +193,7 @@ subroutine ini_mean_io(ice, dynamics, tracers, partit, mesh)
     integer,dimension(15)     :: sel_forcvar=0
     integer                   :: sel_dmoc=0, sel_trgrd_xyz=0, sel_dvd=0, sel_redi=0
     character(len=10)         :: id_string
+    character(len=4)          :: output_freq
 
     type(t_mesh), intent(in) , target :: mesh
     type(t_partit), intent(inout), target :: partit
@@ -1582,10 +1583,43 @@ END DO ! --> DO i=1, io_listsize
     !if (use_momix) then
     !    call def_stream(nod2D, myDim_nod2D, 'momix_length',   'Monin-Obukov mixing length', 'm', mixlength(:),    1, 'm', i_real4, partit, mesh)
     !end if
+
+    !___________________________________________________________________________
+    ! output to debug GM neuralnet inference
+    IF (ldiag_GM_NN) THEN
+        output_freq = 's'
+        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'curl_u',     'relative vorticity', '1/s',   curl_vel_nn, 1, output_freq, i_real8, partit, mesh)
+        call def_stream(nod2D, myDim_nod2D, 'rosb', 'baroclinic Rossby radius', 'm', rosb_nn, 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/), 'N2', 'bvfreq unsmoothed', '1/s2', bvfreq_unsmoothed, 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1,  nod2D/), (/nl-1, myDim_nod2D/),  'slope_x',   'neutral slope X',    'none', neutral_slope(1,:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1,  nod2D/), (/nl-1, myDim_nod2D/),  'slope_y',   'neutral slope Y',    'none', neutral_slope(2,:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'temp',      'temperature', 'C',      tracers%data(1)%values(:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'unod',      'zonal velocity at nodes', 'm/s', dynamics%uvnode(1,:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'vnod',      'meridional velocity at nodes', 'm/s', dynamics%uvnode(2,:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, elem2D/), (/nl-1, myDim_elem2D/), 'u',         'zonal velocity','m/s',           dynamics%uv(1,:,:),     1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, elem2D/), (/nl-1, myDim_elem2D/), 'v',         'meridional velocity','m/s',           dynamics%uv(2,:,:),     1, output_freq, i_real8, partit, mesh)
+        call def_stream(nod2D, myDim_nod2D, 'sst',      'sea surface temperature',        'C', tracers%data(1)%values(1,1:myDim_nod2D), 1, output_freq, i_real8, partit, mesh)
+        call def_stream(nod2D, myDim_nod2D, 'ssh',      'sea surface elevation', 'm',      dynamics%eta_n, 1, output_freq, i_real8, partit, mesh)
+        call def_stream(nod2D, myDim_nod2D, 'hc300m', 'Vertically integrated heat content upper 300m',   'J m**-2', heatcontent(1:myDim_nod2D,1), 1, output_freq, i_real8, partit, mesh)
+        call def_stream(nod2D, myDim_nod2D, 'hc700m', 'Vertically integrated heat content upper 700m',   'J m**-2', heatcontent(1:myDim_nod2D,2), 1, output_freq, i_real8, partit, mesh)
+        call def_stream(nod2D, myDim_nod2D, 'hc',     'Vertically integrated heat content total column', 'J m**-2', heatcontent(1:myDim_nod2D,3), 1, output_freq, i_real8, partit, mesh)
+    ENDIF
+
+    IF (use_GM_NN) THEN
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_unod',      'zonal eddy heat flux', 'K m/s', GM_temperature_flux(1,:,:), 1, 'd', i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_vnod',      'meridional eddy heat flux', 'K m/s', GM_temperature_flux(2,:,:), 1, 'd', i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_w',      'vertical eddy heat flux', 'K m/s', GM_temperature_flux(3,:,:), 1, 'd', i_real8, partit, mesh)
+    ENDIF
+
+    IF (Fer_GM) THEN
+        call def_stream((/nl-1, elem2D/), (/nl-1, myDim_elem2D/), 'bolus_u',   'GM bolus velocity U','m/s',  dynamics%fer_uv(1,:,:), 1, 'd', i_real8, partit, mesh)
+        call def_stream((/nl-1, elem2D/), (/nl-1, myDim_elem2D/), 'bolus_v',   'GM bolus velocity V','m/s',  dynamics%fer_uv(2,:,:), 1, 'd', i_real8, partit, mesh)
+        call def_stream((/nl  , nod2D /), (/nl,   myDim_nod2D /), 'bolus_w',   'GM bolus velocity W','m/s',  dynamics%fer_w(:,:), 1, 'd', i_real8, partit, mesh)
+    ENDIF
   
     !___________________________________________________________________________
     if (ldiag_curl_vel3) then
-        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'curl_u',     'relative vorticity',          '1/s',   curl_vel3,                   1, 'm', i_real4, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'curl_u',     'relative vorticity',          '1/s',   curl_vel3,                   1, 'd', i_real8, partit, mesh)
     end if
 
     !___________________________________________________________________________

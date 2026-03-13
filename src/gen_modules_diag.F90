@@ -27,12 +27,14 @@ module diagnostics
             std_dens_UVDZ, std_dens_DIV, std_dens_DIV_fer, std_dens_Z, std_dens_H, std_dens_dVdT, std_dens_flux,  &
             dens_flux_e, zisotherm, tempzavg, saltzavg, heatcontent, vol_ice, vol_snow, compute_ice_diag, thetao,   &
             tuv, suv,                                                                                             &
+            ! diag_curl_vel3 is needed if the GM neuralnet is used
+            diag_curl_vel3,                                                                                       &
             ldiag_DVD, compute_dvd, dvd_KK_tot, dvd_SD_tot, dvd_SD_chi_adv_h, dvd_SD_chi_adv_v, dvd_SD_chi_dif_he,&
             dvd_SD_chi_dif_heR, dvd_SD_chi_dif_hbh, dvd_SD_chi_dif_veR, dvd_SD_chi_dif_viR, dvd_SD_chi_dif_vi,    &
             dvd_SD_chi_dif_ve, dvd_SD_chi_dif_sbc, dvd_xdfac,                                                     &
             ldiag_uvw_sqr, uv2, wvel2,                                                                            &
             ldiag_trgrd_xyz, trgrd_x, trgrd_y, trgrd_z,                                                           &
-            ldiag_cmor
+            ldiag_cmor, ldiag_GM_NN
              
 
   ! Arrays used for diagnostics, some shall be accessible to the I/O
@@ -105,11 +107,12 @@ module diagnostics
   logical                                       :: ldiag_trflx      =.false.
   logical                                       :: ldiag_uvw_sqr    =.false.
   logical                                       :: ldiag_trgrd_xyz  =.false.
+  LOGICAL                                       :: ldiag_GM_NN      =.FALSE.
   
   namelist /diag_list/ ldiag_solver, lcurt_stress_surf, ldiag_curl_vel3, ldiag_Ri, & 
                        ldiag_TurbFlux, ldiag_dMOC, ldiag_DVD, ldiag_salt3D, ldiag_forc, &
                        ldiag_extflds, ldiag_destine, ldiag_trflx, ldiag_ice, ldiag_uvw_sqr, ldiag_trgrd_xyz, &
-                       ldiag_cmor
+                       ldiag_cmor, ldiag_GM_NN
   
   contains
 
@@ -204,6 +207,7 @@ subroutine diag_curl_vel3(mode, dynamics, partit, mesh)
     integer                               :: enodes(2), el(2), ed, n, nz, nl1, nl2, nl12, nu1, nu2, nu12
     real(kind=WP)                         :: deltaX1, deltaY1, deltaX2, deltaY2, c1
     real(kind=WP), dimension(:,:,:), pointer :: UV
+    INTEGER                               :: zz
 #include "associate_part_def.h"
 #include "associate_mesh_def.h"
 #include "associate_part_ass.h"
@@ -219,6 +223,7 @@ subroutine diag_curl_vel3(mode, dynamics, partit, mesh)
 
     !___________________________________________________________________________
     curl_vel3=0.
+    curl_vel_nn = 0.0_WP
     do ed=1,myDim_edge2D
         enodes=edges(:,ed)
         el=edge_tri(:,ed)
@@ -279,9 +284,10 @@ subroutine diag_curl_vel3(mode, dynamics, partit, mesh)
     do n=1, myDim_nod2D
         do nz=ulevels_nod2D(n), nlevels_nod2D(n)-1
             curl_vel3(nz,n)=curl_vel3(nz,n)/areasvol(nz,n)
+            curl_vel_nn(nz,n) = curl_vel3(nz,n)
         end do
     end do
-    
+
 end subroutine diag_curl_vel3
 !
 !
@@ -1140,6 +1146,9 @@ subroutine compute_diagnostics(mode, dynamics, tracers, ice, partit, mesh)
         call compute_cmor_diag(tracers, ice, dynamics, partit, mesh)
      end if
   end if
+
+  ! Also call destinE routine for GM_neuralnet diagnostics
+  IF (ldiag_GM_NN) CALL compute_destinE(mode, dynamics, tracers, partit, mesh)
   
   ! Currently deactivated, as it is not needed
   ! call compute_thetao(mode, tracers, partit, mesh) 

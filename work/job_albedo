@@ -1,11 +1,11 @@
 #!/bin/bash
-#SBATCH --account=clidyn.p_fesom # edit your account
-#SBATCH --job-name=run
+#SBATCH --account=clidyn.p_clidyn_work # edit your account
+#SBATCH --job-name=debug
 #SBATCH --partition=mpp
-#SBATCH --time=01:00:00
-#SBATCH --qos=12h
-#SBATCH --nodes=48            # Number of tasks (MPI) tasks to be launched
-#SBATCH --tasks-per-node 128  # using all 128CPus we exceed the maxload limit (>130) of many used nodes when us parallel I/O
+#SBATCH --time=00:30:00
+#SBATCH --qos=30min
+#SBATCH --nodes=1            # Number of tasks (MPI) tasks to be launched
+#SBATCH --tasks-per-node 60  # using all 128CPus we exceed the maxload limit (>130) of many used nodes when us parallel I/O
 #SBATCH --cpus-per-task 1
 
 #SBATCH -o fesom2_%x_%j.out
@@ -16,7 +16,7 @@
 
 module purge 
 source ../env/albedo/shell
-export OMP_NUM_THREADS=1
+export OMP_NUM_THREADS=2
 ulimit -s unlimited
 
 # determine JOBID
@@ -31,6 +31,19 @@ cp -n ../config/namelist.tra     .
 cp -n ../config/namelist.ice     .
 cp -n ../config/namelist.io      .
 cp -n ../config/namelist.icepack .
+
+# Copy namelist files from work directory to results directory so I can check settings later on
+RESULT_PATH=$(grep "ResultPath" ./namelist.config \
+    | tr -d ' \t' \
+    | cut -d'=' -f2- \
+    | cut -d'!' -f1 \
+    | tr -d " '")
+cp ./namelist.config "$RESULT_PATH"
+cp ./namelist.oce "$RESULT_PATH"
+cp ./namelist.dyn "$RESULT_PATH"
+cp ./namelist.tra "$RESULT_PATH"
+cp ./namelist.io "$RESULT_PATH"
+cp ./job_albedo "$RESULT_PATH"
 
 #___DETERMINE SLURM JOBID+OUTPUTFILE____________________________________________
 jobid=$(echo $SLURM_JOB_ID | cut -d"." -f1)

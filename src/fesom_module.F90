@@ -305,6 +305,10 @@ contains
         IF (flag_debug .AND. f%mype==0) PRINT *, achar(27)//'[34m'//' --> call find_node_neighbors'//achar(27)//'[0m'
         CALL find_node_neighbors(f%partit, f%mesh)
 
+        ! Load means and stds needed to normalize GM neuralnet inputs
+        IF (flag_debug .AND. f%mype==0) PRINT *, achar(27)//'[37m'//'         --> call load_nn_normalization_params'//achar(27)//'[0m'
+        CALL load_nn_normalization_params(means, stds)
+
 #if defined (FESOM_PROFILING)
         call fesom_profiler_end("dynamics_init")
         call fesom_profiler_end("ocean_setup")

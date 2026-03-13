@@ -490,6 +490,8 @@ subroutine pressure_bv(tracers, partit, mesh)
            end do
         end if
     end do
+    ! Store unsmoothed bvfreq for use in GM neuralnet
+    bvfreq_unsmoothed = bvfreq
 !$OMP END DO
 !$OMP BARRIER
 !$OMP END PARALLEL

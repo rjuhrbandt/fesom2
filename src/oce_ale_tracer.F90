@@ -256,15 +256,6 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
             ! Compute baroclinic rossby radius as in oce_fer_gm
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call diag_curl_vel3'//achar(27)//'[0m'
             CALL diag_curl_vel3(mode, dynamics, partit, mesh)
-            ! IF (partit%mype ==0) THEN
-            !     DO node=1, myDim_nod2d
-            !         DO zz=1, 10
-            !             WRITE(*,*) 'Value of curl_u_nn at nz1=', zz,' node=', partit%myList_nod2d(node), ':', curl_vel_nn(zz,node)
-            !         ENDDO
-            !     ENDDO
-            ! ENDIF 
-            ! IF (flag_debug .AND. mype==0) WRITE(*,*) 'Near-surface U:', dynamics%UV(1,1,:)
-            ! IF (flag_debug .AND. mype==0) WRITE(*,*) 'Near-surface V:', dynamics%UV(2,1,:)
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call compute_rossbyr'//achar(27)//'[0m'
             DO node=1, myDim_nod2D
                 CALL compute_rossbyr(node, rosb_nn(node), dynamics, partit, mesh)
@@ -275,7 +266,6 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
             ! in fesom_init
             ! Input: curl, rossby radius, bvfreq, isoneutral slopes, temperature, unod, vnod
             ! Output: tflux_unod, tflux_vnod, tflux_w
-                ! Ensure all input quantities are available
             ! Get unsmoothed bvfreq and interpolate to layer centers
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call interpolate_bvfreq_to_layers'//achar(27)//'[0m'
             CALL interpolate_bvfreq_to_layers(dynamics, partit, mesh, bvfreq_unsmoothed, bvfreq_nn)

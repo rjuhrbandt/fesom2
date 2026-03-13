@@ -106,7 +106,7 @@ logical                       :: N2smth_h       = .true.   ! do horizontal N2 sm
 integer                       :: N2smth_hidx    = 1        ! how many horizontal smoothing cycles should be applied
 
 ! Neural network parameters
-LOGICAL                       :: use_GM_NN = .TRUE. ! whether to use a neural network to compute subgrid fluxes
+LOGICAL                       :: use_GM_NN = .FALSE. ! whether to use a neural network to compute subgrid fluxes
                                                      ! (hopefully approx. GM fluxes)
 
 integer                       :: acc_vl = 64
@@ -198,6 +198,7 @@ character(20)                  :: which_pgf='shchepetkin'
                     N2smth_v, N2smth_h, N2smth_hidx, &
                     visc_sh_limit, mix_scheme, Ricr, concv, which_pgf, alpha, theta, use_density_ref, &
                     Fer_GM, K_GM_max, K_GM_min, K_GM_bvref, K_GM_resscalorder, K_GM_rampmax, K_GM_rampmin, K_GM_cm, K_GM_cmin, K_GM_Ktaper, &
+                    use_GM_NN, &
                     Redi, Redi_Ktaper, Redi_Kmax, Redi_Kmin, use_global_tides, &
                     scaling_Ferreira, scaling_Rossby, scaling_resolution, scaling_FESOM14, &
                     scaling_ODM95, ODM95_Scr, ODM95_Sd, &
@@ -297,6 +298,18 @@ real(kind=WP),allocatable :: mo(:,:),mixlength(:)
 real(kind=WP),allocatable :: bvfreq(:,:),mixlay_dep(:),bv_ref(:)
 
 real(kind=WP), target, allocatable    :: fer_c(:), fer_scal(:), fer_GINsea_mask(:), fer_K(:,:), fer_gamma(:,:,:), fer_tapfac(:,:)
+
+! Anything needed for the neuralnet acting in place of GM
+! Additional arrays for inputs which are not directly accessible from FESOM
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:)         :: bvfreq_unsmoothed
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:)         :: bvfreq_nn
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:)           :: rosb_nn
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:)         :: curl_vel_nn
+! Means and standard deviations needed to normalize inputs
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:) :: means, stds
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:) :: nn_input
+! Temperature fluxes computed by GM neuralnet
+REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:,:)       :: GM_temperature_flux
 
 real(kind=WP),         allocatable    :: ice_rejected_salt(:)
 

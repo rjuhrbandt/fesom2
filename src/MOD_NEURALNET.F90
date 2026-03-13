@@ -7,14 +7,18 @@ MODULE MOD_NEURALNET
   USE MOD_READ_BINARY_ARRAYS !, ONLY: read1d_real, read2d_real, read1d_char, read1d_int
   USE MOD_MESH
   USE, INTRINSIC :: ieee_arithmetic
+  USE g_config, ONLY: flag_debug
   IMPLICIT NONE
   INCLUDE 'mpif.h'
   SAVE
   PRIVATE
-  PUBLIC :: assign_input_values, read_nn_architecture, read_nn_weights, read_nn_biases, read_nn_activation 
+  PUBLIC :: read_nn_architecture, read_nn_weights, read_nn_biases, read_nn_activation 
   PUBLIC :: forward_pass_single, forward_pass_full
   PUBLIC :: neuralnet_init, get_neural_net
   PUBLIC :: t_neural_net
+  PUBLIC :: compute_rossbyr, interpolate_bvfreq_to_layers, load_nn_normalization_params
+  PUBLIC :: extract_nn_features_single
+  PUBLIC :: full_inference
 
   TYPE t_neural_net
       INTEGER :: nlayers
@@ -28,112 +32,6 @@ MODULE MOD_NEURALNET
   LOGICAL :: nn_initialized = .FALSE.
 
   CONTAINS
-
-    SUBROUTINE assign_input_values(input_var_names, num_input_var_names, z, n, ordered_nb_list, input_data, n_input_data)
-      ! This is a placeholder for the logic to extract the input data from the FESOM data structure based on the variable name. 
-      ! This will likely involve a series of IF statements or a SELECT CASE statement to match the variable names to the corresponding data extraction logic.
-      CHARACTER(LEN=*), INTENT(IN) :: input_var_names(:)
-      REAL(kind=WP), INTENT(OUT) :: input_data(:), n_input_data(:) 
-      INTEGER, INTENT(IN) :: z, n ! These are the vertical level and node index for which we want to extract the data. They are needed to know which value to extract from the FESOM data structure.
-      INTEGER :: i ! Current index in loop over input variables. var_name and var_name_nb... are successive in the input_var_names.txt, so we can just keep incrementing j to fill the input_data array in the correct order.
-      INTEGER :: nb, u
-      INTEGER :: max_num_nb = 6 ! Maximum number of neighbours in dbgyre mesh.
-      INTEGER :: num_input_var_names
-      INTEGER, INTENT(IN) :: ordered_nb_list(:) ! This is the list of neighbour node indices, ordered ascending.
-      CHARACTER(LEN=32) :: name, fname
-      REAL(kind=WP), ALLOCATABLE :: means(:), stds(:) ! Arrays to hold the means and stds for all input variables, to be read from ./normalization_params. This is needed for normalization of the input data.
-
-      ALLOCATE(means(num_input_var_names), stds(num_input_var_names))
-
-      OPEN(NEWUNIT=u, FILE=TRIM(fname), STATUS='old', ACTION='read', FORM='unformatted', ACCESS='stream')
-      DO i = 1, num_input_var_names
-            ! Loop over input variable names. For each variable name, extract the corresponding data from the FESOM data structure and fill the input_data array. 
-            ! Also apply normalization to the input data using the mean and std from the training data, which are stored in ./normalization_params.
-          name = input_var_names(i)
-          WRITE(fname, '(A,A,A)') './normalization_params/mean/', input_var_names(i), '.bin'
-          READ(u) means(i)
-          WRITE(fname, '(A,A,A)') './normalization_params/std/', input_var_names(i), '.bin'
-          READ(u) stds(i)
-          SELECT CASE (name)
-              CASE ('temp')
-                  ! input_data(i) = tracers%data(1)%values(z,n)
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = tracers%data(1)%values(z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('unod')
-                  ! input_data(i) = dynamics%uvnode(1,z,n)
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = dynamics%uvnode(1,z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('vnod')
-                  ! input_data(i) = dynamics%uvnode(2,z,n)
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = dynamics%uvnode(2,z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('curl_u_nn')
-                  ! Call customized subroutine to compute curl_u_nn as it is not computed by default
-                  ! curl_u_nn = ...
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = curl_u_nn(z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('slope_x')
-                  ! input_data(i) = neutral_slope(1,z,n)
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = neutral_slope(1,z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('slope_y')
-                  ! input_data(i) = neutral_slope(2,z,n)
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = neutral_slope(2,z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('N2')
-                  ! Watch out: N2 is defined at vertical interfaces, so it needs to be interpolated to the vertical levels of the nodes.
-                  ! input_data(i) = bvfreq(z,n)
-                  DO nb=1, max_num_nb
-                      IF ( ordered_nb_list(nb) == -1 ) THEN
-                          input_data(i+nb) = means(i) ! or, equivalently, the mean value from the training data after normalization
-                      ELSE
-                          !  input_data(i+nb) = bvfreq(z, ordered_nb_list(nb))
-                      END IF
-                  END DO
-              CASE ('ld_baroc1')
-                  ! input_data(i) = rosb(n)
-              CASE DEFAULT
-                  ! WRITE(*,(A,A,A)) 'This variable (' // var_name // ') probably ends with _nb and its value is already filled. Skipping...'
-          END SELECT
-
-          WRITE(*,*) 'Extracted input variable: ', name, ' with original value: ', input_data(i), 'and normalized value: '
-
-      END DO
-      CLOSE(u)
-      ! Now normalize by doing array computation
-      n_input_data = (input_data - means) / stds
-      DEALLOCATE(means, stds)
-    END SUBROUTINE assign_input_values
 
     SUBROUTINE neuralnet_init(mype, mpi_comm)
         ! Initialize the global neural network (only once)
@@ -185,10 +83,12 @@ MODULE MOD_NEURALNET
         ALLOCATE(nn_gm_module%biases(nlayers, maxval(nn_gm_module%layer_sizes)))
         ALLOCATE(nn_gm_module%activations(nlayers))
         
-        ! 3. Initialize with NaN on rank 0 (others will receive via broadcast)
+        ! 3. Initialize with 0 on rank 0 (others will receive via broadcast)
         IF (my_rank == 0) THEN
-            nn_gm_module%weights = ieee_value(nn_gm_module%weights, ieee_quiet_nan)
-            nn_gm_module%biases = ieee_value(nn_gm_module%biases, ieee_quiet_nan)
+            ! nn_gm_module%weights = ieee_value(nn_gm_module%weights, ieee_quiet_nan)
+            ! nn_gm_module%biases = ieee_value(nn_gm_module%biases, ieee_quiet_nan)
+            nn_gm_module%weights = 0.0_WP
+            nn_gm_module%biases = 0.0_WP
         END IF
         
         ! 4. Load each layer's weights, biases, and activation functions (only on rank 0)
@@ -227,8 +127,6 @@ MODULE MOD_NEURALNET
         END IF
         
         nn_initialized = .TRUE.
-
-        ! Load means and stds for later normalization
         
     END SUBROUTINE neuralnet_init
     
@@ -287,6 +185,8 @@ MODULE MOD_NEURALNET
       INTEGER, INTENT(IN) :: input_neurons, output_neurons
       REAL(kind=WP), ALLOCATABLE :: buffer(:)
       INTEGER :: total_elements, bytes_per_real
+
+      INTEGER :: i
       
       total_elements = input_neurons * output_neurons
       ALLOCATE(buffer(total_elements))
@@ -303,16 +203,16 @@ MODULE MOD_NEURALNET
           WRITE(*,'(A)') 'ERROR opening weights file: ', TRIM(iomsg)
           DEALLOCATE(buffer)
           STOP 1
-      END IF
-      
+      ENDIF
+
       READ(iunit, REC=1, IOSTAT=iostat, IOMSG=iomsg) buffer
-      
+
       IF (iostat /= 0) THEN
           WRITE(*,'(A)') 'ERROR reading weights: ', TRIM(iomsg)
           DEALLOCATE(buffer)
           CLOSE(iunit)
           STOP 1
-      END IF
+      ENDIF
       
       ! Reshape the 1D buffer into 2D array in column-major order
       weights(1:input_neurons, 1:output_neurons) = &
@@ -404,7 +304,7 @@ MODULE MOD_NEURALNET
       
       IF (.NOT. is_valid) THEN
           WRITE(*,'(A)') 'ERROR: Unknown activation function: ', TRIM(activation)
-          WRITE(*,'(A)') 'Valid options: relu, sigmoid, id'
+          WRITE(*,'(A)') 'Valid options: relu, id'
           STOP 1
       END IF
 
@@ -420,6 +320,8 @@ MODULE MOD_NEURALNET
         INTEGER, INTENT(IN) :: layer_idx
         TYPE(t_neural_net), POINTER, INTENT(IN) :: nn
         REAL(kind=WP), ALLOCATABLE, INTENT(OUT) :: outputs(:)
+        INTEGER :: i, j
+        REAL(KIND=WP) :: current_value
         
         INTEGER :: in_size, out_size
         
@@ -445,7 +347,7 @@ MODULE MOD_NEURALNET
         
         ! Matrix multiplication: output = W^T . input + bias
         ! Weights are stored as (in_size, out_size)
-        outputs = MATMUL(TRANSPOSE(nn%weights(layer_idx, 1:in_size, 1:out_size)), inputs) &
+        outputs = MATMUL(TRANSPOSE(nn%weights(layer_idx, 1:in_size, 1:out_size)), inputs)  &
                 + nn%biases(layer_idx, 1:out_size)
         
         ! Apply activation function
@@ -462,6 +364,10 @@ MODULE MOD_NEURALNET
     END SUBROUTINE forward_pass_single
 
     SUBROUTINE forward_pass_full(input, nn, output)
+        USE MOD_PARTIT
+        USE MOD_DYN
+        USE MOD_PARSUP
+        use g_comm_auto
         ! Full forward pass through entire neural network
         ! Uses the global neural network data structure
         REAL(kind=WP), INTENT(IN) :: input(:)
@@ -496,53 +402,124 @@ MODULE MOD_NEURALNET
         
     END SUBROUTINE forward_pass_full
 
-    ! SUBROUTINE nn_inference_for_node_layer(node, layer, dynamics, tracers, mesh, partit, &
-    !                                         curl_u_nn, ld_baroc, N2_nn, slope_x_nn, slope_y_nn, &
-    !                                         nn, nn_output)
-    !     ! Extract inputs and run NN inference for a single (node, vertical layer) pair
-    !     ! Returns NN output (e.g., flux components)
-    !     INTEGER, INTENT(IN) :: node, layer  
-    !     TYPE(t_dyn), INTENT(IN), TARGET :: dynamics
-    !     TYPE(t_tracer), INTENT(IN), TARGET :: tracers
-    !     TYPE(t_mesh), INTENT(IN), TARGET :: mesh
-    !     TYPE(t_partit), INTENT(IN), TARGET :: partit
-    !     TYPE(t_neural_net), POINTER, INTENT(IN) :: nn
-    !     REAL(kind=WP), ALLOCATABLE, INTENT(OUT) :: nn_output(:)
+    SUBROUTINE compute_rossbyr(n, rossbyr, dynamics, partit, mesh)
+        ! Computes fields which are not computed by default in FESOM
+        ! For now: only curl_vel3 and Rossby radius
+        USE MOD_MESH
+        USE o_ARRAYS, only: bvfreq
+        USE o_PARAM ! pi
+        USE MOD_PARTIT
+        USE MOD_DYN
+        USE MOD_PARSUP
+        use g_comm_auto
+        TYPE(t_dyn), INTENT(INOUT), TARGET :: dynamics
+        TYPE(t_partit), INTENT(INOUT), TARGET :: partit
+        TYPE(t_mesh), INTENT(IN), TARGET :: mesh
+        REAL(KIND=WP), INTENT(OUT) :: rossbyr
+        REAL(KIND=WP) :: reso, c1, cm
+        REAL(KIND=WP) :: f_min=1e-6_WP, r_max=200000._WP ! from init_Redi_GM
+        INTEGER :: n, nz, nzmin, nzmax      
         
-    !     ! Optional pre-computed fields (if not provided, will be accessed from structures)
-    !     REAL(kind=WP), INTENT(IN), OPTIONAL :: curl_u_nn(:,:), ld_baroc(:), N2_nn(:,:), &
-    !                                             slope_x_nn(:,:), slope_y_nn(:,:)
-        
-    !     REAL(kind=WP), ALLOCATABLE :: nn_input(:)
-    !     INTEGER :: n_features
-        
-    !     IF (.NOT. ASSOCIATED(nn)) RETURN
-        
-    !     n_features = nn%layer_sizes(1)  ! Input layer size
-    !     ALLOCATE(nn_input(n_features))
-        
-    !     ! Extract input features from FESOM data at (node, layer)
-    !     CALL extract_nn_features(node, layer, dynamics, tracers, mesh, partit, &
-    !                              curl_u_nn, ld_baroc, N2_nn, slope_x_nn, slope_y_nn, &
-    !                              nn_input)
-        
-    !     ! Run full NN forward pass
-    !     CALL forward_pass_full(nn_input, nn, nn_output)
-        
-    !     DEALLOCATE(nn_input)
-        
-    ! END SUBROUTINE nn_inference_for_node_layer
+        ! Adapted from init_Redi_GM
+        nzmax = mesh%nl
+        nzmin = 1
+        reso = mesh%mesh_resolution(n)
+        c1 = 0._WP
+        cm = 0._WP
+        DO nz=nzmin, nzmax-1
+            cm=cm+mesh%hnode_new(nz,n)*(sqrt(abs(max(bvfreq(nz,n), 0._WP)))+sqrt(abs(max(bvfreq(nz+1,n), 0._WP))))/2._WP ! add abs() for -0 case
+        ENDDO
+        c1 = cm/pi         !ca. first baroclinic gravity wave speed
+        rossbyr = min(c1/max(abs(mesh%coriolis_node(n)), f_min), r_max)
+
+    END SUBROUTINE compute_rossbyr
+
+    SUBROUTINE interpolate_bvfreq_to_layers(dynamics, partit, mesh, bvfreq_in, bvfreq_out)
+        ! We need bvfreq at layer centers to work in GM neuralnet inference
+        USE MOD_MESH
+        USE o_ARRAYS, only: bvfreq
+        USE o_PARAM ! pi
+        USE MOD_PARTIT
+        USE MOD_DYN
+        USE MOD_PARSUP
+        use g_comm_auto
+        TYPE(t_dyn), INTENT(INOUT), TARGET :: dynamics
+        TYPE(t_partit), INTENT(INOUT), TARGET :: partit
+        TYPE(t_mesh), INTENT(IN), TARGET :: mesh
+        REAL(KIND=WP), DIMENSION(:,:), INTENT(IN) :: bvfreq_in
+        REAL(KIND=WP), DIMENSION(:,:), INTENT(OUT) :: bvfreq_out
+        INTEGER :: nz, nzmax
+
+        nzmax = mesh%nl-1
+
+        DO nz=1, nzmax
+            bvfreq_out(nz,:) = 0.5_WP * (bvfreq_in(nz,:) + bvfreq_in(nz+1, :))
+        ENDDO
+
+    END SUBROUTINE interpolate_bvfreq_to_layers
+
+    SUBROUTINE full_inference(node, dynamics, tracers, partit, mesh, nn, nn_output)
+        ! This combines all inference steps (after initialization):
+        ! 1. Extracting the input values
+        ! 2. Normalizing them
+        ! 3. Running the actual inference
+        ! 4. Assigning the output to GM_temperature_flux
+        USE MOD_DYN, only: t_dyn
+        USE MOD_TRACER, only: T_TRACER
+        USE MOD_PARTIT, only: T_PARTIT
+        USE MOD_MESH, only: T_MESH
+        USE o_ARRAYS, only: curl_vel_nn
+        TYPE(t_dyn), INTENT(IN), TARGET :: dynamics
+        TYPE(t_tracer), INTENT(IN), TARGET :: tracers
+        TYPE(t_mesh), INTENT(IN), TARGET :: mesh
+        TYPE(t_partit), INTENT(IN), TARGET :: partit
+        TYPE(t_neural_net), POINTER, INTENT(IN) :: nn
+        INTEGER :: nz1, nzmax, nzmin
+        INTEGER, INTENT(IN) :: node
+        REAL(KIND=WP), DIMENSION(:), ALLOCATABLE :: nn_input
+        REAL(KIND=WP), DIMENSION(:), ALLOCATABLE :: out
+        REAL(KIND=WP), DIMENSION(:,:), INTENT(OUT) :: nn_output
+        INTEGER :: n_features, n_targets
+        INTEGER :: n, z
+
+        n_features = nn%layer_sizes(1)
+        n_targets = nn%layer_sizes(nn%nlayers)
+
+        ALLOCATE(nn_input(n_features))
+
+        nzmax = mesh%nlevels_nod2D(node) 
+        nzmin = mesh%ulevels_nod2D(node)
+
+        IF (.NOT. ALLOCATED(out)) THEN
+            ALLOCATE(out(n_targets))
+        ENDIF
+
+        ! IF (partit%mype ==0) THEN
+        !     DO n=1, partit%myDim_nod2d
+        !         DO z=1, 10
+        !             WRITE(*,*) 'Value of curl_u_nn at nz1=', z, 'node=', partit%myList_nod2d(n), ':', curl_vel_nn(z,n)
+        !         ENDDO
+        !     ENDDO
+        ! ENDIF
+
+        DO nz1=nzmin, nzmax-1 ! we do inference on nz1, not nz
+            CALL extract_nn_features_single(nz1, node, dynamics, tracers, mesh, partit, nn_input)
+            CALL forward_pass_full(nn_input, nn, out)
+            nn_output(:,nz1) = out
+        ENDDO
+
+        DEALLOCATE(nn_input, out)
+    END SUBROUTINE full_inference
 
     ! ============================================================================================
     ! EXTRACT INPUT FEATURE VALUES DURING RUN
     ! ============================================================================================
-    SUBROUTINE extract_nn_features(nod2, nz1, dynamics, tracers, mesh, partit, &
-        curl_u_nn, ld_baroc, N2_nn, slope_x_nn, slope_y_nn, nn_input)
-        ! Extract and normalize NN input features for one (nod2, nz1) pair
+    SUBROUTINE extract_nn_features_single(nz1, nod2, dynamics, tracers, mesh, partit, nn_input)
+        ! Extract and normalize NN input features for one (nz1, nod2) pair
         ! Feature order (MUST match training data order):
-        !   1-7:   curl_u_nn (node + 6 neighbors)
-        !   8:     ld_baroc1 (rosb, 2D only)
-        !   9-15:  N2 (node + 6 neighbors)
+        !   1-7:   velocity curl (node + 6 neighbors)
+        !   8:     Rossby radius (rosb, 2D only)
+        !   9-15:  bvfreq (node + 6 neighbors)
         !   16-22: slope_x (node + 6 neighbors)
         !   23-29: slope_y (node + 6 neighbors)
         !   30-36: temperature (node + 6 neighbors)
@@ -552,281 +529,210 @@ MODULE MOD_NEURALNET
 
         ! WATCH OUT: For neighbor value access, use LOCAL node indices and only if != 0
         
-        INTEGER, INTENT(IN) :: nod2, nz1
-        TYPE(t_dyn), INTENT(IN), TARGET :: dynamics
-        TYPE(t_tracer), INTENT(IN), TARGET :: tracers
-        TYPE(t_mesh), INTENT(IN), TARGET :: mesh
-        TYPE(t_partit), INTENT(IN), TARGET :: partit
-        REAL(KIND=WP), INTENT(IN) :: curl_u_nn(:,:), ld_baroc(:), N2_nn(:,:), &
-                                                slope_x_nn(:,:), slope_y_nn(:,:)
+        USE diagnostics !, only: curl_vel3
+        USE MOD_DYN, only: t_dyn
+        USE MOD_TRACER, only: T_TRACER
+        USE MOD_PARTIT, only: T_PARTIT
+        USE MOD_MESH, only: T_MESH
+        USE o_ARRAYS, only: means, stds, bvfreq_nn, rosb_nn, curl_vel_nn, neutral_slope
+        INTEGER, INTENT(IN) :: nz1, nod2 ! node and vertical layer index
+        TYPE(T_DYN), INTENT(IN), TARGET :: dynamics
+        TYPE(T_TRACER), INTENT(IN), TARGET :: tracers
+        TYPE(T_MESH), INTENT(IN), TARGET :: mesh
+        TYPE(T_PARTIT), INTENT(IN), TARGET :: partit
         REAL(kind=WP), INTENT(OUT) :: nn_input(:)
         
-    !     ! Cached normalization parameters (load once per simulation)
-    !     REAL(kind=WP), ALLOCATABLE, SAVE :: means(:), stds(:)
-    !     LOGICAL, SAVE :: params_loaded = .FALSE.
+        ! Local variables
+        INTEGER :: idx, nb_idx, nb_node, i, j
+        REAL(kind=WP) :: raw_value ! Value directly from run, not normalized
+        INTEGER :: neighbors(6)
         
-    !     ! Local variables
-    !     INTEGER :: idx, nb_idx, nb_node, i, j
-    !     REAL(kind=WP) :: raw_value
-    !     INTEGER :: neighbors(6)
+        IF (SIZE(nn_input) /= SIZE(means)) THEN
+            WRITE(*,*) 'ERROR: NN input size mismatch. Expected ', SIZE(means), ' got ', SIZE(nn_input)
+            STOP 1
+        END IF
         
-    !     ! Load normalization parameters once per simulation
-    !     IF (.NOT. params_loaded) THEN
-    !         CALL load_nn_normalization_params(means, stds)
-    !         params_loaded = .TRUE.
-    !     END IF
+        neighbors = mesh%nod_neighbors(:,nod2)
+        idx = 1
+        ! ===== 1-7: curl_u_nn (node + 6 neighbors) =====        
+        raw_value = curl_vel_nn(nz1, nod2)
+        ! IF (flag_debug .AND. partit%mype == 0) THEN
+        !     WRITE(*,*) 'nz1:', nz1, 'global nod2:', partit%myList_nod2D(nod2), 'Value of curl_u before normalize:', raw_value
+        ! ENDIF
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        ! IF (flag_debug .AND. partit%mype == 0) THEN
+        !     WRITE(*,*) 'nz1:', nz1, 'global nod2:', partit%myList_nod2D(nod2), 'Value of curl_u after normalize:', nn_input(idx)
+        ! ENDIF        
+        idx = idx + 1
         
-    !     IF (SIZE(nn_input) /= SIZE(means)) THEN
-    !         WRITE(*,*) 'ERROR: NN input size mismatch. Expected ', SIZE(means), ' got ', SIZE(nn_input)
-    !         STOP 1
-    !     END IF
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = curl_vel_nn(nz1, neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)  ! Pad with zero (normalize to 0)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     ! Get neighbors of current node
-    !     CALL get_node_neighbors(node, mesh, neighbors)
+        ! ===== 8: ld_baroc1 (rosb, 2D only, no neighbors) =====
+        raw_value = rosb_nn(nod2)
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        idx = idx + 1
         
-    !     idx = 1
+        ! ===== 9-15: N2 (node + 6 neighbors) =====
+        raw_value = bvfreq_nn(nz1,nod2)
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        idx = idx + 1
         
-    !     ! ===== 1-7: curl_u_nn (node + 6 neighbors) =====
-    !     IF (PRESENT(curl_u_nn)) THEN
-    !         raw_value = curl_u_nn(layer, node)
-    !     ELSE
-    !         raw_value = 0.0_WP  ! TODO: Compute or fetch from available structures
-    !     END IF
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = bvfreq_nn(nz1, neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             IF (PRESENT(curl_u_nn)) THEN
-    !                 raw_value = curl_u_nn(layer, neighbors(nb_idx))
-    !             ELSE
-    !                 raw_value = 0.0_WP
-    !             END IF
-    !         ELSE
-    !             raw_value = means(idx)  ! Pad with zero (normalize to 0)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
+        ! ===== 16-22: slope_x (node + 6 neighbors) =====
+        raw_value = neutral_slope(1,nz1,nod2)
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        idx = idx + 1
         
-    !     ! ===== 8: ld_baroc1 (rosb, 2D only, no neighbors) =====
-    !     IF (PRESENT(ld_baroc)) THEN
-    !         raw_value = ld_baroc(node)
-    !     ELSE
-    !         raw_value = 0.0_WP  ! TODO: Compute or fetch from available structures
-    !     END IF
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = neutral_slope(1,nz1,neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     ! ===== 9-15: N2 (node + 6 neighbors) =====
-    !     IF (PRESENT(N2_nn)) THEN
-    !         raw_value = N2_nn(layer, node)
-    !     ELSE
-    !         raw_value = 0.0_WP  ! TODO: Use bvfreq from pressure/stability module
-    !     END IF
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
+        ! ===== 23-29: slope_y (node + 6 neighbors) =====
+        raw_value = neutral_slope(2,nz1,nod2)
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        idx = idx + 1
         
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             IF (PRESENT(N2_nn)) THEN
-    !                 raw_value = N2_nn(layer, neighbors(nb_idx))
-    !             ELSE
-    !                 raw_value = 0.0_WP
-    !             END IF
-    !         ELSE
-    !             raw_value = means(idx)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = neutral_slope(2,nz1,neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     ! ===== 16-22: slope_x (node + 6 neighbors) =====
-    !     IF (PRESENT(slope_x_nn)) THEN
-    !         raw_value = slope_x_nn(layer, node)
-    !     ELSE
-    !         raw_value = 0.0_WP  ! TODO: Use neutral_slope(1,:,:)
-    !     END IF
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
+        ! ===== 30-36: temperature (node + 6 neighbors) =====
+        raw_value = tracers%data(1)%values(nz1, nod2)
+        ! IF (flag_debug .AND. partit%mype == 0) THEN
+        !     WRITE(*,*) 'Value of temp before normalize:', raw_value
+        ! ENDIF
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        ! IF (flag_debug .AND. partit%mype == 0) THEN
+        !     WRITE(*,*) 'Value of temp after normalize:', nn_input(idx)
+        ! ENDIF  
+        idx = idx + 1
         
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             IF (PRESENT(slope_x_nn)) THEN
-    !                 raw_value = slope_x_nn(layer, neighbors(nb_idx))
-    !             ELSE
-    !                 raw_value = 0.0_WP
-    !             END IF
-    !         ELSE
-    !             raw_value = means(idx)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = tracers%data(1)%values(nz1, neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     ! ===== 23-29: slope_y (node + 6 neighbors) =====
-    !     IF (PRESENT(slope_y_nn)) THEN
-    !         raw_value = slope_y_nn(layer, node)
-    !     ELSE
-    !         raw_value = 0.0_WP  ! TODO: Use neutral_slope(2,:,:)
-    !     END IF
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
+        ! ===== 37-43: unod (node + 6 neighbors) =====
+        raw_value = dynamics%uvnode(1, nz1, nod2)
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        idx = idx + 1
         
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             IF (PRESENT(slope_y_nn)) THEN
-    !                 raw_value = slope_y_nn(layer, neighbors(nb_idx))
-    !             ELSE
-    !                 raw_value = 0.0_WP
-    !             END IF
-    !         ELSE
-    !             raw_value = means(idx)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = dynamics%uvnode(1, nz1, neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     ! ===== 30-36: temperature (node + 6 neighbors) =====
-    !     raw_value = tracers%data(1)%values(layer, node)
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
+        ! ===== 44-50: vnod (node + 6 neighbors) =====
+        raw_value = dynamics%uvnode(2, nz1, nod2)
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+        idx = idx + 1
         
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             raw_value = tracers%data(1)%values(layer, neighbors(nb_idx))
-    !         ELSE
-    !             raw_value = means(idx)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
+        DO nb_idx = 1, 6
+            IF (neighbors(nb_idx) > 0) THEN
+                raw_value = dynamics%uvnode(2, nz1, neighbors(nb_idx))
+            ELSE
+                raw_value = means(idx)
+            END IF
+            nn_input(idx) = (raw_value - means(idx)) / stds(idx)
+            idx = idx + 1
+        END DO
         
-    !     ! ===== 37-43: unod (node + 6 neighbors) =====
-    !     raw_value = dynamics%uvnode(1, layer, node)
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
-        
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             raw_value = dynamics%uvnode(1, layer, neighbors(nb_idx))
-    !         ELSE
-    !             raw_value = means(idx)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
-        
-    !     ! ===== 44-50: vnod (node + 6 neighbors) =====
-    !     raw_value = dynamics%uvnode(2, layer, node)
-    !     nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !     idx = idx + 1
-        
-    !     DO nb_idx = 1, 6
-    !         IF (neighbors(nb_idx) > 0) THEN
-    !             raw_value = dynamics%uvnode(2, layer, neighbors(nb_idx))
-    !         ELSE
-    !             raw_value = means(idx)
-    !         END IF
-    !         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
-    !         idx = idx + 1
-    !     END DO
-        
-    END SUBROUTINE extract_nn_features
+    END SUBROUTINE extract_nn_features_single
 
     SUBROUTINE load_nn_normalization_params(means, stds)
         ! Load normalization parameters (means and stds) from disk
         ! Called once per simulation, cached via SAVE in extract_nn_features
         ! Total features: 50 (curl_u_nn + ld_baroc1 + N2 + slope_x + slope_y + temp + unod + vnod, 
         !                      all with 6 neighbors each except ld_baroc1)
-        REAL(kind=WP), ALLOCATABLE, INTENT(OUT) :: means(:), stds(:)
-        
-        CHARACTER(LEN=32), PARAMETER :: base_path = './neuralnet_params'
+        CHARACTER(LEN=64):: fname = '../src/neuralnet_params/normalization_params.bin'
         INTEGER :: iunit, iostat
-        CHARACTER(256) :: iomsg
-        INTEGER :: n_features
+        CHARACTER(512) :: iomsg
+        INTEGER :: n_features = 50 ! hard-coded for GM neuralnet
+        INTEGER :: total_elements, bytes_per_real
+        REAL(KIND=WP), ALLOCATABLE, DIMENSION(:) :: aux_arr
+        REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:) :: aux_arr2
+        REAL(KIND=WP), DIMENSION(:), INTENT(OUT) :: means, stds
         LOGICAL :: normalization_params_loaded
         
-        ! Total number of features: 50
-        n_features = 50
+        total_elements = 2 * n_features
+        ALLOCATE(aux_arr(total_elements))
         
-        ALLOCATE(means(n_features))
-        ALLOCATE(stds(n_features))
+        ! Calculate record length in bytes based on actual REAL kind
+        bytes_per_real = STORAGE_SIZE(aux_arr(1)) / 8  ! bits to bytes
         
-        ! Load normalization constants from individual files
-        ! Expected files structure (confirm with your training setup):
-        ! /albedo/home/rjuhrban/fesom2/src/neuralnet_params/
-        !   mean/curl_u_nn.bin, mean/ld_baroc1.bin, mean/N2.bin, etc.
-        !   std/curl_u_nn.bin, std/ld_baroc1.bin, std/N2.bin, etc.
-        !
-        ! If neighbors are stored separately, adjust accordingly
+        ! Use direct access with record length = total bytes
+        OPEN(NEWUNIT=iunit, FILE=fname, STATUS='old', &
+            FORM='unformatted', ACCESS='direct', RECL=total_elements*bytes_per_real, &
+            IOSTAT=iostat, IOMSG=iomsg)
         
-        ! Initialize with placeholder values (will fail obviously if not replaced)
-        means = 0.0_WP
-        stds = 1.0_WP
+        IF (iostat /= 0) THEN
+            WRITE(*,'(A)') 'ERROR opening normalization file: ', TRIM(iomsg)
+            DEALLOCATE(aux_arr)
+            STOP 1
+        END IF
+        
+        READ(iunit, REC=1, IOSTAT=iostat, IOMSG=iomsg) aux_arr
+        
+        IF (iostat /= 0) THEN
+            WRITE(*,'(A)') 'ERROR reading normalization params: ', TRIM(iomsg)
+            DEALLOCATE(aux_arr)
+            CLOSE(iunit)
+            STOP 1
+        END IF
+        
+        ! Reshape the 1D buffer into 2D array in column-major order
+        ALLOCATE(aux_arr2(2, n_features))
+        aux_arr2 = &
+            RESHAPE(aux_arr, [2, n_features])
+        means = aux_arr2(1,:)
+        stds = aux_arr2(2,:)
+        
+        CLOSE(iunit)
+        DEALLOCATE(aux_arr, aux_arr2)
 
-        normalization_params_loaded = .FALSE.
+        normalization_params_loaded = .TRUE.
 
         ! Do normalization with float64 precision. But WP in FESOM is already 8, so nothing to do here
         
-        ! TODO: Implement actual file reading
-        ! CALL read_nn_feature_means_stds(base_path, means, stds)
-        
-        ! Placeholder warning
-        WRITE(*,'(A)') 'WARNING: Normalization parameters not loaded (using defaults: means=0, stds=1)'
-        
     END SUBROUTINE load_nn_normalization_params
-
-    ! SUBROUTINE apply_nn_corrections_tracer(dynamics, tracers, partit, mesh, tr_num, &
-    !                                       curl_u_nn, ld_baroc, N2_nn, slope_x_nn, slope_y_nn)
-    !     ! Apply NN-based corrections to tracer tendencies
-    !     ! Call this after advection but with access to del_ttf for adding flux divergences
-    !     ! This is where unresolved flux contributions from the NN are added
-    !     !
-    !     ! Optional arguments (pre-computed fields for efficiency):
-    !     !   - curl_u_nn: Curl of velocity from diag_curl_vel3, shape(nlev, nod2D)
-    !     !   - ld_baroc: Rossby radius from oce_fer_gm, shape(nod2D)
-    !     !   - N2_nn: Buoyancy frequency BEFORE smoothing from oce_ale_pressure_bv, shape(nlev, nod2D)
-    !     !   - slope_x_nn: Neutral slope x-component from oce_ale_pressure_bv, shape(nlev, nod2D)
-    !     !   - slope_y_nn: Neutral slope y-component from oce_ale_pressure_bv, shape(nlev, nod2D)
-        
-    !     TYPE(t_dyn), INTENT(INOUT), TARGET :: dynamics
-    !     TYPE(t_tracer), INTENT(INOUT), TARGET :: tracers
-    !     TYPE(t_partit), INTENT(INOUT), TARGET :: partit
-    !     TYPE(t_mesh), INTENT(IN), TARGET :: mesh
-    !     INTEGER, INTENT(IN) :: tr_num
-    !     REAL(kind=WP), INTENT(IN), OPTIONAL :: curl_u_nn(:,:), ld_baroc(:), N2_nn(:,:), &
-    !                                             slope_x_nn(:,:), slope_y_nn(:,:)
-        
-    !     TYPE(t_neural_net), POINTER :: nn
-    !     REAL(kind=WP), ALLOCATABLE :: nn_output(:)
-    !     INTEGER :: n, nz, nzmax, nzmin
-        
-    !     nn => get_neural_net()
-    !     IF (.NOT. ASSOCIATED(nn)) RETURN
-        
-    !     ! Parallelize over nodes and vertical levels
-    !     !$OMP PARALLEL DO DEFAULT(SHARED) PRIVATE(n, nz, nzmax, nzmin, nn_output)
-    !     DO n = 1, myDim_nod2D
-    !         nzmin = ulevels_nod2D(n)
-    !         nzmax = kmt(n)
-            
-    !         DO nz = nzmin, nzmax
-    !             ! Run NN inference for this (node, level)
-    !             ! CALL nn_inference_for_node_layer(n, nz, dynamics, tracers, mesh, partit, &
-    !             !                                  curl_u_nn, ld_baroc, N2_nn, slope_x_nn, slope_y_nn, &
-    !             !                                  nn, nn_output)
-                
-    !             ! TODO: Add NN output to flux divergence or tracer tendency
-    !             ! Currently: nn_output contains NN predictions (likely flux divergences or flux components)
-    !             ! To be integrated: 
-    !             !   del_ttf(nz, n) = del_ttf(nz, n) + nn_output_contribution
-                
-    !             IF (ALLOCATED(nn_output)) DEALLOCATE(nn_output)
-    !         END DO
-    !     END DO
-    !     !$OMP END PARALLEL DO
-        
-    ! END SUBROUTINE apply_nn_corrections_tracer
 
 END MODULE MOD_NEURALNET

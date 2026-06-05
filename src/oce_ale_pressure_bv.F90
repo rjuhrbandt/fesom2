@@ -500,6 +500,9 @@ subroutine pressure_bv(tracers, partit, mesh)
 ! apply horizontal smoothing of N2 bouyancy frequency
 if (N2smth_h) call smooth_nod (bvfreq, N2smth_hidx, partit, mesh)
 
+! Using smoothed version of bvfreq gives better results
+! bvfreq_smoothed = bvfreq
+
 end subroutine pressure_bv
 !
 !

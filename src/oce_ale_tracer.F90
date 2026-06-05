@@ -280,23 +280,23 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call full_inference'//achar(27)//'[0m'
             t0 = MPI_Wtime()
             DO node=1, myDim_nod2D
-                is_boundary_node = .FALSE.
-                    ! Do not apply neuralnet at boundary nodes 
-                    ! if any of mesh%nod_neighbors(:,nod2) <= 0: set GM_temperature_flux(:,:,node) = 0
-                    DO nb=1, 6
-                        IF ( mesh%nod_neighbors(nb,node) <= 0) THEN
-                            is_boundary_node = .TRUE.
-                            ! PRINT *, 'Will not apply neuralnet at boundary node', node
-                            EXIT ! don't need to check other neighbours
-                        ENDIF
-                    ENDDO
-                    IF ( is_boundary_node ) THEN
-                        GM_temperature_flux(:,:,node) = 0
-                    ELSE
-                        ! Call neural network and assign outputs to tflux_unod, tflux_vnod, tflux_w 
-                        If ( flag_debug .AND. partit%mype==0 .AND. node==1 ) PRINT *, 'Scaling GM neuralnet fluxes with factor', scaling_nnfluxes
-                        CALL full_inference(node, dynamics, tracers, partit, mesh, NN_GM, GM_temperature_flux(:,:,node), scaling_nnfluxes)
-                    ENDIF
+                ! is_boundary_node = .FALSE.
+                !     ! Do not apply neuralnet at boundary nodes 
+                !     ! if any of mesh%nod_neighbors(:,nod2) <= 0: set GM_temperature_flux(:,:,node) = 0
+                !     DO nb=1, 6
+                !         IF ( mesh%nod_neighbors(nb,node) <= 0) THEN
+                !             is_boundary_node = .TRUE.
+                !             ! PRINT *, 'Will not apply neuralnet at boundary node', node
+                !             EXIT ! don't need to check other neighbours
+                !         ENDIF
+                !     ENDDO
+                !     IF ( is_boundary_node ) THEN
+                !         GM_temperature_flux(:,:,node) = 0
+                !     ELSE
+                !         ! Call neural network and assign outputs to tflux_unod, tflux_vnod, tflux_w 
+                !         If ( flag_debug .AND. partit%mype==0 .AND. node==1 ) PRINT *, 'Scaling GM neuralnet fluxes with factor', scaling_nnfluxes
+                CALL full_inference(node, dynamics, tracers, partit, mesh, NN_GM, GM_temperature_flux(:,:,node), scaling_nnfluxes)
+                    ! ENDIF
             ENDDO
             t1 = MPI_Wtime()
             IF (flag_debug .AND. mype==0) PRINT *, 'Time for full_inference at mype==0:', t1-t0 

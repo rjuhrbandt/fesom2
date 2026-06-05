@@ -147,7 +147,7 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     use Toy_Channel_Soufflet
     use Toy_Channel_Dbgyre
     use Toy_Neverworld2
-    use o_ARRAYS, only: heat_flux, GM_temperature_flux, bvfreq_unsmoothed, bvfreq_nn, rosb_nn, curl_vel_nn, means, stds, neutral_slope
+    use o_ARRAYS, only: heat_flux, GM_temperature_flux, bvfreq, bvfreq_nn, rosb_nn, curl_vel_nn, means, stds, neutral_slope, ttf_diff
     USE MOD_NEURALNET
     use g_forcing_arrays, only: sw_3d
     use diff_tracers_ale_interface
@@ -169,11 +169,14 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
     integer                                  :: i, tr_num, node, elem, nzmax, nzmin
     INTEGER                                  :: nn_nlayers 
     INTEGER, DIMENSION(:), ALLOCATABLE       :: nn_layer_sizes
+    INTEGER                                  :: nb
+    LOGICAL                                  :: is_boundary_node
     ! For curl computation. 
     ! 0 means only allocation of arrays, other means full computation 
     INTEGER                                  :: mode = 1
     TYPE(T_NEURAL_NET), POINTER                      :: NN_GM
     INTEGER                                  :: zz
+    REAL                                     :: t0, t1 ! To estimate time for full_inference step
     !___________________________________________________________________________
     ! pointer on necessary derived types
     real(kind=WP), dimension(:,:,:), pointer :: UV, fer_UV
@@ -239,6 +242,8 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
         ! it will update del_ttf with contributions from horizontal and vertical advection parts (del_ttf_advhoriz and del_ttf_advvert)
 	!$ACC wait(1)
         call do_oce_adv_tra(dt, UV, Wvel, Wvel_i, Wvel_e, tr_num, dynamics, tracers, partit, mesh)
+        IF ( partit%mype == 0 .AND. flag_debug ) PRINT *, 'maximum of dttf_h after do_oce_adv_tra', MAXVAL(tracers%work%del_ttf_advhoriz)
+        IF ( partit%mype == 0 .AND. flag_debug ) PRINT *, 'maximum of dttf_v after do_oce_adv_tra', MAXVAL(tracers%work%del_ttf_advvert)
 
         !$ACC UPDATE HOST(tracers%work%del_ttf, tracers%work%del_ttf_advhoriz, tracers%work%del_ttf_advvert)
         !___________________________________________________________________________
@@ -251,7 +256,7 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
 !$OMP END PARALLEL DO
 
         ! Apply neural network corrections to add unresolved (sub-grid) flux contributions
-        IF (ldiag_GM_NN .OR. use_GM_NN) THEN
+        IF ((ldiag_GM_NN .OR. use_GM_NN) .AND. toy_ocean .AND. (TRIM(which_toy)=="dbgyre")) THEN
             ! Compute curl
             ! Compute baroclinic rossby radius as in oce_fer_gm
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call diag_curl_vel3'//achar(27)//'[0m'
@@ -261,22 +266,40 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
                 CALL compute_rossbyr(node, rosb_nn(node), dynamics, partit, mesh)
             ENDDO
         ENDIF
-        IF (use_GM_NN) THEN
+        IF (use_GM_NN .AND. toy_ocean .AND. (TRIM(which_toy)=="dbgyre")) THEN
             ! Use neuralnet to infer eddy temperature fluxes from existing quantities. Net is initialized
             ! in fesom_init
             ! Input: curl, rossby radius, bvfreq, isoneutral slopes, temperature, unod, vnod
             ! Output: tflux_unod, tflux_vnod, tflux_w
             ! Get unsmoothed bvfreq and interpolate to layer centers
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call interpolate_bvfreq_to_layers'//achar(27)//'[0m'
-            CALL interpolate_bvfreq_to_layers(dynamics, partit, mesh, bvfreq_unsmoothed, bvfreq_nn)
+            ! Try using bvfreq (smoothed horizontally) instead of bvfreq_unsmoothed - better results?
+            CALL interpolate_bvfreq_to_layers(dynamics, partit, mesh, bvfreq, bvfreq_nn)
             ! Iterate through nodes and layer centers (layer centers loop is in full_inference subroutine):
             NN_GM => get_neural_net()
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call full_inference'//achar(27)//'[0m'
+            t0 = MPI_Wtime()
             DO node=1, myDim_nod2D
-                    ! Call neural network and assign outputs to tflux_unod, tflux_vnod, tflux_w 
-                    CALL full_inference(node, dynamics, tracers, partit, mesh, NN_GM, GM_temperature_flux(:,:,node))
+                is_boundary_node = .FALSE.
+                    ! Do not apply neuralnet at boundary nodes 
+                    ! if any of mesh%nod_neighbors(:,nod2) <= 0: set GM_temperature_flux(:,:,node) = 0
+                    DO nb=1, 6
+                        IF ( mesh%nod_neighbors(nb,node) <= 0) THEN
+                            is_boundary_node = .TRUE.
+                            ! PRINT *, 'Will not apply neuralnet at boundary node', node
+                            EXIT ! don't need to check other neighbours
+                        ENDIF
+                    ENDDO
+                    IF ( is_boundary_node ) THEN
+                        GM_temperature_flux(:,:,node) = 0
+                    ELSE
+                        ! Call neural network and assign outputs to tflux_unod, tflux_vnod, tflux_w 
+                        If ( flag_debug .AND. partit%mype==0 .AND. node==1 ) PRINT *, 'Scaling GM neuralnet fluxes with factor', scaling_nnfluxes
+                        CALL full_inference(node, dynamics, tracers, partit, mesh, NN_GM, GM_temperature_flux(:,:,node), scaling_nnfluxes)
+                    ENDIF
             ENDDO
-            ! Add divergences of these fluxes using Dima's routine (only temperature for double gyre)
+            t1 = MPI_Wtime()
+            IF (flag_debug .AND. mype==0) PRINT *, 'Time for full_inference at mype==0:', t1-t0 
                 ! call apply_gm_fluxes(GM_temperature_flux(1), GM_temperature_flux(2), GM_temperature_flux(3), tracers%data(1)%values(:,:), partit, mesh)
         ENDIF
 
@@ -306,8 +329,16 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
 
         call exchange_nod(tracers%data(tr_num)%values(:,:), partit)
 !$OMP BARRIER
-!call apply_gm_fluxes(temp_fx, temp_fy, temp_fz, tracers%data(1)%values(:,:), partit, mesh)
-!call apply_gm_fluxes(salt_fx, salt_fy, salt_fz, tracers%data(2)%values(:,:), partit, mesh)
+        IF (use_GM_NN .AND. toy_ocean .AND. (TRIM(which_toy)=="dbgyre")) THEN
+            ! Add divergences of neuralnet using routine written by Dima Sidorenko (only temperature for double gyre)
+            ! Only temperature: double gyre has linear EOS and constant salinity
+            ! IF (mype==0) THEN
+            !     WRITE(*,*) 'GM temperature flux component 1 at first layer:', GM_temperature_flux(1,1,:)
+            !     WRITE(*,*) 'GM temperature flux component 2 at first layer:', GM_temperature_flux(2,1,:)
+            !     WRITE(*,*) 'GM temperature flux component 3 at first layer:', GM_temperature_flux(3,1,:)
+            ! ENDIF
+            CALL apply_gm_fluxes(GM_temperature_flux(1,:,:), GM_temperature_flux(2,:,:), GM_temperature_flux(3,:,:), tracers%data(1)%values(:,:), ttf_diff(:,:), partit, mesh)
+        ENDIF
     end do
 !!!        !$ACC UPDATE HOST (tracers%work%fct_ttf_min, tracers%work%fct_ttf_max, tracers%work%fct_plus, tracers%work%fct_minus) &
 !!!        !$ACC HOST  (tracers%work%edge_up_dn_grad)
@@ -1115,7 +1146,7 @@ subroutine diff_ver_part_impl_ale(tr_num, dynamics, tracers, ice, partit, mesh)
             ! trarr - before ... T*
             trarr(nz,n)=trarr(nz,n)+tr(nz)
         end do
-
+        IF ( partit%mype == 0 .AND. flag_debug ) PRINT *, 'maximum of tr in diff_ver_part_impl_ale at node', n, ':', MAXVAL(tr(:))
     end do ! --> do n=1,myDim_nod2D
 !$OMP END DO
 !$OMP END PARALLEL
@@ -1206,6 +1237,7 @@ subroutine diff_ver_part_redi_expl(tracers, partit, mesh)
     end do
 !$OMP END DO
 !$OMP END PARALLEL
+    if ( partit%mype == 0 .AND. flag_debug ) PRINT *, 'maximum of del_ttf in diff_ver_part_redi_expl:', MAXVAL(del_ttf(:,:))
 end subroutine diff_ver_part_redi_expl
 !
 !
@@ -1373,6 +1405,7 @@ subroutine diff_part_hor_redi(tracers, partit, mesh)
     end do
 !$OMP END DO
 !$OMP END PARALLEL
+    if ( partit%mype == 0 .AND. flag_debug) PRINT *, 'maximum of del_ttf in diff_part_hor_redi:', MAXVAL(del_ttf(:,:))
 end subroutine diff_part_hor_redi
 !
 !
@@ -1460,6 +1493,7 @@ SUBROUTINE diff_part_bh(tr_num, dynamics, tracers, partit, mesh)
     call exchange_nod(temporary_ttf, partit)
 !$OMP END MASTER
 !$OMP BARRIER
+    IF ( partit%mype == 0 .AND. flag_debug ) PRINT *, 'Maximum of temporary_ttf in diff_part_bh:', MAXVAL(temporary_ttf(:,:))
     ! ===========
     ! Second round:
     ! ===========

@@ -950,27 +950,39 @@ nl              => mesh%nl
     end if
 
     IF (use_GM_NN) THEN
-        ALLOCATE(bvfreq_unsmoothed(nl, node_size))
+        ALLOCATE(bvfreq_smoothed(nl, node_size))
         ALLOCATE(bvfreq_nn(nl-1, node_size))
         ALLOCATE(rosb_nn(node_size))
         ALLOCATE(curl_vel_nn(nl-1, node_size))
         ALLOCATE(GM_temperature_flux(3,nl-1,node_size))
-        ALLOCATE(means(50), stds(50)) ! Hard-coded for GM neuralnet
+        ALLOCATE(means(51), stds(51)) ! Hard-coded for GM neuralnet
         ALLOCATE(nn_input(50)) ! Hard-coded for GM neuralnet
-        bvfreq_unsmoothed = 0.0_WP
+        ALLOCATE(means_train(3), stds_train(3)) ! First un-normalization of outputs
+        ALLOCATE(means_full(3), stds_full(3)) ! Second un-normalization of outputs
+        ALLOCATE(ttf_diff(nl-1, node_size)) ! For debugging: what is added in apply_gm_fluxes
+        bvfreq_smoothed = 0.0_WP
         bvfreq_nn = 0.0_WP
         rosb_nn = 0.0_WP
         curl_vel_nn = 0.0_WP
         means = 0.0_WP
         stds = 1.0_WP
+        means_train = 0.0_WP
+        stds_train = 1.0_WP
+        means_full = 0.0_WP
+        stds_full = 1.0_WP
         nn_input = 0.0_WP
         GM_temperature_flux = 0.0_WP
+        ttf_diff = 0.0_WP
     ENDIF
 
     IF (ldiag_GM_NN) THEN
         IF (.NOT. ALLOCATED(rosb_nn)) THEN 
             ALLOCATE(rosb_nn(node_size))
             rosb_nn = 0.0_WP
+        ENDIF
+        IF (.NOT. ALLOCATED(curl_vel_nn)) THEN
+            ALLOCATE(curl_vel_nn(nl-1,node_size))
+            curl_vel_nn = 0.0_WP
         ENDIF
     ENDIF
 

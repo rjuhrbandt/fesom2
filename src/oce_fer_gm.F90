@@ -552,7 +552,7 @@ subroutine init_RediGM_GINsea_mask(partit, mesh)
 end subroutine init_RediGM_GINsea_mask 
 
 !===============================================================================
-subroutine apply_gm_fluxes(fx, fy, fz, ttf, partit, mesh)
+subroutine apply_gm_fluxes(fx, fy, fz, ttf, dttf, partit, mesh)
     use MOD_MESH
     USE MOD_PARTIT
     USE MOD_PARSUP
@@ -562,11 +562,13 @@ subroutine apply_gm_fluxes(fx, fy, fz, ttf, partit, mesh)
     type(t_partit),intent(in), target :: partit
     type(t_mesh),  intent(in), target :: mesh
     real(kind=WP), intent(inout)      :: ttf(   mesh%nl-1, partit%myDim_nod2D+partit%eDim_nod2D)
+    REAL(KIND=WP), INTENT(OUT)        :: dttf(   mesh%nl-1, partit%myDim_nod2D+partit%eDim_nod2D)
     real(kind=WP), intent(in)         :: fx(mesh%nl-1, partit%myDim_nod2D+partit%eDim_nod2D)
     real(kind=WP), intent(in)         :: fy(mesh%nl-1, partit%myDim_nod2D+partit%eDim_nod2D)
     real(kind=WP), intent(in)         :: fz(mesh%nl,   partit%myDim_nod2D+partit%eDim_nod2D)
+    REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:) :: ttf_start
     real(kind=WP)                     :: deltaX1, deltaY1, deltaX2, deltaY2
-    real(kind=WP)                     :: a, felx, fely, flux
+    real(kind=WP)                     :: a, felx, fely, flux 
     integer                           :: el(2), enodes(2), nz, edge, n
     integer                           :: nu12, nl12, nl1, nl2, nu1, nu2, nzmin, nzmax
 
@@ -574,6 +576,8 @@ subroutine apply_gm_fluxes(fx, fy, fz, ttf, partit, mesh)
 #include "associate_mesh_def.h"
 #include "associate_part_ass.h"
 #include "associate_mesh_ass.h"
+    ALLOCATE(ttf_start(mesh%nl-1, partit%myDim_nod2D+partit%eDim_nod2D))
+    ttf_start(:,:) = ttf(:,:)
 
     do edge=1, myDim_edge2D
         ! local indice of nodes that span up edge ed
@@ -696,5 +700,9 @@ subroutine apply_gm_fluxes(fx, fy, fz, ttf, partit, mesh)
           ttf(nz,n)=ttf(nz,n)-(fz(nz+1,n)-fz(nz,n))*dt/hnode_new(nz,n)
        end do
     end do
+
+    dttf(:,:) = ttf(:,:) - ttf_start(:,:)
+    DEALLOCATE(ttf_start)
+
 end subroutine apply_gm_fluxes
 !

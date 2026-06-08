@@ -1,6 +1,7 @@
 /build
 /build.lib
 /work
+/work/job_albedo
 /lib64
 *.o
 *.mod

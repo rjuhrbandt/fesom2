@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --account=clidyn.p_clidyn_work # edit your account
-#SBATCH --job-name=debug
+#SBATCH --job-name=NONE
 #SBATCH --partition=mpp
-#SBATCH --time=00:30:00
-#SBATCH --qos=30min
+#SBATCH --time=01:00:00
+#SBATCH --qos=12h
 #SBATCH --nodes=1            # Number of tasks (MPI) tasks to be launched
 #SBATCH --tasks-per-node 60  # using all 128CPus we exceed the maxload limit (>130) of many used nodes when us parallel I/O
 #SBATCH --cpus-per-task 1
@@ -52,6 +52,7 @@ fname="fesom2_${SLURM_JOB_NAME}_${jobid}.out"
 #___PUT JOB IN QUEUE____________________________________________________________
 date
 srun --mpi=pmi2 ./fesom.x >> ${fname}
+cp ./"$fname" "$RESULT_PATH"
 date
 
 #qstat -f $PBS_JOBID

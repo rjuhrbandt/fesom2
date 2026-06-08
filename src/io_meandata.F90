@@ -1591,6 +1591,7 @@ END DO ! --> DO i=1, io_listsize
         call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'curl_u',     'relative vorticity', '1/s',   curl_vel_nn, 1, output_freq, i_real8, partit, mesh)
         call def_stream(nod2D, myDim_nod2D, 'rosb', 'baroclinic Rossby radius', 'm', rosb_nn, 1, output_freq, i_real8, partit, mesh)
         call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/), 'N2', 'bvfreq unsmoothed', '1/s2', bvfreq_unsmoothed, 1, output_freq, i_real8, partit, mesh)
+        ! call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/), 'N2', 'bvfreq smoothed', '1/s2', bvfreq_smoothed, 1, output_freq, i_real8, partit, mesh)
         call def_stream((/nl-1,  nod2D/), (/nl-1, myDim_nod2D/),  'slope_x',   'neutral slope X',    'none', neutral_slope(1,:,:), 1, output_freq, i_real8, partit, mesh)
         call def_stream((/nl-1,  nod2D/), (/nl-1, myDim_nod2D/),  'slope_y',   'neutral slope Y',    'none', neutral_slope(2,:,:), 1, output_freq, i_real8, partit, mesh)
         call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'temp',      'temperature', 'C',      tracers%data(1)%values(:,:), 1, output_freq, i_real8, partit, mesh)
@@ -1598,17 +1599,20 @@ END DO ! --> DO i=1, io_listsize
         call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'vnod',      'meridional velocity at nodes', 'm/s', dynamics%uvnode(2,:,:), 1, output_freq, i_real8, partit, mesh)
         call def_stream((/nl-1, elem2D/), (/nl-1, myDim_elem2D/), 'u',         'zonal velocity','m/s',           dynamics%uv(1,:,:),     1, output_freq, i_real8, partit, mesh)
         call def_stream((/nl-1, elem2D/), (/nl-1, myDim_elem2D/), 'v',         'meridional velocity','m/s',           dynamics%uv(2,:,:),     1, output_freq, i_real8, partit, mesh)
-        call def_stream(nod2D, myDim_nod2D, 'sst',      'sea surface temperature',        'C', tracers%data(1)%values(1,1:myDim_nod2D), 1, output_freq, i_real8, partit, mesh)
         call def_stream(nod2D, myDim_nod2D, 'ssh',      'sea surface elevation', 'm',      dynamics%eta_n, 1, output_freq, i_real8, partit, mesh)
         call def_stream(nod2D, myDim_nod2D, 'hc300m', 'Vertically integrated heat content upper 300m',   'J m**-2', heatcontent(1:myDim_nod2D,1), 1, output_freq, i_real8, partit, mesh)
         call def_stream(nod2D, myDim_nod2D, 'hc700m', 'Vertically integrated heat content upper 700m',   'J m**-2', heatcontent(1:myDim_nod2D,2), 1, output_freq, i_real8, partit, mesh)
         call def_stream(nod2D, myDim_nod2D, 'hc',     'Vertically integrated heat content total column', 'J m**-2', heatcontent(1:myDim_nod2D,3), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'dttf_h',      'horizontal temperature tendency by advection', 'K', tracers%work%del_ttf_advhoriz, 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1, myDim_nod2D/),  'dttf_v',      'vertical temperature tendency by advection', 'K', tracers%work%del_ttf_advvert, 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'dttf_nn',      'temperature tendency added in add_gm_fluxes', 'K', ttf_diff, 1, output_freq, i_real8, partit, mesh)
     ENDIF
 
     IF (use_GM_NN) THEN
-        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_unod',      'zonal eddy heat flux', 'K m/s', GM_temperature_flux(1,:,:), 1, 'd', i_real8, partit, mesh)
-        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_vnod',      'meridional eddy heat flux', 'K m/s', GM_temperature_flux(2,:,:), 1, 'd', i_real8, partit, mesh)
-        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_w',      'vertical eddy heat flux', 'K m/s', GM_temperature_flux(3,:,:), 1, 'd', i_real8, partit, mesh)
+        output_freq = 's'
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_unod',      'zonal eddy heat flux', 'K m/s', GM_temperature_flux(1,:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_vnod',      'meridional eddy heat flux', 'K m/s', GM_temperature_flux(2,:,:), 1, output_freq, i_real8, partit, mesh)
+        call def_stream((/nl-1, nod2D/),  (/nl-1,   myDim_nod2D/),'tflux_w',      'vertical eddy heat flux', 'K m/s', GM_temperature_flux(3,:,:), 1, output_freq, i_real8, partit, mesh)
     ENDIF
 
     IF (Fer_GM) THEN

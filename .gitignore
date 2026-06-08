@@ -17,3 +17,5 @@ Makefile.in
 mesh_part/build
 test/output_pi 
 src/cvmix_driver/CVMix-*
+.vscode/
+src/neuralnet_params/*

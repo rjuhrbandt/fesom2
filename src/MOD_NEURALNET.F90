@@ -1,7 +1,3 @@
-! This is just a test to see whether I can add extra source files and
-! FESOM2 remains compilable!
-
-!==========================================================
 MODULE MOD_NEURALNET
   USE o_PARAM
   USE MOD_READ_BINARY_ARRAYS !, ONLY: read1d_real, read2d_real, read1d_char, read1d_int
@@ -16,7 +12,8 @@ MODULE MOD_NEURALNET
   PUBLIC :: forward_pass_single, forward_pass_full
   PUBLIC :: neuralnet_init, get_neural_net
   PUBLIC :: t_neural_net
-  PUBLIC :: compute_rossbyr, interpolate_bvfreq_to_layers, load_nn_normalization_params
+  PUBLIC :: compute_rossbyr, interpolate_bvfreq_to_layers, load_nn_input_normalization_params
+  PUBLIC :: load_nn_output_unnormalization_params
   PUBLIC :: extract_nn_features_single
   PUBLIC :: full_inference
 
@@ -33,13 +30,14 @@ MODULE MOD_NEURALNET
 
   CONTAINS
 
-    SUBROUTINE neuralnet_init(mype, mpi_comm)
+    SUBROUTINE neuralnet_init(mype, mpi_comm, _which_NN)
         ! Initialize the global neural network (only once)
         ! Subsequent calls are no-ops
         INTEGER, INTENT(IN), OPTIONAL :: mype, mpi_comm
         INTEGER :: i, nlayers, my_rank, comm, ierr
         CHARACTER(LEN=256) :: path, weights_path, biases_path, act_path
         CHARACTER(LEN=4) :: i_str
+        CHARACTER(LEN=8) :: _which_NN
         LOGICAL :: use_mpi
         
         ! Check if already initialized
@@ -58,7 +56,7 @@ MODULE MOD_NEURALNET
         
         ! 1. Read network architecture (only on rank 0)
         IF (my_rank == 0) THEN
-            CALL read_nn_architecture(nn_gm_module%nlayers, nn_gm_module%layer_sizes)
+            CALL read_nn_architecture(nn_gm_module%nlayers, nn_gm_module%layer_sizes, _which_NN)
         END IF
         
         ! Broadcast nlayers to all ranks
@@ -92,7 +90,9 @@ MODULE MOD_NEURALNET
         END IF
         
         ! 4. Load each layer's weights, biases, and activation functions (only on rank 0)
-        path = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params'
+        path = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params/' // TRIM(which_NN)
+
+        IF (my_rank == 0) WRITE(*,*) 'Path to architecture files:', path
         
         IF (my_rank == 0) THEN
             DO i = 1, nlayers
@@ -136,15 +136,16 @@ MODULE MOD_NEURALNET
         nn => nn_gm_module
     END FUNCTION get_neural_net
 
-    SUBROUTINE read_nn_architecture(nl, layer_sizes)
+    SUBROUTINE read_nn_architecture(nl, layer_sizes, _which_NN)
         INTEGER, INTENT(OUT) :: nl
         INTEGER, ALLOCATABLE, INTENT(OUT) :: layer_sizes(:)
         CHARACTER(LEN=256) :: nlname, nnname
         INTEGER :: iunit, iostat
         CHARACTER(256) :: iomsg
+        CHARACTER(LEN=8) :: _which_NN
         
         ! Use module parameter or environment variable for path
-        nlname = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params/nlayers.bin'
+        nlname = './neuralnet_params/' // TRIM(_which_NN) // '/nlayers.bin'
         
         OPEN(NEWUNIT=iunit, FILE=TRIM(nlname), STATUS='old', ACTION='read', &
             FORM='unformatted', ACCESS='stream', IOSTAT=iostat, IOMSG=iomsg)
@@ -164,7 +165,7 @@ MODULE MOD_NEURALNET
         
         ALLOCATE(layer_sizes(nl+1))
         
-        nnname = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params/nneurons.bin'
+        nnname = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params/' // TRIM(which_NN) // '/nneurons.bin'
         
         OPEN(NEWUNIT=iunit, FILE=TRIM(nnname), STATUS='old', ACTION='read', &
             FORM='unformatted', ACCESS='stream', IOSTAT=iostat, IOMSG=iomsg)
@@ -439,7 +440,7 @@ MODULE MOD_NEURALNET
         USE MOD_MESH
         USE o_ARRAYS, only: bvfreq
         USE o_PARAM ! pi
-        USE MOD_PARTIT
+        USE MOD_PARTIT 
         USE MOD_DYN
         USE MOD_PARSUP
         use g_comm_auto
@@ -458,7 +459,7 @@ MODULE MOD_NEURALNET
 
     END SUBROUTINE interpolate_bvfreq_to_layers
 
-    SUBROUTINE full_inference(node, dynamics, tracers, partit, mesh, nn, nn_output)
+    SUBROUTINE full_inference(node, dynamics, tracers, partit, mesh, nn, nn_output, scale_factor)
         ! This combines all inference steps (after initialization):
         ! 1. Extracting the input values
         ! 2. Normalizing them
@@ -479,6 +480,7 @@ MODULE MOD_NEURALNET
         REAL(KIND=WP), DIMENSION(:), ALLOCATABLE :: nn_input
         REAL(KIND=WP), DIMENSION(:), ALLOCATABLE :: out
         REAL(KIND=WP), DIMENSION(:,:), INTENT(OUT) :: nn_output
+        REAL(KIND=WP) :: scale_factor ! scaling the fluxes
         INTEGER :: n_features, n_targets
         INTEGER :: n, z
 
@@ -494,19 +496,15 @@ MODULE MOD_NEURALNET
             ALLOCATE(out(n_targets))
         ENDIF
 
-        ! IF (partit%mype ==0) THEN
-        !     DO n=1, partit%myDim_nod2d
-        !         DO z=1, 10
-        !             WRITE(*,*) 'Value of curl_u_nn at nz1=', z, 'node=', partit%myList_nod2d(n), ':', curl_vel_nn(z,n)
-        !         ENDDO
-        !     ENDDO
-        ! ENDIF
-
         DO nz1=nzmin, nzmax-1 ! we do inference on nz1, not nz
             CALL extract_nn_features_single(nz1, node, dynamics, tracers, mesh, partit, nn_input)
             CALL forward_pass_full(nn_input, nn, out)
+            CALL unnormalize_outputs(out)
+            out = scale_factor*out
             nn_output(:,nz1) = out
         ENDDO
+        ! Manually constrain at the bottom: vertical fluxes should be 0 here!
+        nn_output(3,nzmax-1) = 0
 
         DEALLOCATE(nn_input, out)
     END SUBROUTINE full_inference
@@ -517,6 +515,7 @@ MODULE MOD_NEURALNET
     SUBROUTINE extract_nn_features_single(nz1, nod2, dynamics, tracers, mesh, partit, nn_input)
         ! Extract and normalize NN input features for one (nz1, nod2) pair
         ! Feature order (MUST match training data order):
+        ! -- Without depth input --
         !   1-7:   velocity curl (node + 6 neighbors)
         !   8:     Rossby radius (rosb, 2D only)
         !   9-15:  bvfreq (node + 6 neighbors)
@@ -526,6 +525,19 @@ MODULE MOD_NEURALNET
         !   37-43: unod (node + 6 neighbors)
         !   44-50: vnod (node + 6 neighbors)
         ! Total: 50 features
+        ! -- With depth input -- 
+        !   1-7:   velocity curl (node + 6 neighbors)
+        !   8:     depth (relative to max depth. Always 4000 for double gyre. 
+        !                 Might need to include max depth at node in training
+        !                 for more general setups.)
+        !   9:     Rossby radius (rosb, 2D only)
+        !   10-16:  bvfreq (node + 6 neighbors)
+        !   17-23: slope_x (node + 6 neighbors)
+        !   24-30: slope_y (node + 6 neighbors)
+        !   31-37: temperature (node + 6 neighbors)
+        !   38-44: unod (node + 6 neighbors)
+        !   45-51: vnod (node + 6 neighbors)
+        ! Total: 51 features
 
         ! WATCH OUT: For neighbor value access, use LOCAL node indices and only if != 0
         
@@ -574,13 +586,23 @@ MODULE MOD_NEURALNET
             nn_input(idx) = (raw_value - means(idx)) / stds(idx)
             idx = idx + 1
         END DO
+
+        ! Value of idx is now 7
+        ! ===== depth_rel (Depth relative to max depth) =====
+        ! Network was trained with positive values, mesh%zbar and mesh%depth are negative -> cancel out
+        raw_value = mesh%zbar(nod2) / mesh%depth(nod2) 
+        nn_input(idx) = (raw_value - means(idx)) / stds(idx) ! no normalization, would not make sense here
+        idx = idx + 1
         
-        ! ===== 8: ld_baroc1 (rosb, 2D only, no neighbors) =====
+        ! ===== ld_baroc1 (rosb, 2D only, no neighbors) =====
         raw_value = rosb_nn(nod2)
         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
         idx = idx + 1
         
-        ! ===== 9-15: N2 (node + 6 neighbors) =====
+        ! ===== N2 (node + 6 neighbors) =====
+        ! During training, I smoothed (averaged) the values in z-direction
+        ! to have them on level centres instead of interfaces (to
+        ! be consistent with other input variables)
         raw_value = bvfreq_nn(nz1,nod2)
         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
         idx = idx + 1
@@ -595,7 +617,7 @@ MODULE MOD_NEURALNET
             idx = idx + 1
         END DO
         
-        ! ===== 16-22: slope_x (node + 6 neighbors) =====
+        ! ===== slope_x (node + 6 neighbors) =====
         raw_value = neutral_slope(1,nz1,nod2)
         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
         idx = idx + 1
@@ -610,7 +632,7 @@ MODULE MOD_NEURALNET
             idx = idx + 1
         END DO
         
-        ! ===== 23-29: slope_y (node + 6 neighbors) =====
+        ! ===== slope_y (node + 6 neighbors) =====
         raw_value = neutral_slope(2,nz1,nod2)
         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
         idx = idx + 1
@@ -625,7 +647,7 @@ MODULE MOD_NEURALNET
             idx = idx + 1
         END DO
         
-        ! ===== 30-36: temperature (node + 6 neighbors) =====
+        ! ===== temperature (node + 6 neighbors) =====
         raw_value = tracers%data(1)%values(nz1, nod2)
         ! IF (flag_debug .AND. partit%mype == 0) THEN
         !     WRITE(*,*) 'Value of temp before normalize:', raw_value
@@ -646,7 +668,7 @@ MODULE MOD_NEURALNET
             idx = idx + 1
         END DO
         
-        ! ===== 37-43: unod (node + 6 neighbors) =====
+        ! ===== unod (node + 6 neighbors) =====
         raw_value = dynamics%uvnode(1, nz1, nod2)
         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
         idx = idx + 1
@@ -661,7 +683,7 @@ MODULE MOD_NEURALNET
             idx = idx + 1
         END DO
         
-        ! ===== 44-50: vnod (node + 6 neighbors) =====
+        ! ===== vnod (node + 6 neighbors) =====
         raw_value = dynamics%uvnode(2, nz1, nod2)
         nn_input(idx) = (raw_value - means(idx)) / stds(idx)
         idx = idx + 1
@@ -678,20 +700,21 @@ MODULE MOD_NEURALNET
         
     END SUBROUTINE extract_nn_features_single
 
-    SUBROUTINE load_nn_normalization_params(means, stds)
+    SUBROUTINE load_nn_input_normalization_params(means, stds)
         ! Load normalization parameters (means and stds) from disk
         ! Called once per simulation, cached via SAVE in extract_nn_features
-        ! Total features: 50 (curl_u_nn + ld_baroc1 + N2 + slope_x + slope_y + temp + unod + vnod, 
-        !                      all with 6 neighbors each except ld_baroc1)
-        CHARACTER(LEN=64):: fname = '../src/neuralnet_params/normalization_params.bin'
+        ! Total features: 50/51 (curl_u_nn (+depth_rel) + ld_baroc1 + N2 + slope_x + slope_y + temp + unod + vnod, 
+        !                      all with 6 neighbors each except ld_baroc1 and depth_rel)
+        ! No normalization for depth_rel, so mean=0 and std=1 
+        CHARACTER(LEN=64):: fname = '../src/neuralnet_params/input_normalization_params.bin'
         INTEGER :: iunit, iostat
         CHARACTER(512) :: iomsg
-        INTEGER :: n_features = 50 ! hard-coded for GM neuralnet
+        INTEGER :: n_features = 51 ! hard-coded for GM neuralnet
         INTEGER :: total_elements, bytes_per_real
         REAL(KIND=WP), ALLOCATABLE, DIMENSION(:) :: aux_arr
         REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:) :: aux_arr2
         REAL(KIND=WP), DIMENSION(:), INTENT(OUT) :: means, stds
-        LOGICAL :: normalization_params_loaded
+        LOGICAL :: input_normalization_params_loaded
         
         total_elements = 2 * n_features
         ALLOCATE(aux_arr(total_elements))
@@ -729,10 +752,99 @@ MODULE MOD_NEURALNET
         CLOSE(iunit)
         DEALLOCATE(aux_arr, aux_arr2)
 
-        normalization_params_loaded = .TRUE.
+        input_normalization_params_loaded = .TRUE.
 
         ! Do normalization with float64 precision. But WP in FESOM is already 8, so nothing to do here
         
-    END SUBROUTINE load_nn_normalization_params
+    END SUBROUTINE load_nn_input_normalization_params
+
+    SUBROUTINE load_nn_output_unnormalization_params(means_train, stds_train, means_full, stds_full)
+        CHARACTER(LEN=64):: fname_full = '../src/neuralnet_params/output_normalization_full.bin'
+        CHARACTER(LEN=64):: fname_train = '../src/neuralnet_params/output_normalization_train.bin'
+        INTEGER :: iunit, iostat
+        CHARACTER(512) :: iomsg
+        INTEGER :: n_targets = 3 ! hard-coded for GM neuralnet
+        INTEGER :: total_elements, bytes_per_real
+        REAL(KIND=WP), ALLOCATABLE, DIMENSION(:) :: aux_arr
+        REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:) :: aux_arr2
+        REAL(KIND=WP), DIMENSION(:), INTENT(OUT) :: means_train, stds_train, means_full, stds_full
+        LOGICAL :: output_unnormalization_params_loaded
+
+        ! Load train means/stds
+        
+        total_elements = 2 * n_targets
+        ALLOCATE(aux_arr(total_elements))
+        
+        ! Calculate record length in bytes based on actual REAL kind
+        bytes_per_real = STORAGE_SIZE(aux_arr(1)) / 8  ! bits to bytes
+        
+        ! Use direct access with record length = total bytes
+        OPEN(NEWUNIT=iunit, FILE=fname_full, STATUS='old', &
+            FORM='unformatted', ACCESS='direct', RECL=total_elements*bytes_per_real, &
+            IOSTAT=iostat, IOMSG=iomsg)
+        
+        IF (iostat /= 0) THEN
+            WRITE(*,'(A)') 'ERROR opening output unnormalization file full: ', TRIM(iomsg)
+            DEALLOCATE(aux_arr)
+            STOP 1
+        END IF
+        
+        READ(iunit, REC=1, IOSTAT=iostat, IOMSG=iomsg) aux_arr
+        
+        IF (iostat /= 0) THEN
+            WRITE(*,'(A)') 'ERROR reading output unnormalization full params: ', TRIM(iomsg)
+            DEALLOCATE(aux_arr)
+            CLOSE(iunit)
+            STOP 1
+        END IF
+
+        ! Reshape the 1D buffer into 2D array in column-major order
+        ALLOCATE(aux_arr2(2, n_targets))
+        aux_arr2 = &
+            RESHAPE(aux_arr, [2, n_targets])
+        means_full = aux_arr2(1,:)
+        stds_full = aux_arr2(2,:)
+
+        ! Use direct access with record length = total bytes
+        OPEN(NEWUNIT=iunit, FILE=fname_train, STATUS='old', &
+            FORM='unformatted', ACCESS='direct', RECL=total_elements*bytes_per_real, &
+            IOSTAT=iostat, IOMSG=iomsg)
+        
+        IF (iostat /= 0) THEN
+            WRITE(*,'(A)') 'ERROR opening output unnormalization file train: ', TRIM(iomsg)
+            DEALLOCATE(aux_arr)
+            STOP 1
+        END IF
+        
+        READ(iunit, REC=1, IOSTAT=iostat, IOMSG=iomsg) aux_arr
+        
+        IF (iostat /= 0) THEN
+            WRITE(*,'(A)') 'ERROR reading output unnormalization train params: ', TRIM(iomsg)
+            DEALLOCATE(aux_arr)
+            CLOSE(iunit)
+            STOP 1
+        END IF
+
+        ! Reshape the 1D buffer into 2D array in column-major order
+        aux_arr2 = &
+            RESHAPE(aux_arr, [2, n_targets])
+        means_train = aux_arr2(1,:)
+        stds_train = aux_arr2(2,:)
+
+        output_unnormalization_params_loaded = .TRUE.
+
+    END SUBROUTINE load_nn_output_unnormalization_params
+
+    SUBROUTINE unnormalize_outputs(outp)
+        USE o_ARRAYS, only: means_train, stds_train, means_full, stds_full
+        REAL(KIND=WP), DIMENSION(:), INTENT(INOUT)     :: outp
+        
+        ! Do the inverse of what was done before training
+        ! First "unnormalize" with train mean and std
+        outp = (outp * stds_train) + means_train
+        ! Then "unnormalize" with full mean and std
+        outp = (outp * stds_full) + means_full
+    
+    END SUBROUTINE unnormalize_outputs
 
 END MODULE MOD_NEURALNET

@@ -90,7 +90,7 @@ MODULE MOD_NEURALNET
         END IF
         
         ! 4. Load each layer's weights, biases, and activation functions (only on rank 0)
-        path = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params/' // TRIM(which_NN)
+        path = '../src/neuralnet_params/' // TRIM(which_NN)
 
         IF (my_rank == 0) WRITE(*,*) 'Path to architecture files:', path
         
@@ -145,7 +145,7 @@ MODULE MOD_NEURALNET
         CHARACTER(LEN=8) :: _which_NN
         
         ! Use module parameter or environment variable for path
-        nlname = './neuralnet_params/' // TRIM(_which_NN) // '/nlayers.bin'
+        nlname = '../src/neuralnet_params/' // TRIM(_which_NN) // '/nlayers.bin'
         
         OPEN(NEWUNIT=iunit, FILE=TRIM(nlname), STATUS='old', ACTION='read', &
             FORM='unformatted', ACCESS='stream', IOSTAT=iostat, IOMSG=iomsg)
@@ -165,7 +165,7 @@ MODULE MOD_NEURALNET
         
         ALLOCATE(layer_sizes(nl+1))
         
-        nnname = '/albedo/home/rjuhrban/fesom2/src/neuralnet_params/' // TRIM(which_NN) // '/nneurons.bin'
+        nnname = '../src/neuralnet_params/' // TRIM(which_NN) // '/nneurons.bin'
         
         OPEN(NEWUNIT=iunit, FILE=TRIM(nnname), STATUS='old', ACTION='read', &
             FORM='unformatted', ACCESS='stream', IOSTAT=iostat, IOMSG=iomsg)

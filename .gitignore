@@ -1,7 +1,9 @@
 /build
 /build.lib
-/work
-/work/job_albedo
+work/job_*
+work/*.csv
+work/*.out
+work/.ipynb_checkpoints/
 /lib64
 *.o
 *.mod

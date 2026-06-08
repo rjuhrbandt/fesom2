@@ -1,0 +1,417 @@
++ ulimit -s unlimited
++ source ../env/albedo/shell
+++ module load intel-oneapi-compilers
+++ local _mlredir=1
+++ '[' -n '' ']'
+++ case " $@ " in
+++ '[' 1 -eq 0 ']'
+++ _module_raw load intel-oneapi-compilers
++++ /usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash load intel-oneapi-compilers
+Module for intel-oneapi-compilers version 2022.1.0 loaded
+++ eval 'LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:; export LD_LIBRARY_PATH;
+OCL_ICD_FILENAMES=libintelocl_emu.so:libalteracl.so:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64/libintelocl.so; export OCL_ICD_FILENAMES;
+MANPATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::; export MANPATH;
+CMPLR_ROOT=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0; export CMPLR_ROOT;
+LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib; export LIBRARY_PATH;
+_LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0; export _LMFILES_;
+LOADEDMODULES=intel-oneapi-compilers/2022.1.0; export LOADEDMODULES;
+CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/; export CMAKE_PREFIX_PATH;
+PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig; export PKG_CONFIG_PATH;
+FPGA_VARS_ARGS=; export FPGA_VARS_ARGS;
+__MODULES_SHARE_LD_LIBRARY_PATH=:1; export __MODULES_SHARE_LD_LIBRARY_PATH;
+ACL_BOARD_VENDOR_PATH=/opt/Intel/OpenCLFPGA/oneAPI/Boards; export ACL_BOARD_VENDOR_PATH;
+__MODULES_LMALTNAME=intel-oneapi-compilers/2022.1.0\&intel-oneapi-compilers/default\&intel-oneapi-compilers; export __MODULES_LMALTNAME;
+__MODULES_SHARE_MANPATH=:3; export __MODULES_SHARE_MANPATH;
+NLSPATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin/locale/%l_%t/%N; export NLSPATH;
+PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin; export PATH;
+INTELFPGAOCLSDKROOT=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga; export INTELFPGAOCLSDKROOT;
+DIAGUTIL_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/sys_check/sys_check.sh; export DIAGUTIL_PATH;
+FPGA_VARS_DIR=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga; export FPGA_VARS_DIR;
+test 0;'
++++ LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:
++++ export LD_LIBRARY_PATH
++++ OCL_ICD_FILENAMES=libintelocl_emu.so:libalteracl.so:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64/libintelocl.so
++++ export OCL_ICD_FILENAMES
++++ MANPATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::
++++ export MANPATH
++++ CMPLR_ROOT=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0
++++ export CMPLR_ROOT
++++ LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib
++++ export LIBRARY_PATH
++++ _LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0
++++ export _LMFILES_
++++ LOADEDMODULES=intel-oneapi-compilers/2022.1.0
++++ export LOADEDMODULES
++++ CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/
++++ export CMAKE_PREFIX_PATH
++++ PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig
++++ export PKG_CONFIG_PATH
++++ FPGA_VARS_ARGS=
++++ export FPGA_VARS_ARGS
++++ __MODULES_SHARE_LD_LIBRARY_PATH=:1
++++ export __MODULES_SHARE_LD_LIBRARY_PATH
++++ ACL_BOARD_VENDOR_PATH=/opt/Intel/OpenCLFPGA/oneAPI/Boards
++++ export ACL_BOARD_VENDOR_PATH
++++ __MODULES_LMALTNAME='intel-oneapi-compilers/2022.1.0&intel-oneapi-compilers/default&intel-oneapi-compilers'
++++ export __MODULES_LMALTNAME
++++ __MODULES_SHARE_MANPATH=:3
++++ export __MODULES_SHARE_MANPATH
++++ NLSPATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin/locale/%l_%t/%N
++++ export NLSPATH
++++ PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin
++++ export PATH
++++ INTELFPGAOCLSDKROOT=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga
++++ export INTELFPGAOCLSDKROOT
++++ DIAGUTIL_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/sys_check/sys_check.sh
++++ export DIAGUTIL_PATH
++++ FPGA_VARS_DIR=/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga
++++ export FPGA_VARS_DIR
++++ test 0
+++ _mlstatus=0
+++ return 0
+++ export 'FC=mpiifort -qmkl' CC=mpiicc CXX=mpiicpc
+++ FC='mpiifort -qmkl'
+++ CC=mpiicc
+++ CXX=mpiicpc
+++ module load intel-oneapi-mpi/2021.6.0
+++ local _mlredir=1
+++ '[' -n '' ']'
+++ case " $@ " in
+++ '[' 1 -eq 0 ']'
+++ _module_raw load intel-oneapi-mpi/2021.6.0
++++ /usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash load intel-oneapi-mpi/2021.6.0
+Module for intel-oneapi-mpi version 2021.6.0 loaded
+++ eval 'CPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//include; export CPATH;
+LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:; export LD_LIBRARY_PATH;
+SLURM_MPI_TYPE=pmi2; export SLURM_MPI_TYPE;
+I_MPI_ROOT=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0; export I_MPI_ROOT;
+LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib; export LIBRARY_PATH;
+MANPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/man:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::; export MANPATH;
+_LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0; export _LMFILES_;
+LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0; export LOADEDMODULES;
+MPIF77=mpiifort; export MPIF77;
+CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/; export CMAKE_PREFIX_PATH;
+PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig; export PKG_CONFIG_PATH;
+MPICC=mpiicc; export MPICC;
+I_MPI_FABRICS=shm:ofi; export I_MPI_FABRICS;
+__MODULES_SHARE_LD_LIBRARY_PATH=:1; export __MODULES_SHARE_LD_LIBRARY_PATH;
+__MODULES_LMALTNAME=intel-oneapi-compilers/2022.1.0\&intel-oneapi-compilers/default\&intel-oneapi-compilers:intel-oneapi-mpi/2021.6.0\&as\|intel-oneapi-mpi/default\&as\|intel-oneapi-mpi/latest; export __MODULES_LMALTNAME;
+MPICXX=mpiicpc; export MPICXX;
+__MODULES_SHARE_MANPATH=:3; export __MODULES_SHARE_MANPATH;
+CLASSPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/mpi.jar; export CLASSPATH;
+MPIF90=mpiifort; export MPIF90;
+FI_PROVIDER_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib/prov:/usr/lib64/libfabric; export FI_PROVIDER_PATH;
+PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin; export PATH;
+I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so; export I_MPI_PMI_LIBRARY;
+test 0;'
++++ CPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//include
++++ export CPATH
++++ LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:
++++ export LD_LIBRARY_PATH
++++ SLURM_MPI_TYPE=pmi2
++++ export SLURM_MPI_TYPE
++++ I_MPI_ROOT=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0
++++ export I_MPI_ROOT
++++ LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib
++++ export LIBRARY_PATH
++++ MANPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/man:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::
++++ export MANPATH
++++ _LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0
++++ export _LMFILES_
++++ LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0
++++ export LOADEDMODULES
++++ MPIF77=mpiifort
++++ export MPIF77
++++ CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/
++++ export CMAKE_PREFIX_PATH
++++ PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig
++++ export PKG_CONFIG_PATH
++++ MPICC=mpiicc
++++ export MPICC
++++ I_MPI_FABRICS=shm:ofi
++++ export I_MPI_FABRICS
++++ __MODULES_SHARE_LD_LIBRARY_PATH=:1
++++ export __MODULES_SHARE_LD_LIBRARY_PATH
++++ __MODULES_LMALTNAME='intel-oneapi-compilers/2022.1.0&intel-oneapi-compilers/default&intel-oneapi-compilers:intel-oneapi-mpi/2021.6.0&as|intel-oneapi-mpi/default&as|intel-oneapi-mpi/latest'
++++ export __MODULES_LMALTNAME
++++ MPICXX=mpiicpc
++++ export MPICXX
++++ __MODULES_SHARE_MANPATH=:3
++++ export __MODULES_SHARE_MANPATH
++++ CLASSPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/mpi.jar
++++ export CLASSPATH
++++ MPIF90=mpiifort
++++ export MPIF90
++++ FI_PROVIDER_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib/prov:/usr/lib64/libfabric
++++ export FI_PROVIDER_PATH
++++ PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin
++++ export PATH
++++ I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so
++++ export I_MPI_PMI_LIBRARY
++++ test 0
+++ _mlstatus=0
+++ return 0
+++ module load intel-oneapi-mkl/2022.1.0
+++ local _mlredir=1
+++ '[' -n '' ']'
+++ case " $@ " in
+++ '[' 1 -eq 0 ']'
+++ _module_raw load intel-oneapi-mkl/2022.1.0
++++ /usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash load intel-oneapi-mkl/2022.1.0
+Module for intel-oneapi-mkl version 2022.1.0 loaded
+++ eval 'MKLROOT=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0; export MKLROOT;
+CPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/include:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//include; export CPATH;
+__MODULES_SHARE_LD_LIBRARY_PATH=:1; export __MODULES_SHARE_LD_LIBRARY_PATH;
+LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:; export LD_LIBRARY_PATH;
+PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin; export PATH;
+LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib; export LIBRARY_PATH;
+_LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0:/albedo/soft/modules/devel/intel-oneapi-mkl/2022.1.0; export _LMFILES_;
+LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0:intel-oneapi-mkl/2022.1.0; export LOADEDMODULES;
+NLSPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64/locale/%l_%t/%N:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin/locale/%l_%t/%N; export NLSPATH;
+CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/; export CMAKE_PREFIX_PATH;
+PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig; export PKG_CONFIG_PATH;
+test 0;'
++++ MKLROOT=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0
++++ export MKLROOT
++++ CPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/include:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//include
++++ export CPATH
++++ __MODULES_SHARE_LD_LIBRARY_PATH=:1
++++ export __MODULES_SHARE_LD_LIBRARY_PATH
++++ LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:
++++ export LD_LIBRARY_PATH
++++ PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin
++++ export PATH
++++ LIBRARY_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib
++++ export LIBRARY_PATH
++++ _LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0:/albedo/soft/modules/devel/intel-oneapi-mkl/2022.1.0
++++ export _LMFILES_
++++ LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0:intel-oneapi-mkl/2022.1.0
++++ export LOADEDMODULES
++++ NLSPATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64/locale/%l_%t/%N:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin/locale/%l_%t/%N
++++ export NLSPATH
++++ CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/
++++ export CMAKE_PREFIX_PATH
++++ PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig
++++ export PKG_CONFIG_PATH
++++ test 0
+++ _mlstatus=0
+++ return 0
+++ module load netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
+++ local _mlredir=1
+++ '[' -n '' ']'
+++ case " $@ " in
+++ '[' 1 -eq 0 ']'
+++ _module_raw load netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
++++ /usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash load netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
+Module for netcdf-fortran version 4.5.4 loaded
+++ eval 'LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:; export LD_LIBRARY_PATH;
+MANPATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/share/man:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/man:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::; export MANPATH;
+_LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0:/albedo/soft/modules/devel/intel-oneapi-mkl/2022.1.0:/albedo/soft/modules/libs/netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0; export _LMFILES_;
+LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0:intel-oneapi-mkl/2022.1.0:netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0; export LOADEDMODULES;
+CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/; export CMAKE_PREFIX_PATH;
+PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig; export PKG_CONFIG_PATH;
+__MODULES_PUSHENV_NETCDF_Fortran_INCLUDE_DIRECTORIES=netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0\&/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/include; export __MODULES_PUSHENV_NETCDF_Fortran_INCLUDE_DIRECTORIES;
+OMPI_MCA_io=romio321; export OMPI_MCA_io;
+NETCDFFROOT=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/; export NETCDFFROOT;
+__MODULES_SHARE_LD_LIBRARY_PATH=:1; export __MODULES_SHARE_LD_LIBRARY_PATH;
+__MODULES_SHARE_MANPATH=:3; export __MODULES_SHARE_MANPATH;
+__MODULES_PUSHENV_NETCDFFROOT=netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0\&/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/; export __MODULES_PUSHENV_NETCDFFROOT;
+PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin; export PATH;
+NETCDF_Fortran_INCLUDE_DIRECTORIES=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/include; export NETCDF_Fortran_INCLUDE_DIRECTORIES;
+test 0;'
++++ LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:
++++ export LD_LIBRARY_PATH
++++ MANPATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/share/man:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/man:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::
++++ export MANPATH
++++ _LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0:/albedo/soft/modules/devel/intel-oneapi-mkl/2022.1.0:/albedo/soft/modules/libs/netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
++++ export _LMFILES_
++++ LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0:intel-oneapi-mkl/2022.1.0:netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
++++ export LOADEDMODULES
++++ CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/
++++ export CMAKE_PREFIX_PATH
++++ PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig
++++ export PKG_CONFIG_PATH
++++ __MODULES_PUSHENV_NETCDF_Fortran_INCLUDE_DIRECTORIES='netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0&/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/include'
++++ export __MODULES_PUSHENV_NETCDF_Fortran_INCLUDE_DIRECTORIES
++++ OMPI_MCA_io=romio321
++++ export OMPI_MCA_io
++++ NETCDFFROOT=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/
++++ export NETCDFFROOT
++++ __MODULES_SHARE_LD_LIBRARY_PATH=:1
++++ export __MODULES_SHARE_LD_LIBRARY_PATH
++++ __MODULES_SHARE_MANPATH=:3
++++ export __MODULES_SHARE_MANPATH
++++ __MODULES_PUSHENV_NETCDFFROOT='netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0&/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/'
++++ export __MODULES_PUSHENV_NETCDFFROOT
++++ PATH=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin
++++ export PATH
++++ NETCDF_Fortran_INCLUDE_DIRECTORIES=/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/include
++++ export NETCDF_Fortran_INCLUDE_DIRECTORIES
++++ test 0
+++ _mlstatus=0
+++ return 0
+++ module load netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
+++ local _mlredir=1
+++ '[' -n '' ']'
+++ case " $@ " in
+++ '[' 1 -eq 0 ']'
+++ _module_raw load netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
++++ /usr/bin/tclsh /usr/share/Modules/libexec/modulecmd.tcl bash load netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
+Module for netcdf-c version 4.8.1 loaded
+++ eval 'LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/lib:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:; export LD_LIBRARY_PATH;
+NETCDFROOT=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/; export NETCDFROOT;
+MANPATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/share/man:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/share/man:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/man:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::; export MANPATH;
+CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/; export CMAKE_PREFIX_PATH;
+LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0:intel-oneapi-mkl/2022.1.0:netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0:netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0; export LOADEDMODULES;
+_LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0:/albedo/soft/modules/devel/intel-oneapi-mkl/2022.1.0:/albedo/soft/modules/libs/netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0:/albedo/soft/modules/libs/netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0; export _LMFILES_;
+PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/lib/pkgconfig:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig; export PKG_CONFIG_PATH;
+OMPI_MCA_io=romio321; export OMPI_MCA_io;
+__MODULES_PUSHENV_NETCDFROOT=netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0\&/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/; export __MODULES_PUSHENV_NETCDFROOT;
+__MODULES_SHARE_LD_LIBRARY_PATH=:1; export __MODULES_SHARE_LD_LIBRARY_PATH;
+__MODULES_SHARE_MANPATH=:3; export __MODULES_SHARE_MANPATH;
+PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/bin:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin; export PATH;
+test 0;'
++++ LD_LIBRARY_PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/lib:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/lib:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib/release:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/x64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/host/linux64/lib:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/compiler/lib/intel64_lin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/lib:/usr/local/cuda/lib64:/usr/local/cuda/lib64:/usr/local/cuda/lib64:
++++ export LD_LIBRARY_PATH
++++ NETCDFROOT=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/
++++ export NETCDFROOT
++++ MANPATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/share/man:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/share/man:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/man:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/documentation/en/man/common::
++++ export MANPATH
++++ CMAKE_PREFIX_PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/IntelDPCPP:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/
++++ export CMAKE_PREFIX_PATH
++++ LOADEDMODULES=intel-oneapi-compilers/2022.1.0:intel-oneapi-mpi/2021.6.0:intel-oneapi-mkl/2022.1.0:netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0:netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
++++ export LOADEDMODULES
++++ _LMFILES_=/albedo/soft/modules/devel/intel-oneapi-compilers/2022.1.0:/albedo/soft/modules/devel/intel-oneapi-mpi/2021.6.0:/albedo/soft/modules/devel/intel-oneapi-mkl/2022.1.0:/albedo/soft/modules/libs/netcdf-fortran/4.5.4-intel-oneapi-mpi2021.6.0-oneapi2022.1.0:/albedo/soft/modules/libs/netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0
++++ export _LMFILES_
++++ PKG_CONFIG_PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/lib/pkgconfig:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0/lib/pkgconfig:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/lib/pkgconfig
++++ export PKG_CONFIG_PATH
++++ OMPI_MCA_io=romio321
++++ export OMPI_MCA_io
++++ __MODULES_PUSHENV_NETCDFROOT='netcdf-c/4.8.1-intel-oneapi-mpi2021.6.0-oneapi2022.1.0&/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/'
++++ export __MODULES_PUSHENV_NETCDFROOT
++++ __MODULES_SHARE_LD_LIBRARY_PATH=:1
++++ export __MODULES_SHARE_LD_LIBRARY_PATH
++++ __MODULES_SHARE_MANPATH=:3
++++ export __MODULES_SHARE_MANPATH
++++ PATH=/albedo/soft/sw/spack-sw/netcdf-c/4.8.1-sp3ulf4/bin:/albedo/soft/sw/spack-sw/netcdf-fortran/4.5.4-vmvv2ho/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mkl/2022.1.0-7235vfh/mkl/2022.1.0/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//libfabric/bin:/albedo/soft/sw/spack-sw/intel-oneapi-mpi/2021.6.0-ypwmdz5/mpi/2021.6.0//bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/lib/oclfpga/bin:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin/intel64:/albedo/soft/sw/spack-sw/intel-oneapi-compilers/2022.1.0-kwhaebe/compiler/2022.1.0/linux/bin:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/debugCommand:/albedo/home/rjuhrban/.vscode-server/data/User/globalStorage/github.copilot-chat/copilotCli:/albedo/home/rjuhrban/.vscode-server/cli/servers/Stable-0958016b2af9f09bb4257e0df4a95e2f90590f9f/server/bin/remote-cli:/usr/local/cuda/bin:/usr/lpp/mmfs/bin:/usr/local/cuda/bin:/albedo/home/rjuhrban/.conda/bin:/albedo/home/rjuhrban/.conda/condabin:/usr/share/Modules/bin:/usr/lpp/mmfs/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/albedo/soft/bin
++++ export PATH
++++ test 0
+++ _mlstatus=0
+++ return 0
+++ export HCOLL_ENABLE_MCAST_ALL=0
+++ HCOLL_ENABLE_MCAST_ALL=0
+++ export HCOLL_MAIN_IB=mlx5_0:1
+++ HCOLL_MAIN_IB=mlx5_0:1
+++ export UCX_IB_ADDR_TYPE=ib_global
+++ UCX_IB_ADDR_TYPE=ib_global
+++ export UCX_NET_DEVICES=mlx5_0:1
+++ UCX_NET_DEVICES=mlx5_0:1
+++ export UCX_TLS=mm,knem,cma,dc_mlx5,dc_x,self
+++ UCX_TLS=mm,knem,cma,dc_mlx5,dc_x,self
+++ export UCX_UNIFIED_MODE=y
+++ UCX_UNIFIED_MODE=y
+++ export UCX_HANDLE_ERRORS=bt
+++ UCX_HANDLE_ERRORS=bt
+++ export HDF5_USE_FILE_LOCKING=FALSE
+++ HDF5_USE_FILE_LOCKING=FALSE
+++ export I_MPI_PMI=pmi2
+++ I_MPI_PMI=pmi2
+++ export I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so
+++ I_MPI_PMI_LIBRARY=/usr/lib64/libpmi2.so
++ ln -s ../bin/fesom_meshpart .
+ln: failed to create symbolic link './fesom_meshpart': File exists
++ cp -n ../config/namelist.config .
+++ echo 43986366
+++ cut -d. -f1
++ jobid=43986366
++ fname=fesom2_ini_43986366.out
++ date
+Wed May 20 15:58:40 CEST 2026
++ srun --mpi=pmi2 --ntasks=1 ./fesom_meshpart
+ [1m____________________________________________________________[0m
+ [7;1m -->: read elem2d.out & nod2d.out                           [0m
+ =========================
+ Mesh is read
+ =========================
+**** Reading initial mesh time =        0.038 seconds. ****
+ [1m____________________________________________________________[0m
+ [7;1m -->: compute edge connectivity                             [0m
+ [1m____________________________________________________________[0m
+ [7;1m -->: read bottom depth                                     [0m
+ read file:/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/mesh_20km/aux3d.out
+ [1m____________________________________________________________[0m
+ [7;1m -->: compute elem, vertice bottom depth index              [0m
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz=  6
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz=  7
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz=  8
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz=  9
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 10
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 11
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 12
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 13
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 14
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 15
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 16
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 17
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 18
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 19
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 20
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 21
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 22
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 23
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 24
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 25
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 26
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 27
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 28
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 29
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 30
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 31
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 32
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 33
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 34
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 35
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 36
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 37
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 38
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 39
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 40
+  -[iter ]->: nlevel, iter/maxiter=    1/ 1000, nz= 41
+  -[compu]->: nlevels_nod2D 
+ =========================
+ Mesh is read : nod2D=        9406  elem2D=       18424  nl=          41
+ Min/max depth on mype:    4000.00000000000        4000.00000000000     
+ 3D tracer nodes on mype       367222
+ =========================
+**** Checking and initializing mesh time =        0.335 seconds. ****
+ [1m____________________________________________________________[0m
+ [7;1m -->: compute partitioning                                  [0m
+ Calling partit for npes=          20           0           0           0
+           0           0           0           0           0           0
+ DONE
+        9406
+ [1m____________________________________________________________[0m
+ [7;1m -->: check partitioning                                    [0m
+  
+ Check for isolated nodes ========
+ === LOAD BALANCING ===
+ 2D nodes: min, aver, max per part         469         470         471
+2D nodes: percent min, aver, max   99.787%, 100%,  100.213%
+ 3D nodes: Min, aver, max per part       19229       19282       19311
+3D nodes: percent min, aver, max   99.725%, 100%,  100.150%
+ Partitioning is done.
+**** Partitioning time =        0.327 seconds. ****
+ [1m____________________________________________________________[0m
+ [7;1m -->: compute communication arrays                          [0m
+ Setting up communication arrays using 1 thread (serially)
+ Communication arrays have been set up
+**** Storing partitioned mesh time =        0.127 seconds. ****
+**** Total time =        0.827 seconds. ****
+Starting hierarchic partitioning with 1 level(s)
+Level:	1   Total
+Npart:	20   20
+Partitioning into 20 subdomains on level 1 with Metis version 5.1.0
+Distribution weight: 2D and 3D nodes
+METIS edgecut 111766
++ date
+Wed May 20 15:58:42 CEST 2026

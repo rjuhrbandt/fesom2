@@ -1,0 +1,1121 @@
+Module for intel-oneapi-compilers version 2022.1.0 loaded
+Module for intel-oneapi-mpi version 2021.6.0 loaded
+Module for intel-oneapi-mkl version 2022.1.0 loaded
+Module for netcdf-fortran version 4.5.4 loaded
+Module for netcdf-c version 4.8.1 loaded
+ln: failed to create symbolic link './fesom.x': File exists
+Thu May 21 15:22:01 CEST 2026
+ MPI has been initialized, provided MPI thread support level: MPI_THREAD_MULTIPLE           3
+ Running on                             60  PEs
+ 
+ [36m .------. ------. ------.  .-----. ,--.   ,-.  .----.  [0m
+ [36m |  .--- ́|  .--- ́/    _ / ´  .-.  `|   `. ́   |\_,-.  | [0m
+ [36m |  `--. |  `--. \_..`--. |  | |  ||  |`. ́|  |   . ́ . ́ [0m
+ [36m |  .-- ́ |  .-- ́ .-._)   \|  | |  ||  |   |  | . ́  /_  [0m
+ [36m |  |    |  `---.\       /`  `- ́   ́|  |   |  ||      | [0m
+ [36m `-- ́    `------ ́ `----- ́  `----- ́ `-- ́   `-- ́`------ ́ [0m
+                                           _____           
+       ___________                     ,-:` \;´,``-,       
+      | .-------. |                  .´-;_,;  `:-;_,`.     
+      | |       | |                 /;   `/    ,  _`.-\    
+      | |       | |                | ´`. (`     /` ` \`|   
+      | |__   __| |            ,-C=|:.  `\`-.   \_   / |   
+       `---|-|---´          ,-´    |     (   `,  .`\ ;`|   
+        [====  O]--,    ,--´        \     | .´     `-´/    
+      /:::::::::::\ \_,-             `.   ;/        .´     
+     /:::::===:::::\                   ``-._____.-´`       
+    ´---------------`                                      
+ 
+ 
+ FESOM2 git SHA: c34a956e
+ MPI library version: Intel(R) MPI Library 2021.6 for Linux* OS
+
+ [32m____________________________________________________________[0m
+ [7;32m --> FESOM BUILDS UP MODEL CONFIGURATION                    [0m
+ Restart path configuration:
+   Input path:  /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/
+   Output path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/
+   Note: Using same directory for input and output (legacy mode)
+ Namelist files are read in
+ time step size is set to    600.000000000000      sec
+ Value of which_NN:dsb3yt63
+ 
+ [31m____________________________________________________________[0m
+ [5;7;31m --> THIS IS A RESTART RUN !!!                              [0m
+     > clock restarted at time:    0.00   1 2008
+ 
+         144  steps to run for fesom      job submission
+           0 rpart is read
+ myLists are read
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/nod2d.out
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/elem2d.out
+ elements are read
+ communication arrays are read
+ =========================
+ 2D mesh was read in   0.122384909947868       seconds
+ 2D mesh info : nod2D=         389  elem2D=         702 checksum= 
+ =========================
+ Communication arrays are set
+ test_tri finished in   3.840003046207130E-006  seconds
+ =========================
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/edgenum.out
+ 2D mesh info : edge2D=        1090
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/edges.out
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/edge_tri.out
+ load_edges finished in   3.788671117217746E-002  seconds
+ =========================
+ find_neighbors finished in   3.946513868868351E-003  seconds
+ =========================
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/elvls.out
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/nlvls.out
+ ____________________________________________________________________
+  --> 3D mesh was read in   3.827206057030708E-002  seconds
+  --> Min/max depth on mype :            0   4000.00000000000        4000.00000000000     
+ ____________________________________________________________________
+  --> find min/max level e2n in  1.037098409142345E-004  seconds
+ ____________________________________________________________________
+  --> mesh statistics:           0
+           0 maxArea    8831835589.32587         MinArea    8415276695.49772     
+           0 maxScArea    17565690548.2392         MinScArea    16940789623.1981     
+           0 Edges:            1090  internal         1016
+      > Total ocean surface area is           :    5843962925012.69       m^2
+      > Total ocean surface area with cavity is:    5843962925012.69       m^2
+      > mesh_areas finished in   8.307087118737400E-004  seconds
+ mesh_auxiliary_arrays finished in   9.536085271975026E-004  seconds
+ =========================
+ FESOM mesh_setup... complete
+ ***start level area_test***
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+  0.000000000000000E+000  0.000000000000000E+000
+ ***end level area_test***
+      file   : namelist.dyn open ok
+      file   : namelist.tra open ok
+ number of tracers will be changed from          100  to            2 !
+ total number of tracers is:            2
+ ____________________________________________________________
+  --> initialise ALE arrays + sparse SSH stiff matrix
+ 
+ ____________________________________________________________
+  --> initialise ssh operator using unperturbed ocean depth
+      > in stiff_mat_ale, reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/dist_60/rpart.out
+      took:   8.841196264256723E-003  sec
+ 
+ Arrays are set
+ FCT is initialized
+           0 COR  0.993800598845800       0.933901681697525     
+           0 COR_n  0.999790490560628       0.927911789982697     
+ ____________________________________________________________
+  --> call init_thickness_ale
+ 
+ ____________________________________________________________
+  --> initialise ALE layerthicknesses, depth levels and middepth levels
+ 
+           2 COR  0.975830923701317       0.903952223123387     
+           2 COR_n  0.981820815416145       0.891972439693731     
+           1 COR   1.01177027399028       0.951871356842007     
+           1 COR_n   1.01776016570511       0.945881465127180     
+           7 COR   1.04770962427925       0.987810707130973     
+           7 COR_n   1.05369951599408       0.981820815416145     
+          10 COR   1.14953778343132        1.07765908285339     
+          10 COR_n   1.16151756686097        1.07166919113856     
+           3 COR  0.939891573412352       0.879992656264076     
+           3 COR_n  0.945881465127180       0.874002764549249     
+           9 COR   1.10161864971270        1.04171973256442     
+           9 COR_n   1.10760854142752        1.03572984084959     
+          11 COR   1.04770962427925       0.969841031986490     
+          11 COR_n   1.05369951599408       0.963851140271662     
+           8 COR   1.09562875799787        1.02375005741994     
+           8 COR_n   1.10760854142752        1.01776016570511     
+          49 COR   1.13755800000166        1.07765908285339     
+          49 COR_n   1.14354789171649        1.07166919113856     
+          53 COR   1.33522442659097        1.29329518458718     
+          53 COR_n   1.34121431830580        1.28730529287235     
+          18 COR  0.939891573412352       0.885982547978904     
+          18 COR_n  0.945881465127180       0.874002764549249     
+           5 COR  0.975830923701317       0.915932006553042     
+           5 COR_n  0.981820815416145       0.909942114838214     
+           6 COR  0.921921898267869       0.862022981119593     
+           6 COR_n  0.927911789982697       0.856033089404766     
+          12 COR   1.06567929942373        1.00578038227546     
+          12 COR_n   1.07166919113856       0.999790490560628     
+          13 COR   1.02973994913477       0.969841031986490     
+          13 COR_n   1.03572984084959       0.963851140271662     
+          45 COR   1.22740637572408        1.16750745857580     
+          45 COR_n   1.23339626743890        1.16151756686097     
+          47 COR   1.27532550944270        1.22141648400925     
+          47 COR_n   1.28730529287235        1.21542659229442     
+ Initial state
+ Initializing neural network for GM parameterization
+           4 COR  0.903952223123387       0.844053305975111     
+           4 COR_n  0.909942114838214       0.838063414260283     
+          28 COR  0.814103847400973       0.742225146823042     
+          28 COR_n  0.820093739115801       0.730245363393387     
+          30 COR   1.06567929942373        1.00578038227546     
+          30 COR_n   1.07166919113856       0.999790490560628     
+          38 COR   1.13755800000166        1.07765908285339     
+          38 COR_n   1.14354789171649        1.07166919113856     
+          52 COR   1.32923453487614        1.25735583429821     
+          52 COR_n   1.34121431830580        1.25136594258339     
+          55 COR   1.29928507630201        1.23938615915373     
+          55 COR_n   1.30527496801683        1.23339626743890     
+          15 COR  0.939891573412352       0.862022981119593     
+          15 COR_n  0.945881465127180       0.856033089404766     
+          20 COR  0.868012872834421       0.796134172256490     
+          20 COR_n  0.874002764549249       0.784154388826835     
+          21 COR  0.885982547978904       0.808113955686145     
+          21 COR_n  0.891972439693731       0.802124063971318     
+          22 COR  0.868012872834421       0.790144280541663     
+          22 COR_n  0.874002764549249       0.784154388826835     
+          23 COR  0.885982547978904       0.826083630830628     
+          23 COR_n  0.891972439693731       0.820093739115801     
+          25 COR  0.814103847400973       0.754204930252697     
+          25 COR_n  0.820093739115801       0.748215038537870     
+          27 COR  0.760194821967525       0.706285796534076     
+          27 COR_n  0.766184713682352       0.694306013104421     
+          31 COR   1.10161864971270        1.05968940770890     
+          31 COR_n   1.10760854142752        1.05369951599408     
+          34 COR  0.993800598845800       0.933901681697525     
+          34 COR_n  0.999790490560628       0.927911789982697     
+          35 COR  0.993800598845800       0.933901681697525     
+          35 COR_n  0.999790490560628       0.927911789982697     
+          37 COR   1.13755800000166        1.05968940770890     
+          37 COR_n   1.14354789171649        1.05369951599408     
+          40 COR   1.15552767514614        1.07765908285339     
+          40 COR_n   1.16151756686097        1.07166919113856     
+          41 COR   1.04770962427925       0.987810707130973     
+          41 COR_n   1.05369951599408       0.981820815416145     
+          42 COR   1.08364897456821        1.04171973256442     
+          42 COR_n   1.08963886628304        1.03572984084959     
+          43 COR   1.09562875799787        1.02973994913477     
+          43 COR_n   1.10760854142752        1.01776016570511     
+          44 COR   1.04770962427925       0.975830923701317     
+          44 COR_n   1.05369951599408       0.963851140271662     
+          48 COR   1.19146702543511        1.13156810828683     
+          48 COR_n   1.19745691714994        1.12557821657201     
+          50 COR   1.17349735029063        1.13156810828683     
+          50 COR_n   1.17948724200546        1.12557821657201     
+          54 COR   1.28131540115752        1.22141648400925     
+          54 COR_n   1.28730529287235        1.21542659229442     
+          56 COR   1.19146702543511        1.13156810828683     
+          56 COR_n   1.19745691714994        1.12557821657201     
+          14 COR  0.993800598845800       0.933901681697525     
+          14 COR_n  0.999790490560628       0.927911789982697     
+          16 COR  0.921921898267869       0.879992656264076     
+          16 COR_n  0.927911789982697       0.874002764549249     
+          17 COR  0.957861248556835       0.915932006553042     
+          17 COR_n  0.963851140271662       0.909942114838214     
+          19 COR  0.921921898267869       0.850043197689938     
+          19 COR_n  0.927911789982697       0.838063414260283     
+          24 COR  0.850043197689938       0.790144280541663     
+          24 COR_n  0.856033089404766       0.784154388826835     
+          26 COR  0.760194821967525       0.700295904819249     
+          26 COR_n  0.766184713682352       0.694306013104421     
+          29 COR  0.832073522545456       0.754204930252697     
+          29 COR_n  0.838063414260283       0.748215038537870     
+          32 COR   1.06567929942373        1.00578038227546     
+          32 COR_n   1.07166919113856       0.999790490560628     
+          33 COR   1.01177027399028       0.951871356842007     
+          33 COR_n   1.01776016570511       0.945881465127180     
+          36 COR   1.04770962427925       0.969841031986490     
+          36 COR_n   1.05369951599408       0.963851140271662     
+          39 COR   1.13755800000166        1.07765908285339     
+          39 COR_n   1.14354789171649        1.07166919113856     
+          46 COR   1.22740637572408        1.16750745857580     
+          46 COR_n   1.23339626743890        1.16151756686097     
+          51 COR   1.15552767514614        1.09562875799787     
+          51 COR_n   1.16151756686097        1.08963886628304     
+          57 COR   1.22141648400925        1.14953778343132     
+          57 COR_n   1.23339626743890        1.14354789171649     
+          58 COR   1.22740637572408        1.14953778343132     
+          58 COR_n   1.23339626743890        1.14354789171649     
+          59 COR   1.24537605086856        1.18547713372028     
+          59 COR_n   1.25136594258339        1.17948724200546     
+ Path to architecture files:/albedo/home/rjuhrban/fesom2/src/neuralnet_params/dsb3yt63                                                                                                                                                                                                      
+ Neural network for GM parameterization initialized successfully
+ Number of layers:           3
+ Layer sizes:          51         256         256           3
+ Weights shape:           3         256         256
+ Biases shape:           3         256
+ Activations:relu            relu            id              
+ FESOM ocean_setup... complete
+ ****************************************************
+ use_landice_water F
+ use_age_tracer F
+ [1;33m --> read restarts from netcdf file: ocean[0m
+ reading restart for ssh at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/ssh.nc
+==================================
+RESTART READ TIMING for file: ssh
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/ssh.nc
+ reading restart for hbar at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/hbar.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for ssh
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/ssh.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: hbar
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.006 seconds
+  TOTAL time:             0.006 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/hbar.nc
+ reading restart for ssh_rhs_old at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/ssh_rhs_old.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for hbar
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/hbar.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: ssh_rhs_old
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.005 seconds
+  TOTAL time:             0.005 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/ssh_rhs_old.nc
+ reading restart for hnode at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/hnode.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for ssh_rhs_old
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/ssh_rhs_old.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: hnode
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/hnode.nc
+ reading restart for u at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/u.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for hnode
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/hnode.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: u
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/u.nc
+ reading restart for v at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/v.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for u
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/u.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: v
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/v.nc
+ reading restart for urhs_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/urhs_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for v
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/v.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: urhs_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.098 seconds
+  TOTAL time:             0.098 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/urhs_AB.nc
+ reading restart for vrhs_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/vrhs_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for urhs_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/urhs_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: vrhs_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.011 seconds
+  TOTAL time:             0.011 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/vrhs_AB.nc
+ reading restart for temp at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for vrhs_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/vrhs_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: temp
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp.nc
+ reading restart for temp_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for temp
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: temp_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for temp_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+ reading restart for temp_M1 at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp_M1.nc
+==================================
+RESTART READ TIMING for file: temp_M1
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.005 seconds
+  TOTAL time:             0.005 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp_M1.nc
+ reading restart for salt at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for temp_M1
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/temp_M1.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: salt
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt.nc
+ reading restart for salt_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for salt
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: salt_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for salt_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+ reading restart for salt_M1 at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt_M1.nc
+==================================
+RESTART READ TIMING for file: salt_M1
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.005 seconds
+  TOTAL time:             0.005 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt_M1.nc
+ reading restart for w at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for salt_M1
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/salt_M1.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: w
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w.nc
+ reading restart for w_expl at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w_expl.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for w
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: w_expl
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.011 seconds
+  TOTAL time:             0.011 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w_expl.nc
+ reading restart for w_impl at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w_impl.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for w_expl
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w_expl.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: w_impl
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w_impl.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for w_impl
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2007.oce.restart/w_impl.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+ ____________________________________________________________
+  --> restart ALE layerthicknesses, depth levels and middepth levels
+ 
+ ==========================================
+ MODEL SETUP took on mype=0 [seconds]      
+ runtime setup total        0.5276707    
+  > runtime setup mesh      0.2305352    
+  > runtime setup ocean     3.4368198E-02
+  > runtime setup forcing   3.7059945E-05
+  > runtime setup ice       1.4529971E-05
+  > runtime setup restart   0.2619864    
+  > runtime setup other     7.2938891E-04
+ ============================================
+ current_nsteps, steps_per_ib_step, icb_outfreq :         144           8           0
+ FESOM start iteration before the barrier...
+ FESOM start iteration after the barrier...
+ 
+ [32m____________________________________________________________[0m
+ [7;32m --> FESOM STARTS TIME LOOP                                 [0m
+      file   : namelist.io open ok
+ io_listsize will be changed from          120  to            0 !
+ adding I/O stream 3D for curl_u
+ adding I/O stream 2D for rosb
+ adding I/O stream 3D for N2
+ adding I/O stream 3D for slope_x
+ adding I/O stream 3D for slope_y
+ adding I/O stream 3D for temp
+ adding I/O stream 3D for unod
+ adding I/O stream 3D for vnod
+ adding I/O stream 3D for u
+ adding I/O stream 3D for v
+ adding I/O stream 2D for sst
+ adding I/O stream 2D for ssh
+ adding I/O stream 2D for hc300m
+ adding I/O stream 2D for hc700m
+ adding I/O stream 2D for hc
+ adding I/O stream 3D for tflux_unod
+ adding I/O stream 3D for tflux_vnod
+ adding I/O stream 3D for tflux_w
+ initializing I/O file for tflux_unod
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/tflux_unod.fesom.2008.nc
+ tflux_unod: current mean I/O counter =            1
+ writing mean record for tflux_unod; rec. count =            1
+ initializing I/O file for tflux_w
+ initializing I/O file for tflux_vnod
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/tflux_w.fesom.2008.nc
+ tflux_w: current mean I/O counter =            1
+ writing mean record for tflux_w; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/tflux_vnod.fesom.2008.nc
+ tflux_vnod: current mean I/O counter =            1
+ writing mean record for tflux_vnod; rec. count =            1
+ tflux_unod: current mean I/O counter =            2
+ writing mean record for tflux_unod; rec. count =            2
+ tflux_w: current mean I/O counter =            2
+ writing mean record for tflux_w; rec. count =            2
+ tflux_vnod: current mean I/O counter =            2
+ writing mean record for tflux_vnod; rec. count =            2
+ tflux_unod: current mean I/O counter =            3
+ writing mean record for tflux_unod; rec. count =            3
+ tflux_w: current mean I/O counter =            3
+ writing mean record for tflux_w; rec. count =            3
+ tflux_vnod: current mean I/O counter =            3
+ writing mean record for tflux_vnod; rec. count =            3
+ tflux_unod: current mean I/O counter =            4
+ writing mean record for tflux_unod; rec. count =            4
+ tflux_w: current mean I/O counter =            4
+ writing mean record for tflux_w; rec. count =            4
+ tflux_vnod: current mean I/O counter =            4
+ writing mean record for tflux_vnod; rec. count =            4
+ tflux_unod: current mean I/O counter =            5
+ writing mean record for tflux_unod; rec. count =            5
+ tflux_w: current mean I/O counter =            5
+ writing mean record for tflux_w; rec. count =            5
+ tflux_vnod: current mean I/O counter =            5
+ writing mean record for tflux_vnod; rec. count =            5
+ tflux_unod: current mean I/O counter =            6
+ writing mean record for tflux_unod; rec. count =            6
+ tflux_w: current mean I/O counter =            6
+ writing mean record for tflux_w; rec. count =            6
+ tflux_vnod: current mean I/O counter =            6
+ writing mean record for tflux_vnod; rec. count =            6
+ tflux_unod: current mean I/O counter =            7
+ writing mean record for tflux_unod; rec. count =            7
+ tflux_w: current mean I/O counter =            7
+ writing mean record for tflux_w; rec. count =            7
+ tflux_vnod: current mean I/O counter =            7
+ writing mean record for tflux_vnod; rec. count =            7
+ tflux_unod: current mean I/O counter =            8
+ writing mean record for tflux_unod; rec. count =            8
+ tflux_w: current mean I/O counter =            8
+ writing mean record for tflux_w; rec. count =            8
+ tflux_vnod: current mean I/O counter =            8
+ writing mean record for tflux_vnod; rec. count =            8
+ tflux_unod: current mean I/O counter =            9
+ writing mean record for tflux_unod; rec. count =            9
+ tflux_w: current mean I/O counter =            9
+ writing mean record for tflux_w; rec. count =            9
+ tflux_vnod: current mean I/O counter =            9
+ writing mean record for tflux_vnod; rec. count =            9
+ tflux_unod: current mean I/O counter =           10
+ writing mean record for tflux_unod; rec. count =           10
+ tflux_w: current mean I/O counter =           10
+ writing mean record for tflux_w; rec. count =           10
+ tflux_vnod: current mean I/O counter =           10
+ writing mean record for tflux_vnod; rec. count =           10
+ tflux_unod: current mean I/O counter =           11
+ writing mean record for tflux_unod; rec. count =           11
+ tflux_w: current mean I/O counter =           11
+ writing mean record for tflux_w; rec. count =           11
+ tflux_vnod: current mean I/O counter =           11
+ writing mean record for tflux_vnod; rec. count =           11
+ tflux_unod: current mean I/O counter =           12
+ writing mean record for tflux_unod; rec. count =           12
+ tflux_w: current mean I/O counter =           12
+ writing mean record for tflux_w; rec. count =           12
+ tflux_vnod: current mean I/O counter =           12
+ writing mean record for tflux_vnod; rec. count =           12
+ tflux_unod: current mean I/O counter =           13
+ writing mean record for tflux_unod; rec. count =           13
+ tflux_w: current mean I/O counter =           13
+ writing mean record for tflux_w; rec. count =           13
+ tflux_vnod: current mean I/O counter =           13
+ writing mean record for tflux_vnod; rec. count =           13
+ tflux_unod: current mean I/O counter =           14
+ writing mean record for tflux_unod; rec. count =           14
+ tflux_vnod: current mean I/O counter =           14
+ writing mean record for tflux_vnod; rec. count =           14
+ tflux_w: current mean I/O counter =           14
+ writing mean record for tflux_w; rec. count =           14
+ tflux_unod: current mean I/O counter =           15
+ writing mean record for tflux_unod; rec. count =           15
+ tflux_vnod: current mean I/O counter =           15
+ writing mean record for tflux_vnod; rec. count =           15
+ tflux_w: current mean I/O counter =           15
+ writing mean record for tflux_w; rec. count =           15
+ tflux_unod: current mean I/O counter =           16
+ writing mean record for tflux_unod; rec. count =           16
+ tflux_w: current mean I/O counter =           16
+ writing mean record for tflux_w; rec. count =           16
+ tflux_vnod: current mean I/O counter =           16
+ writing mean record for tflux_vnod; rec. count =           16
+ tflux_unod: current mean I/O counter =           17
+ writing mean record for tflux_unod; rec. count =           17
+ tflux_vnod: current mean I/O counter =           17
+ writing mean record for tflux_vnod; rec. count =           17
+ tflux_w: current mean I/O counter =           17
+ writing mean record for tflux_w; rec. count =           17
+ tflux_unod: current mean I/O counter =           18
+ writing mean record for tflux_unod; rec. count =           18
+ tflux_vnod: current mean I/O counter =           18
+ writing mean record for tflux_vnod; rec. count =           18
+ tflux_w: current mean I/O counter =           18
+ writing mean record for tflux_w; rec. count =           18
+ tflux_unod: current mean I/O counter =           19
+ writing mean record for tflux_unod; rec. count =           19
+ tflux_w: current mean I/O counter =           19
+ writing mean record for tflux_w; rec. count =           19
+ tflux_vnod: current mean I/O counter =           19
+ writing mean record for tflux_vnod; rec. count =           19
+ tflux_unod: current mean I/O counter =           20
+ writing mean record for tflux_unod; rec. count =           20
+ tflux_vnod: current mean I/O counter =           20
+ writing mean record for tflux_vnod; rec. count =           20
+ tflux_w: current mean I/O counter =           20
+ writing mean record for tflux_w; rec. count =           20
+ tflux_unod: current mean I/O counter =           21
+ writing mean record for tflux_unod; rec. count =           21
+ tflux_vnod: current mean I/O counter =           21
+ writing mean record for tflux_vnod; rec. count =           21
+ tflux_w: current mean I/O counter =           21
+ writing mean record for tflux_w; rec. count =           21
+ tflux_unod: current mean I/O counter =           22
+ writing mean record for tflux_unod; rec. count =           22
+ tflux_vnod: current mean I/O counter =           22
+ writing mean record for tflux_vnod; rec. count =           22
+ tflux_w: current mean I/O counter =           22
+ writing mean record for tflux_w; rec. count =           22
+ tflux_unod: current mean I/O counter =           23
+ writing mean record for tflux_unod; rec. count =           23
+ tflux_vnod: current mean I/O counter =           23
+ writing mean record for tflux_vnod; rec. count =           23
+ tflux_w: current mean I/O counter =           23
+ writing mean record for tflux_w; rec. count =           23
+ tflux_unod: current mean I/O counter =           24
+ writing mean record for tflux_unod; rec. count =           24
+ tflux_w: current mean I/O counter =           24
+ writing mean record for tflux_w; rec. count =           24
+ tflux_vnod: current mean I/O counter =           24
+ writing mean record for tflux_vnod; rec. count =           24
+ tflux_unod: current mean I/O counter =           25
+ writing mean record for tflux_unod; rec. count =           25
+ tflux_vnod: current mean I/O counter =           25
+ writing mean record for tflux_vnod; rec. count =           25
+ tflux_w: current mean I/O counter =           25
+ writing mean record for tflux_w; rec. count =           25
+ tflux_unod: current mean I/O counter =           26
+ writing mean record for tflux_unod; rec. count =           26
+ tflux_w: current mean I/O counter =           26
+ writing mean record for tflux_w; rec. count =           26
+ tflux_vnod: current mean I/O counter =           26
+ writing mean record for tflux_vnod; rec. count =           26
+ tflux_unod: current mean I/O counter =           27
+ writing mean record for tflux_unod; rec. count =           27
+ tflux_vnod: current mean I/O counter =           27
+ writing mean record for tflux_vnod; rec. count =           27
+ tflux_w: current mean I/O counter =           27
+ writing mean record for tflux_w; rec. count =           27
+ tflux_unod: current mean I/O counter =           28
+ writing mean record for tflux_unod; rec. count =           28
+ tflux_w: current mean I/O counter =           28
+ writing mean record for tflux_w; rec. count =           28
+ tflux_vnod: current mean I/O counter =           28
+ writing mean record for tflux_vnod; rec. count =           28
+ tflux_unod: current mean I/O counter =           29
+ writing mean record for tflux_unod; rec. count =           29
+ tflux_vnod: current mean I/O counter =           29
+ writing mean record for tflux_vnod; rec. count =           29
+ tflux_w: current mean I/O counter =           29
+ writing mean record for tflux_w; rec. count =           29
+ tflux_unod: current mean I/O counter =           30
+ writing mean record for tflux_unod; rec. count =           30
+ tflux_w: current mean I/O counter =           30
+ writing mean record for tflux_w; rec. count =           30
+ tflux_vnod: current mean I/O counter =           30
+ writing mean record for tflux_vnod; rec. count =           30
+ tflux_unod: current mean I/O counter =           31
+ writing mean record for tflux_unod; rec. count =           31
+ tflux_w: current mean I/O counter =           31
+ writing mean record for tflux_w; rec. count =           31
+ tflux_vnod: current mean I/O counter =           31
+ writing mean record for tflux_vnod; rec. count =           31
+ tflux_unod: current mean I/O counter =           32
+ writing mean record for tflux_unod; rec. count =           32
+ tflux_vnod: current mean I/O counter =           32
+ writing mean record for tflux_vnod; rec. count =           32
+ tflux_w: current mean I/O counter =           32
+ writing mean record for tflux_w; rec. count =           32
+ tflux_unod: current mean I/O counter =           33
+ writing mean record for tflux_unod; rec. count =           33
+ tflux_vnod: current mean I/O counter =           33
+ writing mean record for tflux_vnod; rec. count =           33
+ tflux_w: current mean I/O counter =           33
+ writing mean record for tflux_w; rec. count =           33
+ tflux_unod: current mean I/O counter =           34
+ writing mean record for tflux_unod; rec. count =           34
+ tflux_vnod: current mean I/O counter =           34
+ writing mean record for tflux_vnod; rec. count =           34
+ tflux_w: current mean I/O counter =           34
+ writing mean record for tflux_w; rec. count =           34
+ tflux_unod: current mean I/O counter =           35
+ writing mean record for tflux_unod; rec. count =           35
+ tflux_vnod: current mean I/O counter =           35
+ writing mean record for tflux_vnod; rec. count =           35
+ tflux_w: current mean I/O counter =           35
+ writing mean record for tflux_w; rec. count =           35
+ tflux_unod: current mean I/O counter =           36
+ writing mean record for tflux_unod; rec. count =           36
+ tflux_vnod: current mean I/O counter =           36
+ writing mean record for tflux_vnod; rec. count =           36
+ tflux_w: current mean I/O counter =           36
+ writing mean record for tflux_w; rec. count =           36
+ tflux_unod: current mean I/O counter =           37
+ writing mean record for tflux_unod; rec. count =           37
+ tflux_w: current mean I/O counter =           37
+ writing mean record for tflux_w; rec. count =           37
+ tflux_vnod: current mean I/O counter =           37
+ writing mean record for tflux_vnod; rec. count =           37
+ tflux_unod: current mean I/O counter =           38
+ writing mean record for tflux_unod; rec. count =           38
+ tflux_vnod: current mean I/O counter =           38
+ writing mean record for tflux_vnod; rec. count =           38
+ tflux_w: current mean I/O counter =           38
+ writing mean record for tflux_w; rec. count =           38
+ tflux_unod: current mean I/O counter =           39
+ writing mean record for tflux_unod; rec. count =           39
+ tflux_vnod: current mean I/O counter =           39
+ writing mean record for tflux_vnod; rec. count =           39
+ tflux_w: current mean I/O counter =           39
+ writing mean record for tflux_w; rec. count =           39
+ tflux_unod: current mean I/O counter =           40
+ writing mean record for tflux_unod; rec. count =           40
+ tflux_vnod: current mean I/O counter =           40
+ writing mean record for tflux_vnod; rec. count =           40
+ tflux_w: current mean I/O counter =           40
+ writing mean record for tflux_w; rec. count =           40
+ tflux_unod: current mean I/O counter =           41
+ writing mean record for tflux_unod; rec. count =           41
+ tflux_vnod: current mean I/O counter =           41
+ writing mean record for tflux_vnod; rec. count =           41
+ tflux_w: current mean I/O counter =           41
+ writing mean record for tflux_w; rec. count =           41
+ tflux_unod: current mean I/O counter =           42
+ writing mean record for tflux_unod; rec. count =           42
+ tflux_vnod: current mean I/O counter =           42
+ writing mean record for tflux_vnod; rec. count =           42
+ tflux_w: current mean I/O counter =           42
+ writing mean record for tflux_w; rec. count =           42
+ tflux_unod: current mean I/O counter =           43
+ writing mean record for tflux_unod; rec. count =           43
+ tflux_w: current mean I/O counter =           43
+ writing mean record for tflux_w; rec. count =           43
+ tflux_vnod: current mean I/O counter =           43
+ writing mean record for tflux_vnod; rec. count =           43
+ tflux_unod: current mean I/O counter =           44
+ writing mean record for tflux_unod; rec. count =           44
+ tflux_w: current mean I/O counter =           44
+ writing mean record for tflux_w; rec. count =           44
+ tflux_vnod: current mean I/O counter =           44
+ writing mean record for tflux_vnod; rec. count =           44
+ tflux_unod: current mean I/O counter =           45
+ writing mean record for tflux_unod; rec. count =           45
+ tflux_vnod: current mean I/O counter =           45
+ writing mean record for tflux_vnod; rec. count =           45
+ tflux_w: current mean I/O counter =           45
+ writing mean record for tflux_w; rec. count =           45
+ tflux_unod: current mean I/O counter =           46
+ writing mean record for tflux_unod; rec. count =           46
+ tflux_vnod: current mean I/O counter =           46
+ writing mean record for tflux_vnod; rec. count =           46
+ tflux_w: current mean I/O counter =           46
+ writing mean record for tflux_w; rec. count =           46
+ tflux_unod: current mean I/O counter =           47
+ writing mean record for tflux_unod; rec. count =           47
+ tflux_vnod: current mean I/O counter =           47
+ writing mean record for tflux_vnod; rec. count =           47
+ tflux_w: current mean I/O counter =           47
+ writing mean record for tflux_w; rec. count =           47
+ tflux_unod: current mean I/O counter =           48
+ writing mean record for tflux_unod; rec. count =           48
+ tflux_vnod: current mean I/O counter =           48
+ writing mean record for tflux_vnod; rec. count =           48
+ tflux_w: current mean I/O counter =           48
+ writing mean record for tflux_w; rec. count =           48
+ tflux_unod: current mean I/O counter =           49
+ writing mean record for tflux_unod; rec. count =           49
+ tflux_vnod: current mean I/O counter =           49
+ writing mean record for tflux_vnod; rec. count =           49
+ tflux_w: current mean I/O counter =           49
+ writing mean record for tflux_w; rec. count =           49
+ tflux_unod: current mean I/O counter =           50
+ writing mean record for tflux_unod; rec. count =           50
+ tflux_w: current mean I/O counter =           50
+ writing mean record for tflux_w; rec. count =           50
+ tflux_vnod: current mean I/O counter =           50
+ writing mean record for tflux_vnod; rec. count =           50
+ tflux_unod: current mean I/O counter =           51
+ writing mean record for tflux_unod; rec. count =           51
+ tflux_vnod: current mean I/O counter =           51
+ writing mean record for tflux_vnod; rec. count =           51
+ tflux_w: current mean I/O counter =           51
+ writing mean record for tflux_w; rec. count =           51
+ tflux_unod: current mean I/O counter =           52
+ writing mean record for tflux_unod; rec. count =           52
+ tflux_vnod: current mean I/O counter =           52
+ writing mean record for tflux_vnod; rec. count =           52
+ tflux_w: current mean I/O counter =           52
+ writing mean record for tflux_w; rec. count =           52
+ tflux_unod: current mean I/O counter =           53
+ writing mean record for tflux_unod; rec. count =           53
+ tflux_vnod: current mean I/O counter =           53
+ writing mean record for tflux_vnod; rec. count =           53
+ tflux_w: current mean I/O counter =           53
+ writing mean record for tflux_w; rec. count =           53
+ ___CHECK FOR BLOW UP___________ --> mstep=          54
+  --STOP--> found temperture becomes NaN or <-5.0, >60
+ mype     =           53
+ mstep    =           54
+ node     =            3
+ lon,lat     =    20.6609000000000        48.8643000000000     
+ nz       =            1
+ nzmin, nzmax=            1          41
+ x=   20.6609000000000       ; y=   48.8643000000000     
+ temp(nz, n) =    63.4827155685512     
+ temp(: , n) =    63.4827155685512        38.9238610833889        33.5645077152644        22.5592723484760        20.4023820342609        21.2791422017448        21.3437438083756        19.4114484001977        18.9066757408156        18.9232597875227        18.5249389403437        17.7488740059700        17.1646780496419        17.1546469646845        16.8732849716490        16.7933278248680        16.7679417131935        16.6604294981714        16.4373014076799        15.6758042365054        14.6434774833211        13.9646915928619        12.1551825075450        11.2600503473416        10.4005888508757        9.58977513359156        9.17293118695767        8.87691461925779        8.57742060516914        8.27263329261225        7.95992462232417        7.62408505127650        7.23357269285810        6.71231251173619        6.12087350898681        5.65437611778172        5.31288731143467        5.59932488346030        4.12237039824639        4.09372502887339     
+ temp_old(nz,n)=    60.4149965593464     
+ temp_old(: ,n)=    60.4149965593464        37.3614016236302        33.1867462767274        22.0695531296920        20.4945396528140        21.2311013645553        21.2785466575426        19.3539024688217        18.8636250157336        18.8818252521228        18.4853668801704        17.7152043341067        17.1436522859339        17.1341153929493        16.8543057731289        16.7758875437993        16.7508801950645        16.6446267660926        16.4219862353741        15.6613495154810        14.6299367185981        13.9508236247031        12.1410545266845        11.2478194126525        10.3894635060291        9.57839178015137        9.16160908171456        8.86574084047667        8.56670776970261        8.26256344211225        7.95055510019802        7.61523846082125        7.22533678090287        6.70453055697639        6.11342415511684        5.64738438012101        5.30616150938433        5.56174943636140        4.13058969248681        4.09566725557675     
+ 
+ hflux    =    264.569102080732     
+ wflux    =   0.000000000000000E+000
+ 
+ eta_n    =   0.587524842204592     
+ d_eta(n)    =   4.913740894719971E-002
+ hbar     =   0.587524842204592     
+ hbar_old    =   0.538387210531726     
+ ssh_rhs     =    1647738.53035010     
+ ssh_rhs_old =    361157.060453784     
+ 
+ hnode    =    9.03766000000000        9.94144000000000        10.9355000000000        12.0292000000000        13.2320000000000        14.5552000000000        16.0108000000000        17.6122000000000        19.3730000000000        21.3100000000000        23.4410000000000        25.7860000000000        28.3640000000000        31.2000000000000        34.3210000000000        37.7520000000000        41.5280000000000        45.6810000000000        50.2480000000000        55.2739999999999        60.8010000000000        66.8810000000000        73.5690000000001        80.9259999999999        89.0180000000000        97.9200000000000        107.713000000000        118.480000000000        130.340000000000        143.360000000000        157.700000000000        173.470000000000        190.820000000000        209.900000000000        230.900000000000        253.980000000000        279.370000000000        307.320000000000        338.050000000000        371.850000000000     
+ hnode_new   =    9.03766000000000        9.94144000000000        10.9355000000000        12.0292000000000        13.2320000000000        14.5552000000000        16.0108000000000        17.6122000000000        19.3730000000000        21.3100000000000        23.4410000000000        25.7860000000000        28.3640000000000        31.2000000000000        34.3210000000000        37.7520000000000        41.5280000000000        45.6810000000000        50.2480000000000        55.2739999999999        60.8010000000000        66.8810000000000        73.5690000000001        80.9259999999999        89.0180000000000        97.9200000000000        107.713000000000        118.480000000000        130.340000000000        143.360000000000        157.700000000000        173.470000000000        190.820000000000        209.900000000000        230.900000000000        253.980000000000        279.370000000000        307.320000000000        338.050000000000        371.850000000000     
+ 
+ Kv       =   0.000000000000000E+000  1.002027922755349E-005  1.002353079419302E-005  1.003678693288304E-005  1.005164370864690E-005  3.302015991366641E-004  1.008634590454982E-005  1.010734712031110E-005  1.013667766701946E-005  1.028017845859577E-005  1.018259430690057E-005  1.021675545388663E-005  1.025013050362094E-005  0.100000000000000       1.034126170119294E-005  1.038835201880333E-005  1.045099118769281E-005  1.051184479413084E-005  1.058749789648929E-005  1.067459832542160E-005  1.077589595351604E-005  1.089401641898760E-005  1.103277382160314E-005  1.119726623299368E-005  1.139438567154308E-005  1.163368015825515E-005  1.192877378604649E-005  1.229978838876496E-005  1.277769562628484E-005  1.341286904310508E-005  1.429245690135084E-005  1.558178187915597E-005  1.763329468707393E-005  2.133784721004595E-005  2.955508064486099E-005  5.245191715486633E-005  8.500500491641523E-005  9.844035179799151E-005  1.037409556150932E-004  1.064298039186876E-004  0.000000000000000E+000
+ 
+ W          =   8.189605278811206E-005  8.769671572241999E-005  1.101289848574166E-004  1.284757379376866E-004  1.449790750732811E-004  1.652737299593339E-004  1.854082858384072E-004  2.044870299360637E-004  2.201537951365688E-004  2.368577016452189E-004  2.523627386784178E-004  2.671684706459745E-004  2.829765329930538E-004  3.015418675182264E-004  3.187148392445171E-004  3.370252539669425E-004  3.557938879705807E-004  3.744965873296447E-004  3.923379753636487E-004  4.081548460562944E-004  4.200722233003398E-004  4.250165999545859E-004  4.191015136030397E-004  4.072577577912545E-004  3.950019249128582E-004  3.791136333724713E-004  3.578588229728055E-004  3.302174141925739E-004  2.951923330843429E-004  2.511992335592553E-004  1.978505819078988E-004  1.368182898508634E-004  7.182145090496427E-005  6.830424016058099E-006 -5.423273202569837E-005 -1.044408882865467E-004 -1.054955387568461E-004 -6.766165867299421E-005 -8.652167743392972E-005 -7.191895408963129E-005  0.000000000000000E+000
+ 
+ CFL_z(:,n)  =   5.436986086317391E-003  1.111488308730390E-002  1.268912830695823E-002  1.345729451390104E-002  1.380537838795647E-002  1.430725099955760E-002  1.459109173770662E-002  1.462941085773338E-002  1.431841386742092E-002  1.400462240081424E-002  1.356499512541301E-002  1.305508522672761E-002  1.257038784789592E-002  1.217757056402458E-002  1.170090692519494E-002  1.124828721477818E-002  1.079524230892450E-002  1.032960710551267E-002  9.838007093840476E-003  9.304210921093884E-003  8.705270923218622E-003  8.007064734758752E-003  7.177853867216513E-003  6.340917714461172E-003  5.591011573173689E-003  4.878305648594799E-003  4.186164248587734E-003  3.511698449836597E-003  2.853769207078452E-003  2.207692838239520E-003  1.580818296985900E-003  9.937801649396896E-004  4.742467948370064E-004  4.100186425009108E-005  2.959497297411049E-004  5.181227077559038E-004  4.757933387985664E-004  2.774163056064169E-004  3.224877258494869E-004  2.436930050112612E-004  0.000000000000000E+000
+ 
+ 
+ ___CHECK GLOBAL OCEAN VARIABLES --> mstep=          54
+   ___global estimat of eta & hbar____________________
+    int(eta), int(hbar)      = -6.790167435923918E-002 -6.790167435923918E-002
+     --> error(eta-hbar)     =  0.000000000000000E+000
+    min(eta) , max(eta)      = -0.622468237508880       0.643676477728745     
+    max(hbar), max(hbar)     = -0.622468237508880       0.643676477728745     
+ 
+    int(deta), int(dhbar)    =  0.000000000000000E+000 -2.791958763993574E-003
+     --> error(deta-dhbar)   =  2.791958763993574E-003
+     --> error(deta-wflux)   =  0.000000000000000E+000
+     --> error(dhbar-wflux)  = -2.791958763993574E-003
+ 
+    -int(wflux)*dt          =  0.000000000000000E+000
+    int(deta )-int(wflux)*dt =  0.000000000000000E+000
+    int(dhbar)-int(wflux)*dt = -2.791958763993574E-003
+ 
+   ___global min/max/mean  --> mstep=          54 ____________
+       eta= -6.225E-01 |  6.437E-01 | N.A.
+      deta= -1.497E-02 |  4.914E-02 | N.A.
+      hbar= -6.225E-01 |  6.437E-01 | N.A.
+     wflux=  0.000E+00 |  0.000E+00 |  0.000E+00
+     hflux=  6.436E+01 |  2.646E+02 |  0.000E+00
+      temp=  2.003E+00 |  6.348E+01 |  0.000E+00
+      salt=  3.500E+01 |  3.500E+01 |  0.000E+00
+    wvel(1,:)= -2.496E-05 |  8.190E-05 | N.A.
+    wvel(2,:)= -6.880E-05 |  8.770E-05 | N.A.
+    uvel(1,:)= -6.059E-01 |  3.644E-01 | N.A.
+    uvel(2,:)= -6.007E-01 |  3.583E-01 | N.A.
+    vvel(1,:)= -2.049E-01 |  3.730E-01 | N.A.
+    vvel(2,:)= -1.782E-01 |  3.817E-01 | N.A.
+   hnode(1,:)=  9.038E+00 |  9.038E+00 | N.A.
+   hnode(2,:)=  9.941E+00 |  9.941E+00 | N.A.
+     cfl_z=  N.A.      |  3.751E-02 | N.A.
+     pgf_x=  N.A.      |  3.783E-05 | N.A.
+     pgf_y=  N.A.      |  6.285E-05 | N.A.
+          Av=  N.A.      |  1.000E-01 | N.A.
+          Kv=  N.A.      |  1.000E-01 | N.A.
+ 
+ 
+                                                           
+         YOUR MODEL BLOW UP, CODE GREMLIN IN ACTION !!!    
+ [34m                              ____                        [0m
+ [34m                       __,-~~/~   `---.                   [0m
+ [34m                     _/_,---(      ,   )                  [0m
+ [34m                 __ /        <   /   )   \___             [0m
+ [0m - -- ----===;;;`====------------------===;;;===---- -- - [0m
+ [0m.____________.      \/  ~"~"~"~"~"~\~"~)~"/               [0m
+ [0m|Code Gremlin|      (_ (   \  (     >    \)               [0m
+ [0m`----+-------´[33m        \_( _ <         >_>`                 [0m
+ [0m     v        [33m           ~ `-i` ::>|--"                    [0m
+ [31m   (`-´)  [0m              [33m    I;|.|.|                       [0m
+ [31m  _( o<)_ [0m __T__        [31m   <|i::|i|`                      [0m
+ [31m (,_ w _,)[0m |TNT|        [31m  (` ^`[0m,-*[31m ")                     [0m
+ [31m<-´()^()  [0m |___|\_______[35m.,-#%&[0m(_)[35m%#&#~,.                  [0m
+ 
+ 
+  Things to try (if you havent changed anything in the code)
+      - 1st. increase the step_per_day (namelist.config,    
+        steps_per_day=32(45min),36(40min)...,48(30min)...
+        ...,60(24min)...,72(20min)...,96(15min)...,144(10min)
+        ...,160(9min),180(8min)...,240(6min)...,288(5min)
+        ...,360(4min)...,480(3min)...,720(2min)...,1440(1min))
+      - 2nd. increase slowly background viscosity visc_gamma0 within
+        its bounds (namelist.dyn)
+      - 3nd. increase slowly flow aware viscosity visc_gamma1 within
+        its bounds (namelist.dyn)
+      - 4th. contact developers :-D
+ 
+                                                           
+             [31m(`- ́)  _ (`- ́).->          <-. (`- ́)[0m          
+    [31m<-.      ( oo).-/ ( oo)_      .->      \(oo )_[0m         
+ [31m(`- ́)[36m-----.[31m([36m,------.[31m(_)[36m--[31m\_)(`- ́)[36m----. ,--.[31m/[36m  ,-.[31m)[36m .----. [0m
+ [31m(oo[36m|[31m(_\[36m--- ́ |  .--- ́/    _ /[31m( oo)[36m.-.  `|   `. ́   |\_,-.  |[0m
+ [31m / [36m|  `--. [31m([36m|  `--. \_..`--.[31m( _)[36m | |  ||  |`. ́|  |   . ́ . ́[0m
+ [31m \_)[36m  .-- ́  |  .-- ́ .-._)   \[31m\[36m|  |[31m)[36m|  ||  |   |  | . ́  /_ [0m
+ [31m  `[36m|  |[31m_)[36m   |  `---.\       / `  `- ́   ́|  |   |  ||      |[0m
+ [36m   `-- ́     `------ ́ `----- ́   `----- ́ `-- ́   `-- ́`------ ́[0m
+                                                           
+ 
+  --> Init. blowpup file 
+ Do output (netCDF, blowup) ...
+  --> call assoc_ids(bid)
+ associating blowup file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2008.oce.blowup.nc
+ initializing blowup file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/dsb3yt63/short_run_to_check_runtime_outputfreq_d/fesom.2008.oce.blowup.nc
+ current restart counter =            1
+  --> call write_blowup(bid, istep)
+ writing blowup record            1
+  --> finished writing blow up file
+ fesom should stop with exit status = 0
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+srun: error: prod-028: tasks 0-59: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=43998369.0
+Thu May 21 15:22:16 CEST 2026

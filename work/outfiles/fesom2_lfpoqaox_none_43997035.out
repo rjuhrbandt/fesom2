@@ -1,0 +1,2381 @@
+Module for intel-oneapi-compilers version 2022.1.0 loaded
+Module for intel-oneapi-mpi version 2021.6.0 loaded
+Module for intel-oneapi-mkl version 2022.1.0 loaded
+Module for netcdf-fortran version 4.5.4 loaded
+Module for netcdf-c version 4.8.1 loaded
+ln: failed to create symbolic link './fesom.x': File exists
+Thu May 21 11:00:16 CEST 2026
+ MPI has been initialized, provided MPI thread support level: MPI_THREAD_MULTIPLE           3
+ Running on                             60  PEs
+ 
+ [36m .------. ------. ------.  .-----. ,--.   ,-.  .----.  [0m
+ [36m |  .--- ́|  .--- ́/    _ / ´  .-.  `|   `. ́   |\_,-.  | [0m
+ [36m |  `--. |  `--. \_..`--. |  | |  ||  |`. ́|  |   . ́ . ́ [0m
+ [36m |  .-- ́ |  .-- ́ .-._)   \|  | |  ||  |   |  | . ́  /_  [0m
+ [36m |  |    |  `---.\       /`  `- ́   ́|  |   |  ||      | [0m
+ [36m `-- ́    `------ ́ `----- ́  `----- ́ `-- ́   `-- ́`------ ́ [0m
+                                           _____           
+       ___________                     ,-:` \;´,``-,       
+      | .-------. |                  .´-;_,;  `:-;_,`.     
+      | |       | |                 /;   `/    ,  _`.-\    
+      | |       | |                | ´`. (`     /` ` \`|   
+      | |__   __| |            ,-C=|:.  `\`-.   \_   / |   
+       `---|-|---´          ,-´    |     (   `,  .`\ ;`|   
+        [====  O]--,    ,--´        \     | .´     `-´/    
+      /:::::::::::\ \_,-             `.   ;/        .´     
+     /:::::===:::::\                   ``-._____.-´`       
+    ´---------------`                                      
+ 
+ 
+ FESOM2 git SHA: c34a956e
+ MPI library version: Intel(R) MPI Library 2021.6 for Linux* OS
+
+ [32m____________________________________________________________[0m
+ [7;32m --> FESOM BUILDS UP MODEL CONFIGURATION                    [0m
+ Restart path configuration:
+   Input path:  /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/
+   Output path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/
+   Note: Using same directory for input and output (legacy mode)
+ Namelist files are read in
+ time step size is set to    600.000000000000      sec
+ Value of which_NN:lfpoqaox
+ 
+ [31m____________________________________________________________[0m
+ [5;7;31m --> THIS IS A RESTART RUN !!!                              [0m
+     > clock restarted at time:    0.00   1 2008
+ 
+     5256000  steps to run for fesom      job submission
+           0 rpart is read
+ myLists are read
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/nod2d.out
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/elem2d.out
+ elements are read
+ communication arrays are read
+ =========================
+ 2D mesh was read in   8.706652144610416E-002  seconds
+ 2D mesh info : nod2D=         389  elem2D=         702 checksum= 
+ =========================
+ Communication arrays are set
+ test_tri finished in   3.409950295463204E-006  seconds
+ =========================
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/edgenum.out
+ 2D mesh info : edge2D=        1090
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/edges.out
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/edge_tri.out
+ load_edges finished in   2.974502660799772E-002  seconds
+ =========================
+ find_neighbors finished in   2.789679361740127E-003  seconds
+ =========================
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/elvls.out
+ reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/nlvls.out
+ ____________________________________________________________________
+  --> 3D mesh was read in   2.004754790687002E-002  seconds
+  --> Min/max depth on mype :            0   4000.00000000000        4000.00000000000     
+ ____________________________________________________________________
+  --> find min/max level e2n in  1.421579363523051E-004  seconds
+ ____________________________________________________________________
+  --> mesh statistics:           0
+           0 maxArea    8831835589.32587         MinArea    8415276695.49772     
+           0 maxScArea    17565690548.2392         MinScArea    16940789623.1981     
+           0 Edges:            1090  internal         1016
+      > Total ocean surface area is           :    5843962925012.69       m^2
+      > Total ocean surface area with cavity is:    5843962925012.69       m^2
+      > mesh_areas finished in   8.034482889343053E-004  seconds
+ mesh_auxiliary_arrays finished in   9.618759941076860E-004  seconds
+ =========================
+ FESOM mesh_setup... complete
+ ***start level area_test***
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+   5843962925012.69        5843962925012.69     
+  0.000000000000000E+000  0.000000000000000E+000
+ ***end level area_test***
+      file   : namelist.dyn open ok
+      file   : namelist.tra open ok
+ number of tracers will be changed from          100  to            2 !
+ total number of tracers is:            2
+ ____________________________________________________________
+  --> initialise ALE arrays + sparse SSH stiff matrix
+ 
+ ____________________________________________________________
+  --> initialise ssh operator using unperturbed ocean depth
+      > in stiff_mat_ale, reading /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/dist_60/rpart.out
+      took:   6.506205245386809E-004  sec
+ 
+ Arrays are set
+ FCT is initialized
+           0 COR  0.993800598845800       0.933901681697525     
+           0 COR_n  0.999790490560628       0.927911789982697     
+ ____________________________________________________________
+  --> call init_thickness_ale
+ 
+ ____________________________________________________________
+  --> initialise ALE layerthicknesses, depth levels and middepth levels
+ 
+           2 COR  0.975830923701317       0.903952223123387     
+           2 COR_n  0.981820815416145       0.891972439693731     
+           4 COR  0.903952223123387       0.844053305975111     
+           4 COR_n  0.909942114838214       0.838063414260283     
+           6 COR  0.921921898267869       0.862022981119593     
+           6 COR_n  0.927911789982697       0.856033089404766     
+          26 COR  0.760194821967525       0.700295904819249     
+          26 COR_n  0.766184713682352       0.694306013104421     
+          28 COR  0.814103847400973       0.742225146823042     
+          28 COR_n  0.820093739115801       0.730245363393387     
+           1 COR   1.01177027399028       0.951871356842007     
+           1 COR_n   1.01776016570511       0.945881465127180     
+           3 COR  0.939891573412352       0.879992656264076     
+           3 COR_n  0.945881465127180       0.874002764549249     
+           7 COR   1.04770962427925       0.987810707130973     
+           7 COR_n   1.05369951599408       0.981820815416145     
+          25 COR  0.814103847400973       0.754204930252697     
+          25 COR_n  0.820093739115801       0.748215038537870     
+          27 COR  0.760194821967525       0.706285796534076     
+          27 COR_n  0.766184713682352       0.694306013104421     
+          29 COR  0.832073522545456       0.754204930252697     
+          29 COR_n  0.838063414260283       0.748215038537870     
+           5 COR  0.975830923701317       0.915932006553042     
+           5 COR_n  0.981820815416145       0.909942114838214     
+          24 COR  0.850043197689938       0.790144280541663     
+          24 COR_n  0.856033089404766       0.784154388826835     
+           8 COR   1.09562875799787        1.02375005741994     
+           8 COR_n   1.10760854142752        1.01776016570511     
+          20 COR  0.868012872834421       0.796134172256490     
+          20 COR_n  0.874002764549249       0.784154388826835     
+          22 COR  0.868012872834421       0.790144280541663     
+          22 COR_n  0.874002764549249       0.784154388826835     
+          11 COR   1.04770962427925       0.969841031986490     
+          11 COR_n   1.05369951599408       0.963851140271662     
+ Initial state
+ Initializing neural network for GM parameterization
+          16 COR  0.921921898267869       0.879992656264076     
+          16 COR_n  0.927911789982697       0.874002764549249     
+          21 COR  0.885982547978904       0.808113955686145     
+          21 COR_n  0.891972439693731       0.802124063971318     
+          23 COR  0.885982547978904       0.826083630830628     
+          23 COR_n  0.891972439693731       0.820093739115801     
+           9 COR   1.10161864971270        1.04171973256442     
+           9 COR_n   1.10760854142752        1.03572984084959     
+          10 COR   1.14953778343132        1.07765908285339     
+          10 COR_n   1.16151756686097        1.07166919113856     
+          12 COR   1.06567929942373        1.00578038227546     
+          12 COR_n   1.07166919113856       0.999790490560628     
+          13 COR   1.02973994913477       0.969841031986490     
+          13 COR_n   1.03572984084959       0.963851140271662     
+          15 COR  0.939891573412352       0.862022981119593     
+          15 COR_n  0.945881465127180       0.856033089404766     
+          14 COR  0.993800598845800       0.933901681697525     
+          14 COR_n  0.999790490560628       0.927911789982697     
+          17 COR  0.957861248556835       0.915932006553042     
+          17 COR_n  0.963851140271662       0.909942114838214     
+          18 COR  0.939891573412352       0.885982547978904     
+          18 COR_n  0.945881465127180       0.874002764549249     
+          19 COR  0.921921898267869       0.850043197689938     
+          19 COR_n  0.927911789982697       0.838063414260283     
+          47 COR   1.27532550944270        1.22141648400925     
+          47 COR_n   1.28730529287235        1.21542659229442     
+          49 COR   1.13755800000166        1.07765908285339     
+          49 COR_n   1.14354789171649        1.07166919113856     
+          52 COR   1.32923453487614        1.25735583429821     
+          52 COR_n   1.34121431830580        1.25136594258339     
+          53 COR   1.33522442659097        1.29329518458718     
+          53 COR_n   1.34121431830580        1.28730529287235     
+          55 COR   1.29928507630201        1.23938615915373     
+          55 COR_n   1.30527496801683        1.23339626743890     
+          30 COR   1.06567929942373        1.00578038227546     
+          30 COR_n   1.07166919113856       0.999790490560628     
+          32 COR   1.06567929942373        1.00578038227546     
+          32 COR_n   1.07166919113856       0.999790490560628     
+          33 COR   1.01177027399028       0.951871356842007     
+          33 COR_n   1.01776016570511       0.945881465127180     
+          34 COR  0.993800598845800       0.933901681697525     
+          34 COR_n  0.999790490560628       0.927911789982697     
+          35 COR  0.993800598845800       0.933901681697525     
+          35 COR_n  0.999790490560628       0.927911789982697     
+          39 COR   1.13755800000166        1.07765908285339     
+          39 COR_n   1.14354789171649        1.07166919113856     
+          43 COR   1.09562875799787        1.02973994913477     
+          43 COR_n   1.10760854142752        1.01776016570511     
+          45 COR   1.22740637572408        1.16750745857580     
+          45 COR_n   1.23339626743890        1.16151756686097     
+          48 COR   1.19146702543511        1.13156810828683     
+          48 COR_n   1.19745691714994        1.12557821657201     
+          59 COR   1.24537605086856        1.18547713372028     
+          59 COR_n   1.25136594258339        1.17948724200546     
+          31 COR   1.10161864971270        1.05968940770890     
+          31 COR_n   1.10760854142752        1.05369951599408     
+          36 COR   1.04770962427925       0.969841031986490     
+          36 COR_n   1.05369951599408       0.963851140271662     
+          37 COR   1.13755800000166        1.05968940770890     
+          37 COR_n   1.14354789171649        1.05369951599408     
+          38 COR   1.13755800000166        1.07765908285339     
+          38 COR_n   1.14354789171649        1.07166919113856     
+          40 COR   1.15552767514614        1.07765908285339     
+          40 COR_n   1.16151756686097        1.07166919113856     
+          41 COR   1.04770962427925       0.987810707130973     
+          41 COR_n   1.05369951599408       0.981820815416145     
+          42 COR   1.08364897456821        1.04171973256442     
+          42 COR_n   1.08963886628304        1.03572984084959     
+          44 COR   1.04770962427925       0.975830923701317     
+          44 COR_n   1.05369951599408       0.963851140271662     
+          46 COR   1.22740637572408        1.16750745857580     
+          46 COR_n   1.23339626743890        1.16151756686097     
+          50 COR   1.17349735029063        1.13156810828683     
+          50 COR_n   1.17948724200546        1.12557821657201     
+          51 COR   1.15552767514614        1.09562875799787     
+          51 COR_n   1.16151756686097        1.08963886628304     
+          54 COR   1.28131540115752        1.22141648400925     
+          54 COR_n   1.28730529287235        1.21542659229442     
+          56 COR   1.19146702543511        1.13156810828683     
+          56 COR_n   1.19745691714994        1.12557821657201     
+          57 COR   1.22141648400925        1.14953778343132     
+          57 COR_n   1.23339626743890        1.14354789171649     
+          58 COR   1.22740637572408        1.14953778343132     
+          58 COR_n   1.23339626743890        1.14354789171649     
+ Path to architecture files:/albedo/home/rjuhrban/fesom2/src/neuralnet_params/lfpoqaox                                                                                                                                                                                                      
+ Neural network for GM parameterization initialized successfully
+ Number of layers:           3
+ Layer sizes:          51         128         128           3
+ Weights shape:           3         128         128
+ Biases shape:           3         128
+ Activations:relu            relu            id              
+ FESOM ocean_setup... complete
+ ****************************************************
+ use_landice_water F
+ use_age_tracer F
+ [1;33m --> read restarts from netcdf file: ocean[0m
+ reading restart for ssh at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/ssh.nc
+==================================
+RESTART READ TIMING for file: ssh
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.016 seconds
+  TOTAL time:             0.016 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/ssh.nc
+ reading restart for hbar at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/hbar.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for ssh
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/ssh.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: hbar
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.006 seconds
+  TOTAL time:             0.006 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/hbar.nc
+ reading restart for ssh_rhs_old at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/ssh_rhs_old.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for hbar
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/hbar.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: ssh_rhs_old
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.005 seconds
+  TOTAL time:             0.005 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/ssh_rhs_old.nc
+ reading restart for hnode at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/hnode.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for ssh_rhs_old
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/ssh_rhs_old.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: hnode
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/hnode.nc
+ reading restart for u at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/u.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for hnode
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/hnode.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: u
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/u.nc
+ reading restart for v at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/v.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for u
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/u.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: v
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/v.nc
+ reading restart for urhs_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/urhs_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for v
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/v.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: urhs_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/urhs_AB.nc
+ reading restart for vrhs_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/vrhs_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for urhs_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/urhs_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: vrhs_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/vrhs_AB.nc
+ reading restart for temp at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for vrhs_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/vrhs_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: temp
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp.nc
+ reading restart for temp_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for temp
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: temp_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for temp_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+ reading restart for temp_M1 at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp_M1.nc
+==================================
+RESTART READ TIMING for file: temp_M1
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.005 seconds
+  TOTAL time:             0.005 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp_M1.nc
+ reading restart for salt at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for temp_M1
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/temp_M1.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: salt
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt.nc
+ reading restart for salt_AB at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for salt
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: salt_AB
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt_AB.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for salt_AB
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt_AB.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+ reading restart for salt_M1 at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt_M1.nc
+==================================
+RESTART READ TIMING for file: salt_M1
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.005 seconds
+  TOTAL time:             0.005 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt_M1.nc
+ reading restart for w at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for salt_M1
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/salt_M1.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: w
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.009 seconds
+  TOTAL time:             0.009 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w.nc
+ reading restart for w_expl at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w_expl.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for w
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: w_expl
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w_expl.nc
+ reading restart for w_impl at /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w_impl.nc
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for w_expl
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w_expl.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+==================================
+RESTART READ TIMING for file: w_impl
+  NetCDF read time:       0.000 seconds
+  MPI scatter time:       0.010 seconds
+  TOTAL time:             0.010 seconds
+==================================
+ restart from record            1  of            1 /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w_impl.nc
+ ____________________________________________________________
+  --> restart ALE layerthicknesses, depth levels and middepth levels
+ 
+ ==========================================
+ MODEL SETUP took on mype=0 [seconds]      
+ [33m____________________________________________________________[0m
+ [5;33m --> WARNING: RESTART TIMESTAMP MISMATCH !!!               [0m
+ WARNING: timestamps in restart and in clock files do not match for w_impl
+          at path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2007.oce.restart/w_impl.nc
+          clock time  =   31534800.0000000     
+          restart time=   31535400.0000000     
+ WARNING: This mismatch will be ignored and the model will continue running.
+ WARNING: Please verify that this is the intended behavior for your simulation.
+ [33m____________________________________________________________[0m
+ runtime setup total        0.3699180    
+  > runtime setup mesh      0.1627396    
+  > runtime setup ocean     3.2548595E-02
+  > runtime setup forcing   3.1409538E-05
+  > runtime setup ice       7.3299016E-06
+  > runtime setup restart   0.1744021    
+  > runtime setup other     1.8896724E-04
+ ============================================
+ current_nsteps, steps_per_ib_step, icb_outfreq :     5256000           8           0
+ FESOM start iteration before the barrier...
+ FESOM start iteration after the barrier...
+ 
+ [32m____________________________________________________________[0m
+ [7;32m --> FESOM STARTS TIME LOOP                                 [0m
+      file   : namelist.io open ok
+ io_listsize will be changed from          120  to            0 !
+ adding I/O stream 3D for curl_u
+ adding I/O stream 2D for rosb
+ adding I/O stream 3D for N2
+ adding I/O stream 3D for slope_x
+ adding I/O stream 3D for slope_y
+ adding I/O stream 3D for temp
+ adding I/O stream 3D for unod
+ adding I/O stream 3D for vnod
+ adding I/O stream 3D for u
+ adding I/O stream 3D for v
+ adding I/O stream 2D for sst
+ adding I/O stream 2D for ssh
+ adding I/O stream 2D for hc300m
+ adding I/O stream 2D for hc700m
+ adding I/O stream 2D for hc
+ adding I/O stream 3D for tflux_unod
+ adding I/O stream 3D for tflux_vnod
+ adding I/O stream 3D for tflux_w
+ initializing I/O file for curl_u
+ initializing I/O file for tflux_w
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/curl_u.fesom.2008.nc
+ curl_u: current mean I/O counter =            1
+ writing mean record for curl_u; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/tflux_w.fesom.2008.nc
+ tflux_w: current mean I/O counter =            1
+ writing mean record for tflux_w; rec. count =            1
+ initializing I/O file for rosb
+ initializing I/O file for N2
+ initializing I/O file for slope_x
+ initializing I/O file for slope_y
+ initializing I/O file for unod
+ initializing I/O file for u
+ initializing I/O file for hc300m
+ initializing I/O file for ssh
+ initializing I/O file for tflux_vnod
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/rosb.fesom.2008.nc
+ rosb: current mean I/O counter =            1
+ writing mean record for rosb; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/slope_x.fesom.2008.nc
+ slope_x: current mean I/O counter =            1
+ writing mean record for slope_x; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/N2.fesom.2008.nc
+ N2: current mean I/O counter =            1
+ writing mean record for N2; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/slope_y.fesom.2008.nc
+ slope_y: current mean I/O counter =            1
+ writing mean record for slope_y; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/hc300m.fesom.2008.nc
+ hc300m: current mean I/O counter =            1
+ writing mean record for hc300m; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/u.fesom.2008.nc
+ u: current mean I/O counter =            1
+ writing mean record for u; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/unod.fesom.2008.nc
+ unod: current mean I/O counter =            1
+ writing mean record for unod; rec. count =            1
+ initializing I/O file for sst
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/ssh.fesom.2008.nc
+ ssh: current mean I/O counter =            1
+ writing mean record for ssh; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/tflux_vnod.fesom.2008.nc
+ tflux_vnod: current mean I/O counter =            1
+ writing mean record for tflux_vnod; rec. count =            1
+ initializing I/O file for temp
+ initializing I/O file for vnod
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/sst.fesom.2008.nc
+ sst: current mean I/O counter =            1
+ writing mean record for sst; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/temp.fesom.2008.nc
+ temp: current mean I/O counter =            1
+ writing mean record for temp; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/vnod.fesom.2008.nc
+ vnod: current mean I/O counter =            1
+ writing mean record for vnod; rec. count =            1
+ initializing I/O file for v
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/v.fesom.2008.nc
+ v: current mean I/O counter =            1
+ writing mean record for v; rec. count =            1
+ initializing I/O file for hc700m
+ initializing I/O file for hc
+ initializing I/O file for tflux_unod
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/hc700m.fesom.2008.nc
+ hc700m: current mean I/O counter =            1
+ writing mean record for hc700m; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/tflux_unod.fesom.2008.nc
+ tflux_unod: current mean I/O counter =            1
+ writing mean record for tflux_unod; rec. count =            1
+ associating mean I/O file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/hc.fesom.2008.nc
+ hc: current mean I/O counter =            1
+ writing mean record for hc; rec. count =            1
+ curl_u: current mean I/O counter =            2
+ writing mean record for curl_u; rec. count =            2
+ N2: current mean I/O counter =            2
+ writing mean record for N2; rec. count =            2
+ slope_y: current mean I/O counter =            2
+ writing mean record for slope_y; rec. count =            2
+ rosb: current mean I/O counter =            2
+ writing mean record for rosb; rec. count =            2
+ u: current mean I/O counter =            2
+ writing mean record for u; rec. count =            2
+ sst: current mean I/O counter =            2
+ writing mean record for sst; rec. count =            2
+ tflux_vnod: current mean I/O counter =            2
+ writing mean record for tflux_vnod; rec. count =            2
+ unod: current mean I/O counter =            2
+ writing mean record for unod; rec. count =            2
+ v: current mean I/O counter =            2
+ writing mean record for v; rec. count =            2
+ vnod: current mean I/O counter =            2
+ writing mean record for vnod; rec. count =            2
+ slope_x: current mean I/O counter =            2
+ writing mean record for slope_x; rec. count =            2
+ ssh: current mean I/O counter =            2
+ writing mean record for ssh; rec. count =            2
+ tflux_unod: current mean I/O counter =            2
+ writing mean record for tflux_unod; rec. count =            2
+ temp: current mean I/O counter =            2
+ writing mean record for temp; rec. count =            2
+ hc300m: current mean I/O counter =            2
+ writing mean record for hc300m; rec. count =            2
+ hc700m: current mean I/O counter =            2
+ writing mean record for hc700m; rec. count =            2
+ hc: current mean I/O counter =            2
+ writing mean record for hc; rec. count =            2
+ tflux_w: current mean I/O counter =            2
+ writing mean record for tflux_w; rec. count =            2
+ curl_u: current mean I/O counter =            3
+ writing mean record for curl_u; rec. count =            3
+ N2: current mean I/O counter =            3
+ writing mean record for N2; rec. count =            3
+ slope_y: current mean I/O counter =            3
+ writing mean record for slope_y; rec. count =            3
+ rosb: current mean I/O counter =            3
+ writing mean record for rosb; rec. count =            3
+ hc: current mean I/O counter =            3
+ writing mean record for hc; rec. count =            3
+ tflux_vnod: current mean I/O counter =            3
+ writing mean record for tflux_vnod; rec. count =            3
+ unod: current mean I/O counter =            3
+ writing mean record for unod; rec. count =            3
+ hc300m: current mean I/O counter =            3
+ writing mean record for hc300m; rec. count =            3
+ sst: current mean I/O counter =            3
+ writing mean record for sst; rec. count =            3
+ u: current mean I/O counter =            3
+ writing mean record for u; rec. count =            3
+ slope_x: current mean I/O counter =            3
+ writing mean record for slope_x; rec. count =            3
+ temp: current mean I/O counter =            3
+ writing mean record for temp; rec. count =            3
+ vnod: current mean I/O counter =            3
+ writing mean record for vnod; rec. count =            3
+ ssh: current mean I/O counter =            3
+ writing mean record for ssh; rec. count =            3
+ v: current mean I/O counter =            3
+ writing mean record for v; rec. count =            3
+ hc700m: current mean I/O counter =            3
+ writing mean record for hc700m; rec. count =            3
+ tflux_unod: current mean I/O counter =            3
+ writing mean record for tflux_unod; rec. count =            3
+ tflux_w: current mean I/O counter =            3
+ writing mean record for tflux_w; rec. count =            3
+ curl_u: current mean I/O counter =            4
+ writing mean record for curl_u; rec. count =            4
+ slope_y: current mean I/O counter =            4
+ writing mean record for slope_y; rec. count =            4
+ N2: current mean I/O counter =            4
+ writing mean record for N2; rec. count =            4
+ rosb: current mean I/O counter =            4
+ writing mean record for rosb; rec. count =            4
+ u: current mean I/O counter =            4
+ writing mean record for u; rec. count =            4
+ sst: current mean I/O counter =            4
+ writing mean record for sst; rec. count =            4
+ tflux_vnod: current mean I/O counter =            4
+ writing mean record for tflux_vnod; rec. count =            4
+ v: current mean I/O counter =            4
+ writing mean record for v; rec. count =            4
+ vnod: current mean I/O counter =            4
+ writing mean record for vnod; rec. count =            4
+ unod: current mean I/O counter =            4
+ writing mean record for unod; rec. count =            4
+ hc: current mean I/O counter =            4
+ writing mean record for hc; rec. count =            4
+ hc300m: current mean I/O counter =            4
+ writing mean record for hc300m; rec. count =            4
+ slope_x: current mean I/O counter =            4
+ writing mean record for slope_x; rec. count =            4
+ hc700m: current mean I/O counter =            4
+ writing mean record for hc700m; rec. count =            4
+ ssh: current mean I/O counter =            4
+ writing mean record for ssh; rec. count =            4
+ temp: current mean I/O counter =            4
+ writing mean record for temp; rec. count =            4
+ tflux_unod: current mean I/O counter =            4
+ writing mean record for tflux_unod; rec. count =            4
+ tflux_w: current mean I/O counter =            4
+ writing mean record for tflux_w; rec. count =            4
+ curl_u: current mean I/O counter =            5
+ writing mean record for curl_u; rec. count =            5
+ N2: current mean I/O counter =            5
+ writing mean record for N2; rec. count =            5
+ unod: current mean I/O counter =            5
+ writing mean record for unod; rec. count =            5
+ rosb: current mean I/O counter =            5
+ writing mean record for rosb; rec. count =            5
+ u: current mean I/O counter =            5
+ writing mean record for u; rec. count =            5
+ sst: current mean I/O counter =            5
+ writing mean record for sst; rec. count =            5
+ hc300m: current mean I/O counter =            5
+ writing mean record for hc300m; rec. count =            5
+ slope_y: current mean I/O counter =            5
+ writing mean record for slope_y; rec. count =            5
+ hc: current mean I/O counter =            5
+ writing mean record for hc; rec. count =            5
+ slope_x: current mean I/O counter =            5
+ writing mean record for slope_x; rec. count =            5
+ vnod: current mean I/O counter =            5
+ writing mean record for vnod; rec. count =            5
+ tflux_vnod: current mean I/O counter =            5
+ writing mean record for tflux_vnod; rec. count =            5
+ temp: current mean I/O counter =            5
+ writing mean record for temp; rec. count =            5
+ v: current mean I/O counter =            5
+ writing mean record for v; rec. count =            5
+ ssh: current mean I/O counter =            5
+ writing mean record for ssh; rec. count =            5
+ hc700m: current mean I/O counter =            5
+ writing mean record for hc700m; rec. count =            5
+ tflux_unod: current mean I/O counter =            5
+ writing mean record for tflux_unod; rec. count =            5
+ tflux_w: current mean I/O counter =            5
+ writing mean record for tflux_w; rec. count =            5
+ curl_u: current mean I/O counter =            6
+ writing mean record for curl_u; rec. count =            6
+ N2: current mean I/O counter =            6
+ writing mean record for N2; rec. count =            6
+ rosb: current mean I/O counter =            6
+ writing mean record for rosb; rec. count =            6
+ slope_y: current mean I/O counter =            6
+ writing mean record for slope_y; rec. count =            6
+ u: current mean I/O counter =            6
+ writing mean record for u; rec. count =            6
+ hc300m: current mean I/O counter =            6
+ writing mean record for hc300m; rec. count =            6
+ sst: current mean I/O counter =            6
+ writing mean record for sst; rec. count =            6
+ hc: current mean I/O counter =            6
+ writing mean record for hc; rec. count =            6
+ tflux_vnod: current mean I/O counter =            6
+ writing mean record for tflux_vnod; rec. count =            6
+ slope_x: current mean I/O counter =            6
+ writing mean record for slope_x; rec. count =            6
+ vnod: current mean I/O counter =            6
+ writing mean record for vnod; rec. count =            6
+ temp: current mean I/O counter =            6
+ writing mean record for temp; rec. count =            6
+ unod: current mean I/O counter =            6
+ writing mean record for unod; rec. count =            6
+ ssh: current mean I/O counter =            6
+ writing mean record for ssh; rec. count =            6
+ v: current mean I/O counter =            6
+ writing mean record for v; rec. count =            6
+ hc700m: current mean I/O counter =            6
+ writing mean record for hc700m; rec. count =            6
+ tflux_w: current mean I/O counter =            6
+ writing mean record for tflux_w; rec. count =            6
+ tflux_unod: current mean I/O counter =            6
+ writing mean record for tflux_unod; rec. count =            6
+ curl_u: current mean I/O counter =            7
+ writing mean record for curl_u; rec. count =            7
+ N2: current mean I/O counter =            7
+ writing mean record for N2; rec. count =            7
+ rosb: current mean I/O counter =            7
+ writing mean record for rosb; rec. count =            7
+ hc300m: current mean I/O counter =            7
+ writing mean record for hc300m; rec. count =            7
+ u: current mean I/O counter =            7
+ writing mean record for u; rec. count =            7
+ unod: current mean I/O counter =            7
+ writing mean record for unod; rec. count =            7
+ sst: current mean I/O counter =            7
+ writing mean record for sst; rec. count =            7
+ slope_y: current mean I/O counter =            7
+ writing mean record for slope_y; rec. count =            7
+ slope_x: current mean I/O counter =            7
+ writing mean record for slope_x; rec. count =            7
+ tflux_vnod: current mean I/O counter =            7
+ writing mean record for tflux_vnod; rec. count =            7
+ hc: current mean I/O counter =            7
+ writing mean record for hc; rec. count =            7
+ temp: current mean I/O counter =            7
+ writing mean record for temp; rec. count =            7
+ vnod: current mean I/O counter =            7
+ writing mean record for vnod; rec. count =            7
+ hc700m: current mean I/O counter =            7
+ writing mean record for hc700m; rec. count =            7
+ v: current mean I/O counter =            7
+ writing mean record for v; rec. count =            7
+ ssh: current mean I/O counter =            7
+ writing mean record for ssh; rec. count =            7
+ tflux_unod: current mean I/O counter =            7
+ writing mean record for tflux_unod; rec. count =            7
+ tflux_w: current mean I/O counter =            7
+ writing mean record for tflux_w; rec. count =            7
+ curl_u: current mean I/O counter =            8
+ writing mean record for curl_u; rec. count =            8
+ N2: current mean I/O counter =            8
+ writing mean record for N2; rec. count =            8
+ slope_y: current mean I/O counter =            8
+ writing mean record for slope_y; rec. count =            8
+ u: current mean I/O counter =            8
+ writing mean record for u; rec. count =            8
+ rosb: current mean I/O counter =            8
+ writing mean record for rosb; rec. count =            8
+ unod: current mean I/O counter =            8
+ writing mean record for unod; rec. count =            8
+ sst: current mean I/O counter =            8
+ writing mean record for sst; rec. count =            8
+ hc300m: current mean I/O counter =            8
+ writing mean record for hc300m; rec. count =            8
+ tflux_vnod: current mean I/O counter =            8
+ writing mean record for tflux_vnod; rec. count =            8
+ slope_x: current mean I/O counter =            8
+ writing mean record for slope_x; rec. count =            8
+ hc: current mean I/O counter =            8
+ writing mean record for hc; rec. count =            8
+ temp: current mean I/O counter =            8
+ writing mean record for temp; rec. count =            8
+ vnod: current mean I/O counter =            8
+ writing mean record for vnod; rec. count =            8
+ v: current mean I/O counter =            8
+ writing mean record for v; rec. count =            8
+ ssh: current mean I/O counter =            8
+ writing mean record for ssh; rec. count =            8
+ hc700m: current mean I/O counter =            8
+ writing mean record for hc700m; rec. count =            8
+ tflux_unod: current mean I/O counter =            8
+ writing mean record for tflux_unod; rec. count =            8
+ tflux_w: current mean I/O counter =            8
+ writing mean record for tflux_w; rec. count =            8
+ curl_u: current mean I/O counter =            9
+ writing mean record for curl_u; rec. count =            9
+ N2: current mean I/O counter =            9
+ writing mean record for N2; rec. count =            9
+ slope_y: current mean I/O counter =            9
+ writing mean record for slope_y; rec. count =            9
+ rosb: current mean I/O counter =            9
+ writing mean record for rosb; rec. count =            9
+ tflux_vnod: current mean I/O counter =            9
+ writing mean record for tflux_vnod; rec. count =            9
+ u: current mean I/O counter =            9
+ writing mean record for u; rec. count =            9
+ hc300m: current mean I/O counter =            9
+ writing mean record for hc300m; rec. count =            9
+ hc: current mean I/O counter =            9
+ writing mean record for hc; rec. count =            9
+ temp: current mean I/O counter =            9
+ writing mean record for temp; rec. count =            9
+ vnod: current mean I/O counter =            9
+ writing mean record for vnod; rec. count =            9
+ slope_x: current mean I/O counter =            9
+ writing mean record for slope_x; rec. count =            9
+ sst: current mean I/O counter =            9
+ writing mean record for sst; rec. count =            9
+ unod: current mean I/O counter =            9
+ writing mean record for unod; rec. count =            9
+ tflux_w: current mean I/O counter =            9
+ writing mean record for tflux_w; rec. count =            9
+ v: current mean I/O counter =            9
+ writing mean record for v; rec. count =            9
+ ssh: current mean I/O counter =            9
+ writing mean record for ssh; rec. count =            9
+ hc700m: current mean I/O counter =            9
+ writing mean record for hc700m; rec. count =            9
+ tflux_unod: current mean I/O counter =            9
+ writing mean record for tflux_unod; rec. count =            9
+ curl_u: current mean I/O counter =           10
+ writing mean record for curl_u; rec. count =           10
+ slope_y: current mean I/O counter =           10
+ writing mean record for slope_y; rec. count =           10
+ N2: current mean I/O counter =           10
+ writing mean record for N2; rec. count =           10
+ unod: current mean I/O counter =           10
+ writing mean record for unod; rec. count =           10
+ sst: current mean I/O counter =           10
+ writing mean record for sst; rec. count =           10
+ rosb: current mean I/O counter =           10
+ writing mean record for rosb; rec. count =           10
+ u: current mean I/O counter =           10
+ writing mean record for u; rec. count =           10
+ hc300m: current mean I/O counter =           10
+ writing mean record for hc300m; rec. count =           10
+ temp: current mean I/O counter =           10
+ writing mean record for temp; rec. count =           10
+ hc: current mean I/O counter =           10
+ writing mean record for hc; rec. count =           10
+ vnod: current mean I/O counter =           10
+ writing mean record for vnod; rec. count =           10
+ tflux_vnod: current mean I/O counter =           10
+ writing mean record for tflux_vnod; rec. count =           10
+ slope_x: current mean I/O counter =           10
+ writing mean record for slope_x; rec. count =           10
+ tflux_w: current mean I/O counter =           10
+ writing mean record for tflux_w; rec. count =           10
+ v: current mean I/O counter =           10
+ writing mean record for v; rec. count =           10
+ ssh: current mean I/O counter =           10
+ writing mean record for ssh; rec. count =           10
+ hc700m: current mean I/O counter =           10
+ writing mean record for hc700m; rec. count =           10
+ tflux_unod: current mean I/O counter =           10
+ writing mean record for tflux_unod; rec. count =           10
+ curl_u: current mean I/O counter =           11
+ writing mean record for curl_u; rec. count =           11
+ N2: current mean I/O counter =           11
+ writing mean record for N2; rec. count =           11
+ rosb: current mean I/O counter =           11
+ writing mean record for rosb; rec. count =           11
+ slope_y: current mean I/O counter =           11
+ writing mean record for slope_y; rec. count =           11
+ u: current mean I/O counter =           11
+ writing mean record for u; rec. count =           11
+ unod: current mean I/O counter =           11
+ writing mean record for unod; rec. count =           11
+ sst: current mean I/O counter =           11
+ writing mean record for sst; rec. count =           11
+ hc300m: current mean I/O counter =           11
+ writing mean record for hc300m; rec. count =           11
+ hc: current mean I/O counter =           11
+ writing mean record for hc; rec. count =           11
+ tflux_vnod: current mean I/O counter =           11
+ writing mean record for tflux_vnod; rec. count =           11
+ temp: current mean I/O counter =           11
+ writing mean record for temp; rec. count =           11
+ slope_x: current mean I/O counter =           11
+ writing mean record for slope_x; rec. count =           11
+ v: current mean I/O counter =           11
+ writing mean record for v; rec. count =           11
+ vnod: current mean I/O counter =           11
+ writing mean record for vnod; rec. count =           11
+ ssh: current mean I/O counter =           11
+ writing mean record for ssh; rec. count =           11
+ hc700m: current mean I/O counter =           11
+ writing mean record for hc700m; rec. count =           11
+ tflux_unod: current mean I/O counter =           11
+ writing mean record for tflux_unod; rec. count =           11
+ tflux_w: current mean I/O counter =           11
+ writing mean record for tflux_w; rec. count =           11
+ curl_u: current mean I/O counter =           12
+ writing mean record for curl_u; rec. count =           12
+ N2: current mean I/O counter =           12
+ writing mean record for N2; rec. count =           12
+ unod: current mean I/O counter =           12
+ writing mean record for unod; rec. count =           12
+ rosb: current mean I/O counter =           12
+ writing mean record for rosb; rec. count =           12
+ slope_y: current mean I/O counter =           12
+ writing mean record for slope_y; rec. count =           12
+ sst: current mean I/O counter =           12
+ writing mean record for sst; rec. count =           12
+ hc300m: current mean I/O counter =           12
+ writing mean record for hc300m; rec. count =           12
+ u: current mean I/O counter =           12
+ writing mean record for u; rec. count =           12
+ hc: current mean I/O counter =           12
+ writing mean record for hc; rec. count =           12
+ tflux_vnod: current mean I/O counter =           12
+ writing mean record for tflux_vnod; rec. count =           12
+ vnod: current mean I/O counter =           12
+ writing mean record for vnod; rec. count =           12
+ slope_x: current mean I/O counter =           12
+ writing mean record for slope_x; rec. count =           12
+ ssh: current mean I/O counter =           12
+ writing mean record for ssh; rec. count =           12
+ tflux_unod: current mean I/O counter =           12
+ writing mean record for tflux_unod; rec. count =           12
+ temp: current mean I/O counter =           12
+ writing mean record for temp; rec. count =           12
+ v: current mean I/O counter =           12
+ writing mean record for v; rec. count =           12
+ hc700m: current mean I/O counter =           12
+ writing mean record for hc700m; rec. count =           12
+ tflux_w: current mean I/O counter =           12
+ writing mean record for tflux_w; rec. count =           12
+ curl_u: current mean I/O counter =           13
+ writing mean record for curl_u; rec. count =           13
+ slope_y: current mean I/O counter =           13
+ writing mean record for slope_y; rec. count =           13
+ N2: current mean I/O counter =           13
+ writing mean record for N2; rec. count =           13
+ rosb: current mean I/O counter =           13
+ writing mean record for rosb; rec. count =           13
+ unod: current mean I/O counter =           13
+ writing mean record for unod; rec. count =           13
+ vnod: current mean I/O counter =           13
+ writing mean record for vnod; rec. count =           13
+ v: current mean I/O counter =           13
+ writing mean record for v; rec. count =           13
+ hc700m: current mean I/O counter =           13
+ writing mean record for hc700m; rec. count =           13
+ tflux_vnod: current mean I/O counter =           13
+ writing mean record for tflux_vnod; rec. count =           13
+ sst: current mean I/O counter =           13
+ writing mean record for sst; rec. count =           13
+ u: current mean I/O counter =           13
+ writing mean record for u; rec. count =           13
+ slope_x: current mean I/O counter =           13
+ writing mean record for slope_x; rec. count =           13
+ temp: current mean I/O counter =           13
+ writing mean record for temp; rec. count =           13
+ hc: current mean I/O counter =           13
+ writing mean record for hc; rec. count =           13
+ ssh: current mean I/O counter =           13
+ writing mean record for ssh; rec. count =           13
+ hc300m: current mean I/O counter =           13
+ writing mean record for hc300m; rec. count =           13
+ tflux_unod: current mean I/O counter =           13
+ writing mean record for tflux_unod; rec. count =           13
+ tflux_w: current mean I/O counter =           13
+ writing mean record for tflux_w; rec. count =           13
+ curl_u: current mean I/O counter =           14
+ writing mean record for curl_u; rec. count =           14
+ N2: current mean I/O counter =           14
+ writing mean record for N2; rec. count =           14
+ rosb: current mean I/O counter =           14
+ writing mean record for rosb; rec. count =           14
+ slope_y: current mean I/O counter =           14
+ writing mean record for slope_y; rec. count =           14
+ u: current mean I/O counter =           14
+ writing mean record for u; rec. count =           14
+ unod: current mean I/O counter =           14
+ writing mean record for unod; rec. count =           14
+ tflux_vnod: current mean I/O counter =           14
+ writing mean record for tflux_vnod; rec. count =           14
+ sst: current mean I/O counter =           14
+ writing mean record for sst; rec. count =           14
+ hc: current mean I/O counter =           14
+ writing mean record for hc; rec. count =           14
+ hc300m: current mean I/O counter =           14
+ writing mean record for hc300m; rec. count =           14
+ slope_x: current mean I/O counter =           14
+ writing mean record for slope_x; rec. count =           14
+ hc700m: current mean I/O counter =           14
+ writing mean record for hc700m; rec. count =           14
+ vnod: current mean I/O counter =           14
+ writing mean record for vnod; rec. count =           14
+ temp: current mean I/O counter =           14
+ writing mean record for temp; rec. count =           14
+ v: current mean I/O counter =           14
+ writing mean record for v; rec. count =           14
+ ssh: current mean I/O counter =           14
+ writing mean record for ssh; rec. count =           14
+ tflux_unod: current mean I/O counter =           14
+ writing mean record for tflux_unod; rec. count =           14
+ tflux_w: current mean I/O counter =           14
+ writing mean record for tflux_w; rec. count =           14
+ curl_u: current mean I/O counter =           15
+ writing mean record for curl_u; rec. count =           15
+ N2: current mean I/O counter =           15
+ writing mean record for N2; rec. count =           15
+ slope_y: current mean I/O counter =           15
+ writing mean record for slope_y; rec. count =           15
+ rosb: current mean I/O counter =           15
+ writing mean record for rosb; rec. count =           15
+ u: current mean I/O counter =           15
+ writing mean record for u; rec. count =           15
+ unod: current mean I/O counter =           15
+ writing mean record for unod; rec. count =           15
+ hc300m: current mean I/O counter =           15
+ writing mean record for hc300m; rec. count =           15
+ sst: current mean I/O counter =           15
+ writing mean record for sst; rec. count =           15
+ hc: current mean I/O counter =           15
+ writing mean record for hc; rec. count =           15
+ tflux_w: current mean I/O counter =           15
+ writing mean record for tflux_w; rec. count =           15
+ tflux_vnod: current mean I/O counter =           15
+ writing mean record for tflux_vnod; rec. count =           15
+ slope_x: current mean I/O counter =           15
+ writing mean record for slope_x; rec. count =           15
+ vnod: current mean I/O counter =           15
+ writing mean record for vnod; rec. count =           15
+ temp: current mean I/O counter =           15
+ writing mean record for temp; rec. count =           15
+ ssh: current mean I/O counter =           15
+ writing mean record for ssh; rec. count =           15
+ v: current mean I/O counter =           15
+ writing mean record for v; rec. count =           15
+ hc700m: current mean I/O counter =           15
+ writing mean record for hc700m; rec. count =           15
+ tflux_unod: current mean I/O counter =           15
+ writing mean record for tflux_unod; rec. count =           15
+ curl_u: current mean I/O counter =           16
+ writing mean record for curl_u; rec. count =           16
+ N2: current mean I/O counter =           16
+ writing mean record for N2; rec. count =           16
+ slope_y: current mean I/O counter =           16
+ writing mean record for slope_y; rec. count =           16
+ rosb: current mean I/O counter =           16
+ writing mean record for rosb; rec. count =           16
+ u: current mean I/O counter =           16
+ writing mean record for u; rec. count =           16
+ tflux_vnod: current mean I/O counter =           16
+ writing mean record for tflux_vnod; rec. count =           16
+ unod: current mean I/O counter =           16
+ writing mean record for unod; rec. count =           16
+ sst: current mean I/O counter =           16
+ writing mean record for sst; rec. count =           16
+ hc: current mean I/O counter =           16
+ writing mean record for hc; rec. count =           16
+ hc300m: current mean I/O counter =           16
+ writing mean record for hc300m; rec. count =           16
+ slope_x: current mean I/O counter =           16
+ writing mean record for slope_x; rec. count =           16
+ vnod: current mean I/O counter =           16
+ writing mean record for vnod; rec. count =           16
+ temp: current mean I/O counter =           16
+ writing mean record for temp; rec. count =           16
+ tflux_w: current mean I/O counter =           16
+ writing mean record for tflux_w; rec. count =           16
+ v: current mean I/O counter =           16
+ writing mean record for v; rec. count =           16
+ hc700m: current mean I/O counter =           16
+ writing mean record for hc700m; rec. count =           16
+ ssh: current mean I/O counter =           16
+ writing mean record for ssh; rec. count =           16
+ tflux_unod: current mean I/O counter =           16
+ writing mean record for tflux_unod; rec. count =           16
+ curl_u: current mean I/O counter =           17
+ writing mean record for curl_u; rec. count =           17
+ N2: current mean I/O counter =           17
+ writing mean record for N2; rec. count =           17
+ slope_y: current mean I/O counter =           17
+ writing mean record for slope_y; rec. count =           17
+ rosb: current mean I/O counter =           17
+ writing mean record for rosb; rec. count =           17
+ u: current mean I/O counter =           17
+ writing mean record for u; rec. count =           17
+ sst: current mean I/O counter =           17
+ writing mean record for sst; rec. count =           17
+ hc300m: current mean I/O counter =           17
+ writing mean record for hc300m; rec. count =           17
+ hc: current mean I/O counter =           17
+ writing mean record for hc; rec. count =           17
+ tflux_vnod: current mean I/O counter =           17
+ writing mean record for tflux_vnod; rec. count =           17
+ unod: current mean I/O counter =           17
+ writing mean record for unod; rec. count =           17
+ slope_x: current mean I/O counter =           17
+ writing mean record for slope_x; rec. count =           17
+ vnod: current mean I/O counter =           17
+ writing mean record for vnod; rec. count =           17
+ temp: current mean I/O counter =           17
+ writing mean record for temp; rec. count =           17
+ v: current mean I/O counter =           17
+ writing mean record for v; rec. count =           17
+ ssh: current mean I/O counter =           17
+ writing mean record for ssh; rec. count =           17
+ hc700m: current mean I/O counter =           17
+ writing mean record for hc700m; rec. count =           17
+ tflux_unod: current mean I/O counter =           17
+ writing mean record for tflux_unod; rec. count =           17
+ tflux_w: current mean I/O counter =           17
+ writing mean record for tflux_w; rec. count =           17
+ curl_u: current mean I/O counter =           18
+ writing mean record for curl_u; rec. count =           18
+ N2: current mean I/O counter =           18
+ writing mean record for N2; rec. count =           18
+ slope_y: current mean I/O counter =           18
+ writing mean record for slope_y; rec. count =           18
+ rosb: current mean I/O counter =           18
+ writing mean record for rosb; rec. count =           18
+ unod: current mean I/O counter =           18
+ writing mean record for unod; rec. count =           18
+ u: current mean I/O counter =           18
+ writing mean record for u; rec. count =           18
+ hc300m: current mean I/O counter =           18
+ writing mean record for hc300m; rec. count =           18
+ sst: current mean I/O counter =           18
+ writing mean record for sst; rec. count =           18
+ temp: current mean I/O counter =           18
+ writing mean record for temp; rec. count =           18
+ tflux_vnod: current mean I/O counter =           18
+ writing mean record for tflux_vnod; rec. count =           18
+ hc: current mean I/O counter =           18
+ writing mean record for hc; rec. count =           18
+ slope_x: current mean I/O counter =           18
+ writing mean record for slope_x; rec. count =           18
+ vnod: current mean I/O counter =           18
+ writing mean record for vnod; rec. count =           18
+ v: current mean I/O counter =           18
+ writing mean record for v; rec. count =           18
+ tflux_w: current mean I/O counter =           18
+ writing mean record for tflux_w; rec. count =           18
+ ssh: current mean I/O counter =           18
+ writing mean record for ssh; rec. count =           18
+ hc700m: current mean I/O counter =           18
+ writing mean record for hc700m; rec. count =           18
+ tflux_unod: current mean I/O counter =           18
+ writing mean record for tflux_unod; rec. count =           18
+ curl_u: current mean I/O counter =           19
+ writing mean record for curl_u; rec. count =           19
+ N2: current mean I/O counter =           19
+ writing mean record for N2; rec. count =           19
+ slope_y: current mean I/O counter =           19
+ writing mean record for slope_y; rec. count =           19
+ rosb: current mean I/O counter =           19
+ writing mean record for rosb; rec. count =           19
+ hc: current mean I/O counter =           19
+ writing mean record for hc; rec. count =           19
+ u: current mean I/O counter =           19
+ writing mean record for u; rec. count =           19
+ sst: current mean I/O counter =           19
+ writing mean record for sst; rec. count =           19
+ hc300m: current mean I/O counter =           19
+ writing mean record for hc300m; rec. count =           19
+ vnod: current mean I/O counter =           19
+ writing mean record for vnod; rec. count =           19
+ v: current mean I/O counter =           19
+ writing mean record for v; rec. count =           19
+ tflux_vnod: current mean I/O counter =           19
+ writing mean record for tflux_vnod; rec. count =           19
+ unod: current mean I/O counter =           19
+ writing mean record for unod; rec. count =           19
+ slope_x: current mean I/O counter =           19
+ writing mean record for slope_x; rec. count =           19
+ temp: current mean I/O counter =           19
+ writing mean record for temp; rec. count =           19
+ ssh: current mean I/O counter =           19
+ writing mean record for ssh; rec. count =           19
+ hc700m: current mean I/O counter =           19
+ writing mean record for hc700m; rec. count =           19
+ tflux_unod: current mean I/O counter =           19
+ writing mean record for tflux_unod; rec. count =           19
+ tflux_w: current mean I/O counter =           19
+ writing mean record for tflux_w; rec. count =           19
+ curl_u: current mean I/O counter =           20
+ writing mean record for curl_u; rec. count =           20
+ N2: current mean I/O counter =           20
+ writing mean record for N2; rec. count =           20
+ slope_y: current mean I/O counter =           20
+ writing mean record for slope_y; rec. count =           20
+ rosb: current mean I/O counter =           20
+ writing mean record for rosb; rec. count =           20
+ tflux_unod: current mean I/O counter =           20
+ writing mean record for tflux_unod; rec. count =           20
+ tflux_w: current mean I/O counter =           20
+ writing mean record for tflux_w; rec. count =           20
+ u: current mean I/O counter =           20
+ writing mean record for u; rec. count =           20
+ hc: current mean I/O counter =           20
+ writing mean record for hc; rec. count =           20
+ sst: current mean I/O counter =           20
+ writing mean record for sst; rec. count =           20
+ hc300m: current mean I/O counter =           20
+ writing mean record for hc300m; rec. count =           20
+ tflux_vnod: current mean I/O counter =           20
+ writing mean record for tflux_vnod; rec. count =           20
+ slope_x: current mean I/O counter =           20
+ writing mean record for slope_x; rec. count =           20
+ vnod: current mean I/O counter =           20
+ writing mean record for vnod; rec. count =           20
+ temp: current mean I/O counter =           20
+ writing mean record for temp; rec. count =           20
+ unod: current mean I/O counter =           20
+ writing mean record for unod; rec. count =           20
+ v: current mean I/O counter =           20
+ writing mean record for v; rec. count =           20
+ ssh: current mean I/O counter =           20
+ writing mean record for ssh; rec. count =           20
+ hc700m: current mean I/O counter =           20
+ writing mean record for hc700m; rec. count =           20
+ curl_u: current mean I/O counter =           21
+ writing mean record for curl_u; rec. count =           21
+ slope_y: current mean I/O counter =           21
+ writing mean record for slope_y; rec. count =           21
+ N2: current mean I/O counter =           21
+ writing mean record for N2; rec. count =           21
+ rosb: current mean I/O counter =           21
+ writing mean record for rosb; rec. count =           21
+ u: current mean I/O counter =           21
+ writing mean record for u; rec. count =           21
+ vnod: current mean I/O counter =           21
+ writing mean record for vnod; rec. count =           21
+ hc300m: current mean I/O counter =           21
+ writing mean record for hc300m; rec. count =           21
+ v: current mean I/O counter =           21
+ writing mean record for v; rec. count =           21
+ sst: current mean I/O counter =           21
+ writing mean record for sst; rec. count =           21
+ unod: current mean I/O counter =           21
+ writing mean record for unod; rec. count =           21
+ tflux_vnod: current mean I/O counter =           21
+ writing mean record for tflux_vnod; rec. count =           21
+ hc: current mean I/O counter =           21
+ writing mean record for hc; rec. count =           21
+ temp: current mean I/O counter =           21
+ writing mean record for temp; rec. count =           21
+ slope_x: current mean I/O counter =           21
+ writing mean record for slope_x; rec. count =           21
+ ssh: current mean I/O counter =           21
+ writing mean record for ssh; rec. count =           21
+ hc700m: current mean I/O counter =           21
+ writing mean record for hc700m; rec. count =           21
+ tflux_unod: current mean I/O counter =           21
+ writing mean record for tflux_unod; rec. count =           21
+ tflux_w: current mean I/O counter =           21
+ writing mean record for tflux_w; rec. count =           21
+ curl_u: current mean I/O counter =           22
+ writing mean record for curl_u; rec. count =           22
+ N2: current mean I/O counter =           22
+ writing mean record for N2; rec. count =           22
+ slope_y: current mean I/O counter =           22
+ writing mean record for slope_y; rec. count =           22
+ rosb: current mean I/O counter =           22
+ writing mean record for rosb; rec. count =           22
+ u: current mean I/O counter =           22
+ writing mean record for u; rec. count =           22
+ hc300m: current mean I/O counter =           22
+ writing mean record for hc300m; rec. count =           22
+ tflux_vnod: current mean I/O counter =           22
+ writing mean record for tflux_vnod; rec. count =           22
+ sst: current mean I/O counter =           22
+ writing mean record for sst; rec. count =           22
+ unod: current mean I/O counter =           22
+ writing mean record for unod; rec. count =           22
+ temp: current mean I/O counter =           22
+ writing mean record for temp; rec. count =           22
+ hc: current mean I/O counter =           22
+ writing mean record for hc; rec. count =           22
+ slope_x: current mean I/O counter =           22
+ writing mean record for slope_x; rec. count =           22
+ vnod: current mean I/O counter =           22
+ writing mean record for vnod; rec. count =           22
+ v: current mean I/O counter =           22
+ writing mean record for v; rec. count =           22
+ ssh: current mean I/O counter =           22
+ writing mean record for ssh; rec. count =           22
+ hc700m: current mean I/O counter =           22
+ writing mean record for hc700m; rec. count =           22
+ tflux_unod: current mean I/O counter =           22
+ writing mean record for tflux_unod; rec. count =           22
+ tflux_w: current mean I/O counter =           22
+ writing mean record for tflux_w; rec. count =           22
+ curl_u: current mean I/O counter =           23
+ writing mean record for curl_u; rec. count =           23
+ N2: current mean I/O counter =           23
+ writing mean record for N2; rec. count =           23
+ rosb: current mean I/O counter =           23
+ writing mean record for rosb; rec. count =           23
+ slope_y: current mean I/O counter =           23
+ writing mean record for slope_y; rec. count =           23
+ unod: current mean I/O counter =           23
+ writing mean record for unod; rec. count =           23
+ u: current mean I/O counter =           23
+ writing mean record for u; rec. count =           23
+ sst: current mean I/O counter =           23
+ writing mean record for sst; rec. count =           23
+ hc300m: current mean I/O counter =           23
+ writing mean record for hc300m; rec. count =           23
+ hc: current mean I/O counter =           23
+ writing mean record for hc; rec. count =           23
+ tflux_vnod: current mean I/O counter =           23
+ writing mean record for tflux_vnod; rec. count =           23
+ vnod: current mean I/O counter =           23
+ writing mean record for vnod; rec. count =           23
+ slope_x: current mean I/O counter =           23
+ writing mean record for slope_x; rec. count =           23
+ temp: current mean I/O counter =           23
+ writing mean record for temp; rec. count =           23
+ v: current mean I/O counter =           23
+ writing mean record for v; rec. count =           23
+ tflux_w: current mean I/O counter =           23
+ writing mean record for tflux_w; rec. count =           23
+ hc700m: current mean I/O counter =           23
+ writing mean record for hc700m; rec. count =           23
+ ssh: current mean I/O counter =           23
+ writing mean record for ssh; rec. count =           23
+ tflux_unod: current mean I/O counter =           23
+ writing mean record for tflux_unod; rec. count =           23
+ curl_u: current mean I/O counter =           24
+ writing mean record for curl_u; rec. count =           24
+ N2: current mean I/O counter =           24
+ writing mean record for N2; rec. count =           24
+ slope_y: current mean I/O counter =           24
+ writing mean record for slope_y; rec. count =           24
+ u: current mean I/O counter =           24
+ writing mean record for u; rec. count =           24
+ rosb: current mean I/O counter =           24
+ writing mean record for rosb; rec. count =           24
+ hc: current mean I/O counter =           24
+ writing mean record for hc; rec. count =           24
+ unod: current mean I/O counter =           24
+ writing mean record for unod; rec. count =           24
+ tflux_vnod: current mean I/O counter =           24
+ writing mean record for tflux_vnod; rec. count =           24
+ sst: current mean I/O counter =           24
+ writing mean record for sst; rec. count =           24
+ hc300m: current mean I/O counter =           24
+ writing mean record for hc300m; rec. count =           24
+ vnod: current mean I/O counter =           24
+ writing mean record for vnod; rec. count =           24
+ slope_x: current mean I/O counter =           24
+ writing mean record for slope_x; rec. count =           24
+ temp: current mean I/O counter =           24
+ writing mean record for temp; rec. count =           24
+ ssh: current mean I/O counter =           24
+ writing mean record for ssh; rec. count =           24
+ hc700m: current mean I/O counter =           24
+ writing mean record for hc700m; rec. count =           24
+ v: current mean I/O counter =           24
+ writing mean record for v; rec. count =           24
+ tflux_unod: current mean I/O counter =           24
+ writing mean record for tflux_unod; rec. count =           24
+ tflux_w: current mean I/O counter =           24
+ writing mean record for tflux_w; rec. count =           24
+ curl_u: current mean I/O counter =           25
+ writing mean record for curl_u; rec. count =           25
+ N2: current mean I/O counter =           25
+ writing mean record for N2; rec. count =           25
+ slope_y: current mean I/O counter =           25
+ writing mean record for slope_y; rec. count =           25
+ rosb: current mean I/O counter =           25
+ writing mean record for rosb; rec. count =           25
+ unod: current mean I/O counter =           25
+ writing mean record for unod; rec. count =           25
+ u: current mean I/O counter =           25
+ writing mean record for u; rec. count =           25
+ hc300m: current mean I/O counter =           25
+ writing mean record for hc300m; rec. count =           25
+ hc: current mean I/O counter =           25
+ writing mean record for hc; rec. count =           25
+ sst: current mean I/O counter =           25
+ writing mean record for sst; rec. count =           25
+ tflux_vnod: current mean I/O counter =           25
+ writing mean record for tflux_vnod; rec. count =           25
+ slope_x: current mean I/O counter =           25
+ writing mean record for slope_x; rec. count =           25
+ vnod: current mean I/O counter =           25
+ writing mean record for vnod; rec. count =           25
+ temp: current mean I/O counter =           25
+ writing mean record for temp; rec. count =           25
+ v: current mean I/O counter =           25
+ writing mean record for v; rec. count =           25
+ ssh: current mean I/O counter =           25
+ writing mean record for ssh; rec. count =           25
+ hc700m: current mean I/O counter =           25
+ writing mean record for hc700m; rec. count =           25
+ tflux_unod: current mean I/O counter =           25
+ writing mean record for tflux_unod; rec. count =           25
+ tflux_w: current mean I/O counter =           25
+ writing mean record for tflux_w; rec. count =           25
+ curl_u: current mean I/O counter =           26
+ writing mean record for curl_u; rec. count =           26
+ N2: current mean I/O counter =           26
+ writing mean record for N2; rec. count =           26
+ slope_y: current mean I/O counter =           26
+ writing mean record for slope_y; rec. count =           26
+ unod: current mean I/O counter =           26
+ writing mean record for unod; rec. count =           26
+ rosb: current mean I/O counter =           26
+ writing mean record for rosb; rec. count =           26
+ u: current mean I/O counter =           26
+ writing mean record for u; rec. count =           26
+ sst: current mean I/O counter =           26
+ writing mean record for sst; rec. count =           26
+ hc300m: current mean I/O counter =           26
+ writing mean record for hc300m; rec. count =           26
+ hc: current mean I/O counter =           26
+ writing mean record for hc; rec. count =           26
+ tflux_vnod: current mean I/O counter =           26
+ writing mean record for tflux_vnod; rec. count =           26
+ vnod: current mean I/O counter =           26
+ writing mean record for vnod; rec. count =           26
+ slope_x: current mean I/O counter =           26
+ writing mean record for slope_x; rec. count =           26
+ temp: current mean I/O counter =           26
+ writing mean record for temp; rec. count =           26
+ ssh: current mean I/O counter =           26
+ writing mean record for ssh; rec. count =           26
+ v: current mean I/O counter =           26
+ writing mean record for v; rec. count =           26
+ hc700m: current mean I/O counter =           26
+ writing mean record for hc700m; rec. count =           26
+ tflux_unod: current mean I/O counter =           26
+ writing mean record for tflux_unod; rec. count =           26
+ tflux_w: current mean I/O counter =           26
+ writing mean record for tflux_w; rec. count =           26
+ curl_u: current mean I/O counter =           27
+ writing mean record for curl_u; rec. count =           27
+ rosb: current mean I/O counter =           27
+ writing mean record for rosb; rec. count =           27
+ N2: current mean I/O counter =           27
+ writing mean record for N2; rec. count =           27
+ slope_y: current mean I/O counter =           27
+ writing mean record for slope_y; rec. count =           27
+ unod: current mean I/O counter =           27
+ writing mean record for unod; rec. count =           27
+ u: current mean I/O counter =           27
+ writing mean record for u; rec. count =           27
+ sst: current mean I/O counter =           27
+ writing mean record for sst; rec. count =           27
+ hc300m: current mean I/O counter =           27
+ writing mean record for hc300m; rec. count =           27
+ slope_x: current mean I/O counter =           27
+ writing mean record for slope_x; rec. count =           27
+ hc: current mean I/O counter =           27
+ writing mean record for hc; rec. count =           27
+ tflux_vnod: current mean I/O counter =           27
+ writing mean record for tflux_vnod; rec. count =           27
+ temp: current mean I/O counter =           27
+ writing mean record for temp; rec. count =           27
+ vnod: current mean I/O counter =           27
+ writing mean record for vnod; rec. count =           27
+ v: current mean I/O counter =           27
+ writing mean record for v; rec. count =           27
+ tflux_w: current mean I/O counter =           27
+ writing mean record for tflux_w; rec. count =           27
+ ssh: current mean I/O counter =           27
+ writing mean record for ssh; rec. count =           27
+ hc700m: current mean I/O counter =           27
+ writing mean record for hc700m; rec. count =           27
+ tflux_unod: current mean I/O counter =           27
+ writing mean record for tflux_unod; rec. count =           27
+ curl_u: current mean I/O counter =           28
+ writing mean record for curl_u; rec. count =           28
+ rosb: current mean I/O counter =           28
+ writing mean record for rosb; rec. count =           28
+ N2: current mean I/O counter =           28
+ writing mean record for N2; rec. count =           28
+ slope_y: current mean I/O counter =           28
+ writing mean record for slope_y; rec. count =           28
+ unod: current mean I/O counter =           28
+ writing mean record for unod; rec. count =           28
+ slope_x: current mean I/O counter =           28
+ writing mean record for slope_x; rec. count =           28
+ temp: current mean I/O counter =           28
+ writing mean record for temp; rec. count =           28
+ vnod: current mean I/O counter =           28
+ writing mean record for vnod; rec. count =           28
+ u: current mean I/O counter =           28
+ writing mean record for u; rec. count =           28
+ v: current mean I/O counter =           28
+ writing mean record for v; rec. count =           28
+ sst: current mean I/O counter =           28
+ writing mean record for sst; rec. count =           28
+ ssh: current mean I/O counter =           28
+ writing mean record for ssh; rec. count =           28
+ hc300m: current mean I/O counter =           28
+ writing mean record for hc300m; rec. count =           28
+ hc700m: current mean I/O counter =           28
+ writing mean record for hc700m; rec. count =           28
+ hc: current mean I/O counter =           28
+ writing mean record for hc; rec. count =           28
+ tflux_unod: current mean I/O counter =           28
+ writing mean record for tflux_unod; rec. count =           28
+ tflux_vnod: current mean I/O counter =           28
+ writing mean record for tflux_vnod; rec. count =           28
+ tflux_w: current mean I/O counter =           28
+ writing mean record for tflux_w; rec. count =           28
+ curl_u: current mean I/O counter =           29
+ writing mean record for curl_u; rec. count =           29
+ N2: current mean I/O counter =           29
+ writing mean record for N2; rec. count =           29
+ slope_y: current mean I/O counter =           29
+ writing mean record for slope_y; rec. count =           29
+ rosb: current mean I/O counter =           29
+ writing mean record for rosb; rec. count =           29
+ unod: current mean I/O counter =           29
+ writing mean record for unod; rec. count =           29
+ u: current mean I/O counter =           29
+ writing mean record for u; rec. count =           29
+ sst: current mean I/O counter =           29
+ writing mean record for sst; rec. count =           29
+ hc300m: current mean I/O counter =           29
+ writing mean record for hc300m; rec. count =           29
+ vnod: current mean I/O counter =           29
+ writing mean record for vnod; rec. count =           29
+ hc: current mean I/O counter =           29
+ writing mean record for hc; rec. count =           29
+ tflux_vnod: current mean I/O counter =           29
+ writing mean record for tflux_vnod; rec. count =           29
+ slope_x: current mean I/O counter =           29
+ writing mean record for slope_x; rec. count =           29
+ temp: current mean I/O counter =           29
+ writing mean record for temp; rec. count =           29
+ v: current mean I/O counter =           29
+ writing mean record for v; rec. count =           29
+ ssh: current mean I/O counter =           29
+ writing mean record for ssh; rec. count =           29
+ hc700m: current mean I/O counter =           29
+ writing mean record for hc700m; rec. count =           29
+ tflux_unod: current mean I/O counter =           29
+ writing mean record for tflux_unod; rec. count =           29
+ tflux_w: current mean I/O counter =           29
+ writing mean record for tflux_w; rec. count =           29
+ curl_u: current mean I/O counter =           30
+ writing mean record for curl_u; rec. count =           30
+ slope_y: current mean I/O counter =           30
+ writing mean record for slope_y; rec. count =           30
+ u: current mean I/O counter =           30
+ writing mean record for u; rec. count =           30
+ sst: current mean I/O counter =           30
+ writing mean record for sst; rec. count =           30
+ hc300m: current mean I/O counter =           30
+ writing mean record for hc300m; rec. count =           30
+ rosb: current mean I/O counter =           30
+ writing mean record for rosb; rec. count =           30
+ N2: current mean I/O counter =           30
+ writing mean record for N2; rec. count =           30
+ unod: current mean I/O counter =           30
+ writing mean record for unod; rec. count =           30
+ slope_x: current mean I/O counter =           30
+ writing mean record for slope_x; rec. count =           30
+ temp: current mean I/O counter =           30
+ writing mean record for temp; rec. count =           30
+ vnod: current mean I/O counter =           30
+ writing mean record for vnod; rec. count =           30
+ v: current mean I/O counter =           30
+ writing mean record for v; rec. count =           30
+ ssh: current mean I/O counter =           30
+ writing mean record for ssh; rec. count =           30
+ hc700m: current mean I/O counter =           30
+ writing mean record for hc700m; rec. count =           30
+ hc: current mean I/O counter =           30
+ writing mean record for hc; rec. count =           30
+ tflux_unod: current mean I/O counter =           30
+ writing mean record for tflux_unod; rec. count =           30
+ tflux_vnod: current mean I/O counter =           30
+ writing mean record for tflux_vnod; rec. count =           30
+ tflux_w: current mean I/O counter =           30
+ writing mean record for tflux_w; rec. count =           30
+ curl_u: current mean I/O counter =           31
+ writing mean record for curl_u; rec. count =           31
+ rosb: current mean I/O counter =           31
+ writing mean record for rosb; rec. count =           31
+ N2: current mean I/O counter =           31
+ writing mean record for N2; rec. count =           31
+ slope_y: current mean I/O counter =           31
+ writing mean record for slope_y; rec. count =           31
+ temp: current mean I/O counter =           31
+ writing mean record for temp; rec. count =           31
+ unod: current mean I/O counter =           31
+ writing mean record for unod; rec. count =           31
+ u: current mean I/O counter =           31
+ writing mean record for u; rec. count =           31
+ sst: current mean I/O counter =           31
+ writing mean record for sst; rec. count =           31
+ hc300m: current mean I/O counter =           31
+ writing mean record for hc300m; rec. count =           31
+ hc: current mean I/O counter =           31
+ writing mean record for hc; rec. count =           31
+ tflux_vnod: current mean I/O counter =           31
+ writing mean record for tflux_vnod; rec. count =           31
+ slope_x: current mean I/O counter =           31
+ writing mean record for slope_x; rec. count =           31
+ vnod: current mean I/O counter =           31
+ writing mean record for vnod; rec. count =           31
+ v: current mean I/O counter =           31
+ writing mean record for v; rec. count =           31
+ ssh: current mean I/O counter =           31
+ writing mean record for ssh; rec. count =           31
+ hc700m: current mean I/O counter =           31
+ writing mean record for hc700m; rec. count =           31
+ tflux_unod: current mean I/O counter =           31
+ writing mean record for tflux_unod; rec. count =           31
+ tflux_w: current mean I/O counter =           31
+ writing mean record for tflux_w; rec. count =           31
+ curl_u: current mean I/O counter =           32
+ writing mean record for curl_u; rec. count =           32
+ rosb: current mean I/O counter =           32
+ writing mean record for rosb; rec. count =           32
+ N2: current mean I/O counter =           32
+ writing mean record for N2; rec. count =           32
+ unod: current mean I/O counter =           32
+ writing mean record for unod; rec. count =           32
+ u: current mean I/O counter =           32
+ writing mean record for u; rec. count =           32
+ sst: current mean I/O counter =           32
+ writing mean record for sst; rec. count =           32
+ hc300m: current mean I/O counter =           32
+ writing mean record for hc300m; rec. count =           32
+ slope_y: current mean I/O counter =           32
+ writing mean record for slope_y; rec. count =           32
+ slope_x: current mean I/O counter =           32
+ writing mean record for slope_x; rec. count =           32
+ vnod: current mean I/O counter =           32
+ writing mean record for vnod; rec. count =           32
+ v: current mean I/O counter =           32
+ writing mean record for v; rec. count =           32
+ hc: current mean I/O counter =           32
+ writing mean record for hc; rec. count =           32
+ tflux_vnod: current mean I/O counter =           32
+ writing mean record for tflux_vnod; rec. count =           32
+ temp: current mean I/O counter =           32
+ writing mean record for temp; rec. count =           32
+ hc700m: current mean I/O counter =           32
+ writing mean record for hc700m; rec. count =           32
+ ssh: current mean I/O counter =           32
+ writing mean record for ssh; rec. count =           32
+ tflux_unod: current mean I/O counter =           32
+ writing mean record for tflux_unod; rec. count =           32
+ tflux_w: current mean I/O counter =           32
+ writing mean record for tflux_w; rec. count =           32
+ curl_u: current mean I/O counter =           33
+ writing mean record for curl_u; rec. count =           33
+ rosb: current mean I/O counter =           33
+ writing mean record for rosb; rec. count =           33
+ N2: current mean I/O counter =           33
+ writing mean record for N2; rec. count =           33
+ slope_y: current mean I/O counter =           33
+ writing mean record for slope_y; rec. count =           33
+ u: current mean I/O counter =           33
+ writing mean record for u; rec. count =           33
+ slope_x: current mean I/O counter =           33
+ writing mean record for slope_x; rec. count =           33
+ temp: current mean I/O counter =           33
+ writing mean record for temp; rec. count =           33
+ unod: current mean I/O counter =           33
+ writing mean record for unod; rec. count =           33
+ vnod: current mean I/O counter =           33
+ writing mean record for vnod; rec. count =           33
+ sst: current mean I/O counter =           33
+ writing mean record for sst; rec. count =           33
+ hc300m: current mean I/O counter =           33
+ writing mean record for hc300m; rec. count =           33
+ hc700m: current mean I/O counter =           33
+ writing mean record for hc700m; rec. count =           33
+ hc: current mean I/O counter =           33
+ writing mean record for hc; rec. count =           33
+ tflux_unod: current mean I/O counter =           33
+ writing mean record for tflux_unod; rec. count =           33
+ tflux_vnod: current mean I/O counter =           33
+ writing mean record for tflux_vnod; rec. count =           33
+ v: current mean I/O counter =           33
+ writing mean record for v; rec. count =           33
+ ssh: current mean I/O counter =           33
+ writing mean record for ssh; rec. count =           33
+ tflux_w: current mean I/O counter =           33
+ writing mean record for tflux_w; rec. count =           33
+ curl_u: current mean I/O counter =           34
+ writing mean record for curl_u; rec. count =           34
+ rosb: current mean I/O counter =           34
+ writing mean record for rosb; rec. count =           34
+ N2: current mean I/O counter =           34
+ writing mean record for N2; rec. count =           34
+ slope_y: current mean I/O counter =           34
+ writing mean record for slope_y; rec. count =           34
+ unod: current mean I/O counter =           34
+ writing mean record for unod; rec. count =           34
+ u: current mean I/O counter =           34
+ writing mean record for u; rec. count =           34
+ sst: current mean I/O counter =           34
+ writing mean record for sst; rec. count =           34
+ hc300m: current mean I/O counter =           34
+ writing mean record for hc300m; rec. count =           34
+ hc: current mean I/O counter =           34
+ writing mean record for hc; rec. count =           34
+ tflux_vnod: current mean I/O counter =           34
+ writing mean record for tflux_vnod; rec. count =           34
+ slope_x: current mean I/O counter =           34
+ writing mean record for slope_x; rec. count =           34
+ vnod: current mean I/O counter =           34
+ writing mean record for vnod; rec. count =           34
+ v: current mean I/O counter =           34
+ writing mean record for v; rec. count =           34
+ temp: current mean I/O counter =           34
+ writing mean record for temp; rec. count =           34
+ ssh: current mean I/O counter =           34
+ writing mean record for ssh; rec. count =           34
+ tflux_w: current mean I/O counter =           34
+ writing mean record for tflux_w; rec. count =           34
+ hc700m: current mean I/O counter =           34
+ writing mean record for hc700m; rec. count =           34
+ tflux_unod: current mean I/O counter =           34
+ writing mean record for tflux_unod; rec. count =           34
+ curl_u: current mean I/O counter =           35
+ writing mean record for curl_u; rec. count =           35
+ rosb: current mean I/O counter =           35
+ writing mean record for rosb; rec. count =           35
+ N2: current mean I/O counter =           35
+ writing mean record for N2; rec. count =           35
+ slope_y: current mean I/O counter =           35
+ writing mean record for slope_y; rec. count =           35
+ unod: current mean I/O counter =           35
+ writing mean record for unod; rec. count =           35
+ u: current mean I/O counter =           35
+ writing mean record for u; rec. count =           35
+ sst: current mean I/O counter =           35
+ writing mean record for sst; rec. count =           35
+ hc: current mean I/O counter =           35
+ writing mean record for hc; rec. count =           35
+ hc300m: current mean I/O counter =           35
+ writing mean record for hc300m; rec. count =           35
+ slope_x: current mean I/O counter =           35
+ writing mean record for slope_x; rec. count =           35
+ temp: current mean I/O counter =           35
+ writing mean record for temp; rec. count =           35
+ vnod: current mean I/O counter =           35
+ writing mean record for vnod; rec. count =           35
+ tflux_vnod: current mean I/O counter =           35
+ writing mean record for tflux_vnod; rec. count =           35
+ ssh: current mean I/O counter =           35
+ writing mean record for ssh; rec. count =           35
+ hc700m: current mean I/O counter =           35
+ writing mean record for hc700m; rec. count =           35
+ v: current mean I/O counter =           35
+ writing mean record for v; rec. count =           35
+ tflux_unod: current mean I/O counter =           35
+ writing mean record for tflux_unod; rec. count =           35
+ tflux_w: current mean I/O counter =           35
+ writing mean record for tflux_w; rec. count =           35
+ curl_u: current mean I/O counter =           36
+ writing mean record for curl_u; rec. count =           36
+ N2: current mean I/O counter =           36
+ writing mean record for N2; rec. count =           36
+ rosb: current mean I/O counter =           36
+ writing mean record for rosb; rec. count =           36
+ slope_y: current mean I/O counter =           36
+ writing mean record for slope_y; rec. count =           36
+ unod: current mean I/O counter =           36
+ writing mean record for unod; rec. count =           36
+ u: current mean I/O counter =           36
+ writing mean record for u; rec. count =           36
+ sst: current mean I/O counter =           36
+ writing mean record for sst; rec. count =           36
+ hc300m: current mean I/O counter =           36
+ writing mean record for hc300m; rec. count =           36
+ slope_x: current mean I/O counter =           36
+ writing mean record for slope_x; rec. count =           36
+ temp: current mean I/O counter =           36
+ writing mean record for temp; rec. count =           36
+ vnod: current mean I/O counter =           36
+ writing mean record for vnod; rec. count =           36
+ v: current mean I/O counter =           36
+ writing mean record for v; rec. count =           36
+ ssh: current mean I/O counter =           36
+ writing mean record for ssh; rec. count =           36
+ hc700m: current mean I/O counter =           36
+ writing mean record for hc700m; rec. count =           36
+ hc: current mean I/O counter =           36
+ writing mean record for hc; rec. count =           36
+ tflux_unod: current mean I/O counter =           36
+ writing mean record for tflux_unod; rec. count =           36
+ tflux_vnod: current mean I/O counter =           36
+ writing mean record for tflux_vnod; rec. count =           36
+ tflux_w: current mean I/O counter =           36
+ writing mean record for tflux_w; rec. count =           36
+ curl_u: current mean I/O counter =           37
+ writing mean record for curl_u; rec. count =           37
+ rosb: current mean I/O counter =           37
+ writing mean record for rosb; rec. count =           37
+ N2: current mean I/O counter =           37
+ writing mean record for N2; rec. count =           37
+ slope_y: current mean I/O counter =           37
+ writing mean record for slope_y; rec. count =           37
+ vnod: current mean I/O counter =           37
+ writing mean record for vnod; rec. count =           37
+ u: current mean I/O counter =           37
+ writing mean record for u; rec. count =           37
+ v: current mean I/O counter =           37
+ writing mean record for v; rec. count =           37
+ tflux_vnod: current mean I/O counter =           37
+ writing mean record for tflux_vnod; rec. count =           37
+ slope_x: current mean I/O counter =           37
+ writing mean record for slope_x; rec. count =           37
+ temp: current mean I/O counter =           37
+ writing mean record for temp; rec. count =           37
+ unod: current mean I/O counter =           37
+ writing mean record for unod; rec. count =           37
+ sst: current mean I/O counter =           37
+ writing mean record for sst; rec. count =           37
+ ssh: current mean I/O counter =           37
+ writing mean record for ssh; rec. count =           37
+ hc300m: current mean I/O counter =           37
+ writing mean record for hc300m; rec. count =           37
+ hc700m: current mean I/O counter =           37
+ writing mean record for hc700m; rec. count =           37
+ hc: current mean I/O counter =           37
+ writing mean record for hc; rec. count =           37
+ tflux_w: current mean I/O counter =           37
+ writing mean record for tflux_w; rec. count =           37
+ tflux_unod: current mean I/O counter =           37
+ writing mean record for tflux_unod; rec. count =           37
+ curl_u: current mean I/O counter =           38
+ writing mean record for curl_u; rec. count =           38
+ N2: current mean I/O counter =           38
+ writing mean record for N2; rec. count =           38
+ slope_y: current mean I/O counter =           38
+ writing mean record for slope_y; rec. count =           38
+ rosb: current mean I/O counter =           38
+ writing mean record for rosb; rec. count =           38
+ unod: current mean I/O counter =           38
+ writing mean record for unod; rec. count =           38
+ vnod: current mean I/O counter =           38
+ writing mean record for vnod; rec. count =           38
+ u: current mean I/O counter =           38
+ writing mean record for u; rec. count =           38
+ sst: current mean I/O counter =           38
+ writing mean record for sst; rec. count =           38
+ hc300m: current mean I/O counter =           38
+ writing mean record for hc300m; rec. count =           38
+ hc: current mean I/O counter =           38
+ writing mean record for hc; rec. count =           38
+ slope_x: current mean I/O counter =           38
+ writing mean record for slope_x; rec. count =           38
+ temp: current mean I/O counter =           38
+ writing mean record for temp; rec. count =           38
+ v: current mean I/O counter =           38
+ writing mean record for v; rec. count =           38
+ tflux_vnod: current mean I/O counter =           38
+ writing mean record for tflux_vnod; rec. count =           38
+ ssh: current mean I/O counter =           38
+ writing mean record for ssh; rec. count =           38
+ hc700m: current mean I/O counter =           38
+ writing mean record for hc700m; rec. count =           38
+ tflux_unod: current mean I/O counter =           38
+ writing mean record for tflux_unod; rec. count =           38
+ tflux_w: current mean I/O counter =           38
+ writing mean record for tflux_w; rec. count =           38
+ curl_u: current mean I/O counter =           39
+ writing mean record for curl_u; rec. count =           39
+ rosb: current mean I/O counter =           39
+ writing mean record for rosb; rec. count =           39
+ N2: current mean I/O counter =           39
+ writing mean record for N2; rec. count =           39
+ slope_y: current mean I/O counter =           39
+ writing mean record for slope_y; rec. count =           39
+ unod: current mean I/O counter =           39
+ writing mean record for unod; rec. count =           39
+ u: current mean I/O counter =           39
+ writing mean record for u; rec. count =           39
+ sst: current mean I/O counter =           39
+ writing mean record for sst; rec. count =           39
+ hc300m: current mean I/O counter =           39
+ writing mean record for hc300m; rec. count =           39
+ slope_x: current mean I/O counter =           39
+ writing mean record for slope_x; rec. count =           39
+ hc: current mean I/O counter =           39
+ writing mean record for hc; rec. count =           39
+ tflux_vnod: current mean I/O counter =           39
+ writing mean record for tflux_vnod; rec. count =           39
+ temp: current mean I/O counter =           39
+ writing mean record for temp; rec. count =           39
+ vnod: current mean I/O counter =           39
+ writing mean record for vnod; rec. count =           39
+ tflux_unod: current mean I/O counter =           39
+ writing mean record for tflux_unod; rec. count =           39
+ v: current mean I/O counter =           39
+ writing mean record for v; rec. count =           39
+ ssh: current mean I/O counter =           39
+ writing mean record for ssh; rec. count =           39
+ hc700m: current mean I/O counter =           39
+ writing mean record for hc700m; rec. count =           39
+ tflux_w: current mean I/O counter =           39
+ writing mean record for tflux_w; rec. count =           39
+ curl_u: current mean I/O counter =           40
+ writing mean record for curl_u; rec. count =           40
+ N2: current mean I/O counter =           40
+ writing mean record for N2; rec. count =           40
+ slope_y: current mean I/O counter =           40
+ writing mean record for slope_y; rec. count =           40
+ rosb: current mean I/O counter =           40
+ writing mean record for rosb; rec. count =           40
+ unod: current mean I/O counter =           40
+ writing mean record for unod; rec. count =           40
+ u: current mean I/O counter =           40
+ writing mean record for u; rec. count =           40
+ sst: current mean I/O counter =           40
+ writing mean record for sst; rec. count =           40
+ hc300m: current mean I/O counter =           40
+ writing mean record for hc300m; rec. count =           40
+ hc: current mean I/O counter =           40
+ writing mean record for hc; rec. count =           40
+ tflux_vnod: current mean I/O counter =           40
+ writing mean record for tflux_vnod; rec. count =           40
+ slope_x: current mean I/O counter =           40
+ writing mean record for slope_x; rec. count =           40
+ tflux_unod: current mean I/O counter =           40
+ writing mean record for tflux_unod; rec. count =           40
+ temp: current mean I/O counter =           40
+ writing mean record for temp; rec. count =           40
+ vnod: current mean I/O counter =           40
+ writing mean record for vnod; rec. count =           40
+ ssh: current mean I/O counter =           40
+ writing mean record for ssh; rec. count =           40
+ v: current mean I/O counter =           40
+ writing mean record for v; rec. count =           40
+ hc700m: current mean I/O counter =           40
+ writing mean record for hc700m; rec. count =           40
+ tflux_w: current mean I/O counter =           40
+ writing mean record for tflux_w; rec. count =           40
+ curl_u: current mean I/O counter =           41
+ writing mean record for curl_u; rec. count =           41
+ slope_y: current mean I/O counter =           41
+ writing mean record for slope_y; rec. count =           41
+ u: current mean I/O counter =           41
+ writing mean record for u; rec. count =           41
+ rosb: current mean I/O counter =           41
+ writing mean record for rosb; rec. count =           41
+ N2: current mean I/O counter =           41
+ writing mean record for N2; rec. count =           41
+ slope_x: current mean I/O counter =           41
+ writing mean record for slope_x; rec. count =           41
+ temp: current mean I/O counter =           41
+ writing mean record for temp; rec. count =           41
+ unod: current mean I/O counter =           41
+ writing mean record for unod; rec. count =           41
+ vnod: current mean I/O counter =           41
+ writing mean record for vnod; rec. count =           41
+ v: current mean I/O counter =           41
+ writing mean record for v; rec. count =           41
+ sst: current mean I/O counter =           41
+ writing mean record for sst; rec. count =           41
+ ssh: current mean I/O counter =           41
+ writing mean record for ssh; rec. count =           41
+ hc300m: current mean I/O counter =           41
+ writing mean record for hc300m; rec. count =           41
+ hc700m: current mean I/O counter =           41
+ writing mean record for hc700m; rec. count =           41
+ hc: current mean I/O counter =           41
+ writing mean record for hc; rec. count =           41
+ tflux_unod: current mean I/O counter =           41
+ writing mean record for tflux_unod; rec. count =           41
+ tflux_vnod: current mean I/O counter =           41
+ writing mean record for tflux_vnod; rec. count =           41
+ tflux_w: current mean I/O counter =           41
+ writing mean record for tflux_w; rec. count =           41
+ curl_u: current mean I/O counter =           42
+ writing mean record for curl_u; rec. count =           42
+ rosb: current mean I/O counter =           42
+ writing mean record for rosb; rec. count =           42
+ N2: current mean I/O counter =           42
+ writing mean record for N2; rec. count =           42
+ slope_y: current mean I/O counter =           42
+ writing mean record for slope_y; rec. count =           42
+ slope_x: current mean I/O counter =           42
+ writing mean record for slope_x; rec. count =           42
+ temp: current mean I/O counter =           42
+ writing mean record for temp; rec. count =           42
+ unod: current mean I/O counter =           42
+ writing mean record for unod; rec. count =           42
+ vnod: current mean I/O counter =           42
+ writing mean record for vnod; rec. count =           42
+ u: current mean I/O counter =           42
+ writing mean record for u; rec. count =           42
+ sst: current mean I/O counter =           42
+ writing mean record for sst; rec. count =           42
+ hc300m: current mean I/O counter =           42
+ writing mean record for hc300m; rec. count =           42
+ hc700m: current mean I/O counter =           42
+ writing mean record for hc700m; rec. count =           42
+ hc: current mean I/O counter =           42
+ writing mean record for hc; rec. count =           42
+ tflux_vnod: current mean I/O counter =           42
+ writing mean record for tflux_vnod; rec. count =           42
+ v: current mean I/O counter =           42
+ writing mean record for v; rec. count =           42
+ ssh: current mean I/O counter =           42
+ writing mean record for ssh; rec. count =           42
+ tflux_unod: current mean I/O counter =           42
+ writing mean record for tflux_unod; rec. count =           42
+ tflux_w: current mean I/O counter =           42
+ writing mean record for tflux_w; rec. count =           42
+ curl_u: current mean I/O counter =           43
+ writing mean record for curl_u; rec. count =           43
+ rosb: current mean I/O counter =           43
+ writing mean record for rosb; rec. count =           43
+ N2: current mean I/O counter =           43
+ writing mean record for N2; rec. count =           43
+ unod: current mean I/O counter =           43
+ writing mean record for unod; rec. count =           43
+ u: current mean I/O counter =           43
+ writing mean record for u; rec. count =           43
+ sst: current mean I/O counter =           43
+ writing mean record for sst; rec. count =           43
+ hc300m: current mean I/O counter =           43
+ writing mean record for hc300m; rec. count =           43
+ slope_y: current mean I/O counter =           43
+ writing mean record for slope_y; rec. count =           43
+ temp: current mean I/O counter =           43
+ writing mean record for temp; rec. count =           43
+ hc: current mean I/O counter =           43
+ writing mean record for hc; rec. count =           43
+ tflux_vnod: current mean I/O counter =           43
+ writing mean record for tflux_vnod; rec. count =           43
+ slope_x: current mean I/O counter =           43
+ writing mean record for slope_x; rec. count =           43
+ vnod: current mean I/O counter =           43
+ writing mean record for vnod; rec. count =           43
+ ssh: current mean I/O counter =           43
+ writing mean record for ssh; rec. count =           43
+ hc700m: current mean I/O counter =           43
+ writing mean record for hc700m; rec. count =           43
+ v: current mean I/O counter =           43
+ writing mean record for v; rec. count =           43
+ tflux_unod: current mean I/O counter =           43
+ writing mean record for tflux_unod; rec. count =           43
+ tflux_w: current mean I/O counter =           43
+ writing mean record for tflux_w; rec. count =           43
+ ___CHECK FOR BLOW UP___________ --> mstep=          44
+  --STOP--> found temperture becomes NaN or <-5.0, >60
+ mype     =           27
+ mstep    =           44
+ node     =            2
+ lon,lat     =    11.6779000000000        18.3221000000000     
+ nz       =            1
+ nzmin, nzmax=            1          41
+ x=   11.6779000000000       ; y=   18.3221000000000     
+ temp(nz, n) =    61.9144942920336     
+ temp(: , n) =    61.9144942920336        19.8546878577752        20.6997991293840        20.7349610265574        20.2577418564010        19.2836618267364        19.1263811367231        18.7443298687776        18.2785400530973        18.0575580257642        17.8088633342398        17.6357680451985        17.4418083455699        17.1997339085168        16.8651329178213        16.4234076591310        15.8776947639297        15.2764682782258        14.6115893307331        13.8516774653635        12.9981883782415        12.0817609489131        11.1261114563335        10.1977620696228        9.38976407364695        8.72985461299850        8.21993056592975        7.81901901175996        7.46920516866873        7.12625212118767        6.76809457046621        6.37608318475516        5.92908357816150        5.41586129243363        4.85203037271113        4.35215101708846        3.92418518526106        3.47663648396048        1.81247692722768        3.31999608019510     
+ temp_old(nz,n)=    58.7993819255458     
+ temp_old(: ,n)=    58.7993819255458        19.7728931993144        20.5742197533840        20.6869389251674        20.2433875881024        19.2880395272801        19.1207557765260        18.7387601628097        18.2751893645555        18.0555817531351        17.8076524845764        17.6346993285085        17.4406468144871        17.1983783421973        16.8635951976695        16.4218554788481        15.8762471018029        15.2751558005207        14.6103962005837        13.8505870433834        12.9972016304213        12.0810542038731        11.1258217874048        10.1977308192014        9.39006711971030        8.73050856100517        8.22088502089458        7.82013533851202        7.47040457859320        7.12749697616873        6.76937885695040        6.37740763061954        5.93044882862356        5.41725867347239        4.85355505519571        4.35408730904377        3.92565672882376        3.47808482193569        1.90937022634465        3.27921129960980     
+ 
+ hflux    =    226.678604258010     
+ wflux    =   0.000000000000000E+000
+ 
+ eta_n    =   0.237746954956174     
+ d_eta(n)    =   2.993212575858547E-002
+ hbar     =   0.237746954956174     
+ hbar_old    =   0.207814806793224     
+ ssh_rhs     =    1277604.18833294     
+ ssh_rhs_old =    471426.842356711     
+ 
+ hnode    =    9.03766000000000        9.94144000000000        10.9355000000000        12.0292000000000        13.2320000000000        14.5552000000000        16.0108000000000        17.6122000000000        19.3730000000000        21.3100000000000        23.4410000000000        25.7860000000000        28.3640000000000        31.2000000000000        34.3210000000000        37.7520000000000        41.5280000000000        45.6810000000000        50.2480000000000        55.2739999999999        60.8010000000000        66.8810000000000        73.5690000000001        80.9259999999999        89.0180000000000        97.9200000000000        107.713000000000        118.480000000000        130.340000000000        143.360000000000        157.700000000000        173.470000000000        190.820000000000        209.900000000000        230.900000000000        253.980000000000        279.370000000000        307.320000000000        338.050000000000        371.850000000000     
+ hnode_new   =    9.03766000000000        9.94144000000000        10.9355000000000        12.0292000000000        13.2320000000000        14.5552000000000        16.0108000000000        17.6122000000000        19.3730000000000        21.3100000000000        23.4410000000000        25.7860000000000        28.3640000000000        31.2000000000000        34.3210000000000        37.7520000000000        41.5280000000000        45.6810000000000        50.2480000000000        55.2739999999999        60.8010000000000        66.8810000000000        73.5690000000001        80.9259999999999        89.0180000000000        97.9200000000000        107.713000000000        118.480000000000        130.340000000000        143.360000000000        157.700000000000        173.470000000000        190.820000000000        209.900000000000        230.900000000000        253.980000000000        279.370000000000        307.320000000000        338.050000000000        371.850000000000     
+ 
+ Kv       =   0.000000000000000E+000  1.003821973430908E-005  1.002351677435973E-005  1.003681631091966E-005  1.005157054006738E-005  1.006789100116427E-005  1.008610406342524E-005  1.010639006502500E-005  1.012901548424371E-005  1.015428677198220E-005  1.018256061944761E-005  1.021425323342966E-005  1.024985355390245E-005  1.028993511389829E-005  1.033518173144671E-005  1.038641369873377E-005  1.044461554791015E-005  1.051099275094982E-005  1.058702430144577E-005  1.067454924723102E-005  1.077589176862097E-005  1.089401536408659E-005  1.103277381847715E-005  1.119726622784312E-005  1.139438564611370E-005  1.163368013232385E-005  1.192877362364597E-005  1.229978679406550E-005  1.277768898855620E-005  1.341285759336812E-005  1.429244203450670E-005  1.558176401289166E-005  1.763327593605674E-005  2.133783282925210E-005  2.955506591387097E-005  5.245175774156528E-005  8.500496331446321E-005  9.843748816662368E-005  1.037408431187078E-004  1.064290122023140E-004  0.000000000000000E+000
+ 
+ W          =   4.988691360491677E-005  5.914013490526555E-005  6.304487374877631E-005  6.797068264570754E-005  7.204401154766894E-005  7.394521708253323E-005  7.527137097595263E-005  7.619449951674765E-005  7.673097365474891E-005  7.692657626678310E-005  7.679778322940802E-005  7.630155479106395E-005  7.536808509214739E-005  7.382364260982236E-005  7.140974139168861E-005  6.781956236540423E-005  6.274346574856956E-005  5.586722019811622E-005  4.684449319353548E-005  3.530799328644069E-005  2.090167139789450E-005  3.303896458064160E-006 -1.775642841120544E-005 -4.227548803471575E-005 -7.027971735104035E-005 -1.019615315493743E-004 -1.369413356404998E-004 -1.744425380327049E-004 -2.136682999198714E-004 -2.537428944257175E-004 -2.934754718656815E-004 -3.311932590058346E-004 -3.648479529791947E-004 -3.921541800536805E-004 -4.105815123071169E-004 -4.163303949495601E-004 -4.030165037510166E-004 -3.732370596077815E-004 -3.616221744669228E-004 -2.327159606805488E-004  0.000000000000000E+000
+ 
+ CFL_z(:,n)  =   3.311935629681804E-003  7.495556473517477E-003  7.264068520471159E-003  7.119643828143158E-003  6.860264762339999E-003  6.401215615312185E-003  5.923637523353672E-003  5.451106795763000E-003  4.990446958033709E-003  4.548417238369679E-003  4.128032373578520E-003  3.728446318237647E-003  3.348002221034953E-003  2.981319392140809E-003  2.621649934960670E-003  2.263491851982858E-003  1.903717120945932E-003  1.540965803823817E-003  1.174641470579561E-003  8.048734932631452E-004  4.331510206440593E-004  6.224348135928484E-005  3.041102076764241E-004  6.582204656349873E-004  9.947665777976351E-004  1.312006405235247E-003  1.601913622388673E-003  1.855109888413594E-003  2.065636354674260E-003  2.230048089082569E-003  2.344857372508533E-003  2.405623487331249E-003  2.409140585758708E-003  2.354034305610526E-003  2.240556266765368E-003  2.065381050384432E-003  1.817636747204890E-003  1.530291279027120E-003  1.347855429058660E-003  7.885438893013828E-004  0.000000000000000E+000
+ 
+ 
+ ___CHECK GLOBAL OCEAN VARIABLES --> mstep=          44
+   ___global estimat of eta & hbar____________________
+    int(eta), int(hbar)      =  8.757274712722274E-002  8.757274712722274E-002
+     --> error(eta-hbar)     =  0.000000000000000E+000
+    min(eta) , max(eta)      = -0.426630128468192       0.800684448473795     
+    max(hbar), max(hbar)     = -0.426630128468192       0.800684448473795     
+ 
+    int(deta), int(dhbar)    =  0.000000000000000E+000  6.159749639052594E-003
+     --> error(deta-dhbar)   = -6.159749639052594E-003
+     --> error(deta-wflux)   =  0.000000000000000E+000
+     --> error(dhbar-wflux)  =  6.159749639052594E-003
+ 
+    -int(wflux)*dt          =  0.000000000000000E+000
+    int(deta )-int(wflux)*dt =  0.000000000000000E+000
+    int(dhbar)-int(wflux)*dt =  6.159749639052594E-003
+ 
+   ___global min/max/mean  --> mstep=          44 ____________
+       eta= -4.266E-01 |  8.007E-01 | N.A.
+      deta=  5.947E-04 |  2.993E-02 | N.A.
+      hbar= -4.266E-01 |  8.007E-01 | N.A.
+     wflux=  0.000E+00 |  0.000E+00 |  0.000E+00
+     hflux=  6.136E+01 |  2.267E+02 |  0.000E+00
+      temp=  2.390E-01 |  6.191E+01 |  0.000E+00
+      salt=  3.500E+01 |  3.500E+01 |  0.000E+00
+    wvel(1,:)=  9.912E-07 |  4.989E-05 | N.A.
+    wvel(2,:)= -4.463E-05 |  6.831E-05 | N.A.
+    uvel(1,:)= -3.296E-01 |  4.270E-01 | N.A.
+    uvel(2,:)= -3.003E-01 |  3.671E-01 | N.A.
+    vvel(1,:)= -1.738E-01 |  3.399E-01 | N.A.
+    vvel(2,:)= -1.074E-01 |  3.686E-01 | N.A.
+   hnode(1,:)=  9.038E+00 |  9.038E+00 | N.A.
+   hnode(2,:)=  9.941E+00 |  9.941E+00 | N.A.
+     cfl_z=  N.A.      |  1.768E-02 | N.A.
+     pgf_x=  N.A.      |  2.065E-05 | N.A.
+     pgf_y=  N.A.      |  5.102E-05 | N.A.
+          Av=  N.A.      |  1.000E-01 | N.A.
+          Kv=  N.A.      |  1.000E-01 | N.A.
+ 
+ 
+                                                           
+         YOUR MODEL BLOW UP, CODE GREMLIN IN ACTION !!!    
+ [34m                              ____                        [0m
+ [34m                       __,-~~/~   `---.                   [0m
+ [34m                     _/_,---(      ,   )                  [0m
+ [34m                 __ /        <   /   )   \___             [0m
+ [0m - -- ----===;;;`====------------------===;;;===---- -- - [0m
+ [0m.____________.      \/  ~"~"~"~"~"~\~"~)~"/               [0m
+ [0m|Code Gremlin|      (_ (   \  (     >    \)               [0m
+ [0m`----+-------´[33m        \_( _ <         >_>`                 [0m
+ [0m     v        [33m           ~ `-i` ::>|--"                    [0m
+ [31m   (`-´)  [0m              [33m    I;|.|.|                       [0m
+ [31m  _( o<)_ [0m __T__        [31m   <|i::|i|`                      [0m
+ [31m (,_ w _,)[0m |TNT|        [31m  (` ^`[0m,-*[31m ")                     [0m
+ [31m<-´()^()  [0m |___|\_______[35m.,-#%&[0m(_)[35m%#&#~,.                  [0m
+ 
+ 
+  Things to try (if you havent changed anything in the code)
+      - 1st. increase the step_per_day (namelist.config,    
+        steps_per_day=32(45min),36(40min)...,48(30min)...
+        ...,60(24min)...,72(20min)...,96(15min)...,144(10min)
+        ...,160(9min),180(8min)...,240(6min)...,288(5min)
+        ...,360(4min)...,480(3min)...,720(2min)...,1440(1min))
+      - 2nd. increase slowly background viscosity visc_gamma0 within
+        its bounds (namelist.dyn)
+      - 3nd. increase slowly flow aware viscosity visc_gamma1 within
+        its bounds (namelist.dyn)
+      - 4th. contact developers :-D
+ 
+                                                           
+             [31m(`- ́)  _ (`- ́).->          <-. (`- ́)[0m          
+    [31m<-.      ( oo).-/ ( oo)_      .->      \(oo )_[0m         
+ [31m(`- ́)[36m-----.[31m([36m,------.[31m(_)[36m--[31m\_)(`- ́)[36m----. ,--.[31m/[36m  ,-.[31m)[36m .----. [0m
+ [31m(oo[36m|[31m(_\[36m--- ́ |  .--- ́/    _ /[31m( oo)[36m.-.  `|   `. ́   |\_,-.  |[0m
+ [31m / [36m|  `--. [31m([36m|  `--. \_..`--.[31m( _)[36m | |  ||  |`. ́|  |   . ́ . ́[0m
+ [31m \_)[36m  .-- ́  |  .-- ́ .-._)   \[31m\[36m|  |[31m)[36m|  ||  |   |  | . ́  /_ [0m
+ [31m  `[36m|  |[31m_)[36m   |  `---.\       / `  `- ́   ́|  |   |  ||      |[0m
+ [36m   `-- ́     `------ ́ `----- ́   `----- ́ `-- ́   `-- ́`------ ́[0m
+                                                           
+ 
+  --> Init. blowpup file 
+ Do output (netCDF, blowup) ...
+  --> call assoc_ids(bid)
+ associating blowup file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2008.oce.blowup.nc
+ initializing blowup file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.2008.oce.blowup.nc
+ current restart counter =            1
+  --> call write_blowup(bid, istep)
+ writing blowup record            1
+  --> finished writing blow up file
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+ fesom should stop with exit status = 0
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+Attempting to use an MPI routine after finalizing MPICH
+srun: error: prod-197: tasks 0-59: Exited with exit code 1
+srun: launch/slurm: _step_signal: Terminating StepId=43997035.0
+Thu May 21 11:00:27 CEST 2026

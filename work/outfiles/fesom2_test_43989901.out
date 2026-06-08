@@ -1,0 +1,93 @@
+Module for intel-oneapi-compilers version 2022.1.0 loaded
+Module for intel-oneapi-mpi version 2021.6.0 loaded
+Module for intel-oneapi-mkl version 2022.1.0 loaded
+Module for netcdf-fortran version 4.5.4 loaded
+Module for netcdf-c version 4.8.1 loaded
+ln: failed to create symbolic link './fesom.x': File exists
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+Wed May 20 17:47:19 CEST 2026
+ MPI has been initialized, provided MPI thread support level: MPI_THREAD_MULTIPLE           3
+ Running on                             60  PEs
+ 
+ [36m .------. ------. ------.  .-----. ,--.   ,-.  .----.  [0m
+ [36m |  .--- ́|  .--- ́/    _ / ´  .-.  `|   `. ́   |\_,-.  | [0m
+ [36m |  `--. |  `--. \_..`--. |  | |  ||  |`. ́|  |   . ́ . ́ [0m
+ [36m |  .-- ́ |  .-- ́ .-._)   \|  | |  ||  |   |  | . ́  /_  [0m
+ [36m |  |    |  `---.\       /`  `- ́   ́|  |   |  ||      | [0m
+ [36m `-- ́    `------ ́ `----- ́  `----- ́ `-- ́   `-- ́`------ ́ [0m
+                                           _____           
+       ___________                     ,-:` \;´,``-,       
+      | .-------. |                  .´-;_,;  `:-;_,`.     
+      | |       | |                 /;   `/    ,  _`.-\    
+      | |       | |                | ´`. (`     /` ` \`|   
+      | |__   __| |            ,-C=|:.  `\`-.   \_   / |   
+       `---|-|---´          ,-´    |     (   `,  .`\ ;`|   
+        [====  O]--,    ,--´        \     | .´     `-´/    
+      /:::::::::::\ \_,-             `.   ;/        .´     
+     /:::::===:::::\                   ``-._____.-´`       
+    ´---------------`                                      
+ 
+ 
+ FESOM2 git SHA: c34a956e
+ MPI library version: Intel(R) MPI Library 2021.6 for Linux* OS
+
+ [32m____________________________________________________________[0m
+ [7;32m --> FESOM BUILDS UP MODEL CONFIGURATION                    [0m
+ Restart path configuration:
+   Input path:  /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/
+   Output path: /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/
+   Note: Using same directory for input and output (legacy mode)
+ Namelist files are read in
+ time step size is set to    600.000000000000      sec
+ Value of which_NN:lfpoqaox
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 2 (rank 2 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 2
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 14 (rank 14 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 14
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 22 (rank 22 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 22
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 10 (rank 10 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 10
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 27 (rank 27 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 27
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 4 (rank 4 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 4
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 28 (rank 28 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 28
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 29 (rank 29 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 29
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 12 (rank 12 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 12
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 39 (rank 39 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 39
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 17 (rank 17 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 17
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 47 (rank 47 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 47
+slurmstepd: error: *** STEP 43989901.0 ON prod-125 CANCELLED AT 2026-05-20T17:47:23 ***
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 3 (rank 3 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 3
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 38 (rank 38 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 38
+srun: Job step aborted: Waiting up to 62 seconds for job step to finish.
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 11 (rank 11 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 11
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 56 (rank 56 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 56
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 51 (rank 51 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 51
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 58 (rank 58 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 58
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 9 (rank 9 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 9
+### error: can not open file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock, error: file not found, unit -129, file /albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/fesom.clock
+Abort(1) on node 31 (rank 31 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 31
+srun: error: prod-125: tasks 0-59: Killed
+srun: launch/slurm: _step_signal: Terminating StepId=43989901.0
+cp: cannot create regular file '/albedo/work/projects/p_clidyn_work/rjuhrban/double_gyre/m100/results/NN_after_spinup_none/lfpoqaox/': Not a directory
+Wed May 20 17:47:23 CEST 2026

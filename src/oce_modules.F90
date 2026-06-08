@@ -303,7 +303,6 @@ real(kind=WP), target, allocatable    :: fer_c(:), fer_scal(:), fer_GINsea_mask(
 
 ! Anything needed for the neuralnet acting in place of GM
 ! Additional arrays for inputs which are not directly accessible from FESOM
-REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:)         :: bvfreq_smoothed
 REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:)         :: bvfreq_nn
 REAL(KIND=WP), ALLOCATABLE, DIMENSION(:)           :: rosb_nn
 REAL(KIND=WP), ALLOCATABLE, DIMENSION(:,:)         :: curl_vel_nn

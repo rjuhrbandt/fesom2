@@ -273,7 +273,6 @@ subroutine solve_tracers_ale(ice, dynamics, tracers, partit, mesh)
             ! Output: tflux_unod, tflux_vnod, tflux_w
             ! Get unsmoothed bvfreq and interpolate to layer centers
             IF (flag_debug .AND. mype==0) PRINT *, achar(27)//'[37m'//'         --> call interpolate_bvfreq_to_layers'//achar(27)//'[0m'
-            ! Try using bvfreq (smoothed horizontally) instead of bvfreq_unsmoothed - better results?
             CALL interpolate_bvfreq_to_layers(dynamics, partit, mesh, bvfreq, bvfreq_nn)
             ! Iterate through nodes and layer centers (layer centers loop is in full_inference subroutine):
             NN_GM => get_neural_net()

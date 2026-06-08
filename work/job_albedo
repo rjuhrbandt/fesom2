@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --account=clidyn.p_clidyn_work # edit your account
-#SBATCH --job-name=NONE
+#SBATCH --job-name=01_bvfreq_smoothed_horizontally
 #SBATCH --partition=mpp
 #SBATCH --time=01:00:00
 #SBATCH --qos=12h

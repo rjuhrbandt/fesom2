@@ -491,17 +491,17 @@ subroutine pressure_bv(tracers, partit, mesh)
         end if
     end do
     ! Store unsmoothed bvfreq for use in GM neuralnet
-    bvfreq_unsmoothed = bvfreq
+    bvfreq_nn(:,:) = bvfreq(:,:)
 !$OMP END DO
 !$OMP BARRIER
 !$OMP END PARALLEL
 
 !_______________________________________________________________________________
 ! apply horizontal smoothing of N2 bouyancy frequency
-if (N2smth_h) call smooth_nod (bvfreq, N2smth_hidx, partit, mesh)
-
-! Using smoothed version of bvfreq gives better results
-! bvfreq_smoothed = bvfreq
+if (N2smth_h) THEN
+    IF ( flag_debug ) PRINT *, 'Smoothing bvfreq horizontally'
+    call smooth_nod (bvfreq, N2smth_hidx, partit, mesh)
+ENDIF
 
 end subroutine pressure_bv
 !

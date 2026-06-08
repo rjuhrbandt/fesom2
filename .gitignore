@@ -4,6 +4,7 @@ work/job_*
 work/*.csv
 work/*.out
 work/.ipynb_checkpoints/
+work/namelist.*
 /lib64
 *.o
 *.mod

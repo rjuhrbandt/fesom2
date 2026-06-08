@@ -30,14 +30,14 @@ MODULE MOD_NEURALNET
 
   CONTAINS
 
-    SUBROUTINE neuralnet_init(mype, mpi_comm, _which_NN)
+    SUBROUTINE neuralnet_init(mype, mpi_comm, neuralnet_id)
         ! Initialize the global neural network (only once)
         ! Subsequent calls are no-ops
         INTEGER, INTENT(IN), OPTIONAL :: mype, mpi_comm
         INTEGER :: i, nlayers, my_rank, comm, ierr
         CHARACTER(LEN=256) :: path, weights_path, biases_path, act_path
         CHARACTER(LEN=4) :: i_str
-        CHARACTER(LEN=8) :: _which_NN
+        CHARACTER(LEN=8) :: neuralnet_id
         LOGICAL :: use_mpi
         
         ! Check if already initialized
@@ -56,7 +56,7 @@ MODULE MOD_NEURALNET
         
         ! 1. Read network architecture (only on rank 0)
         IF (my_rank == 0) THEN
-            CALL read_nn_architecture(nn_gm_module%nlayers, nn_gm_module%layer_sizes, _which_NN)
+            CALL read_nn_architecture(nn_gm_module%nlayers, nn_gm_module%layer_sizes, neuralnet_id)
         END IF
         
         ! Broadcast nlayers to all ranks
@@ -136,16 +136,16 @@ MODULE MOD_NEURALNET
         nn => nn_gm_module
     END FUNCTION get_neural_net
 
-    SUBROUTINE read_nn_architecture(nl, layer_sizes, _which_NN)
+    SUBROUTINE read_nn_architecture(nl, layer_sizes, neuralnet_id)
         INTEGER, INTENT(OUT) :: nl
         INTEGER, ALLOCATABLE, INTENT(OUT) :: layer_sizes(:)
         CHARACTER(LEN=256) :: nlname, nnname
         INTEGER :: iunit, iostat
         CHARACTER(256) :: iomsg
-        CHARACTER(LEN=8) :: _which_NN
+        CHARACTER(LEN=8) :: neuralnet_id
         
         ! Use module parameter or environment variable for path
-        nlname = '../src/neuralnet_params/' // TRIM(_which_NN) // '/nlayers.bin'
+        nlname = '../src/neuralnet_params/' // TRIM(neuralnet_id) // '/nlayers.bin'
         
         OPEN(NEWUNIT=iunit, FILE=TRIM(nlname), STATUS='old', ACTION='read', &
             FORM='unformatted', ACCESS='stream', IOSTAT=iostat, IOMSG=iomsg)

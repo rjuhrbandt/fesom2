@@ -290,7 +290,8 @@ contains
           IF (f%mype==0) THEN
             WRITE(*,*) "Initializing neural network for GM parameterization"
           ENDIF
-          CALL neuralnet_init(f%mype, f%partit%MPI_COMM_FESOM)
+          IF (flag_debug .AND. f%mype == 0) WRITE(*,*) 'Value of which_NN:', which_NN
+          CALL neuralnet_init(f%mype, f%partit%MPI_COMM_FESOM, which_NN)
           NN_GM => get_neural_net()
           IF (f%mype==0) THEN
             WRITE(*,*) "Neural network for GM parameterization initialized successfully"
@@ -307,7 +308,17 @@ contains
 
         ! Load means and stds needed to normalize GM neuralnet inputs
         IF (flag_debug .AND. f%mype==0) PRINT *, achar(27)//'[37m'//'         --> call load_nn_normalization_params'//achar(27)//'[0m'
-        CALL load_nn_normalization_params(means, stds)
+        CALL load_nn_input_normalization_params(means, stds)
+
+        ! Load means and stds needed to unnormalize GM neuralnet outputs
+        IF (flag_debug .AND. f%mype==0) PRINT *, achar(27)//'[37m'//'         --> call load_nn_output_unnormalization_params'//achar(27)//'[0m'
+        CALL load_nn_output_unnormalization_params(means_train, stds_train, means_full, stds_full)
+
+        IF (flag_debug .AND. f%mype==0) THEN
+            WRITE(*,*) 'output unnormalization params full:', means_full, stds_full
+            WRITE(*,*) 'output unnormalization params train:', means_train, stds_train
+        ENDIF
+
 
 #if defined (FESOM_PROFILING)
         call fesom_profiler_end("dynamics_init")
